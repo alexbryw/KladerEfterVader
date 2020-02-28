@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Week() {
+export default function WeekOverview() {
   return (
     <div>
 
