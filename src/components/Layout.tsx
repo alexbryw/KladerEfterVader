@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom'
 import MainView from './MainView'
 import Navbar from './Navbar'
 
