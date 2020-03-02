@@ -1,13 +1,15 @@
 import React from 'react';
 import './App.css';
 import Layout from './components/Layout'
+import { BrowserRouter } from 'react-router-dom'
+
 
 function App() {
   return (
-    <div>
+    <BrowserRouter>
       <h1>hej</h1>
       <Layout />
-    </div>
+    </BrowserRouter>
   );
 }
 
