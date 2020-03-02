@@ -1,7 +1,15 @@
-import React from 'react'
+import React from 'react';
+import {Switch, Route} from 'react-router-dom';
+import Home from './Home';
+import WeekOverview from './WeekOverview';
+import Clothes from './Clothes';
 
-export default class MainView extends React.Component  {
-    render(){
-        return <h1>from mainview</h1>
-    }
+export default function MainView(){
+    return (
+        <Switch>
+            <Route exact path = '/Hem' component = {Home} />
+            <Route path = '/Veckan' component = {WeekOverview} />
+            <Route path = '/Kläder' component = {Clothes} />
+        </Switch>
+    )
 }
