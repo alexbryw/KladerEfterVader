@@ -1,9 +1,19 @@
 import React from 'react';
 
-export default function WeekDay() {
-  return (
-    <div>
+interface Props {
+  text: number
+}
 
-    </div>
-  );
+export default class WeekDay extends React.Component<Props>{
+    constructor(props:Props){
+      super(props);
+      this.state={};
+    }
+    render() {
+      return (
+          <div>
+            <li>{this.props.text}</li>
+          </div>
+      );
+  }
 }

@@ -27,7 +27,7 @@ export default class WeekOverview extends React.Component<Props, State>{
 
   async componentDidMount() {
     this.setState({loading: true})
-    const response = await fetch("https://swapi.co/api/people/1")
+    const response = await fetch("https://www.metaweather.com/api/location/890869/")
     const data = await response.json()
     this.setState({
       loading: false,
