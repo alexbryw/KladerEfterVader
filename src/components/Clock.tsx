@@ -10,7 +10,7 @@ interface State {
 }
 
 export default class Clock extends React.Component<Props, State>{
-    constructor(props:Props){
+     constructor(props:Props){
         super(props);
         this.state = {
             time: moment().format('LTS')
@@ -38,7 +38,7 @@ export default class Clock extends React.Component<Props, State>{
         this.setState({
             time: moment().format('LTS')
         })
-    }
+    } 
 
     render(){
         return (

@@ -2,6 +2,7 @@ import React, {CSSProperties} from 'react';
 import moment from 'moment';
 import 'moment/locale/sv';
 import Clock from './Clock'
+import CitySelection from './CitySelection'
 
 
 export default function DateTimePlace() {
@@ -11,10 +12,12 @@ export default function DateTimePlace() {
   
   return (
     <div style = {timeContainer}>
+        <h1>HELLO GBG!</h1>
         <Clock />
       <div style = {timeItem}>
         {currentDate}
-      </div>    
+      </div> 
+     <CitySelection />
     </div>
   );
 }
