@@ -2,11 +2,12 @@ import React, {CSSProperties} from 'react';
 import NavItem from './NavItem'
 
 export default function Navbar() {
-  const navLabels = ['Hem', 'Veckan', 'Kläder']
+  const navLabels = ['Veckan', 'Kläder']
 
   return (
     <div style = {navStyle}>
-      {navLabels.map((value) => <NavItem key ={value} id = {value}/>)}
+      <NavItem id = {"/"} name = {"Hem"}/>
+      {navLabels.map((value) => <NavItem key ={value} id = {value} name = {value}/>)}
     </div>
   );
 }
