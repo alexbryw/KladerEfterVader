@@ -2,14 +2,15 @@ import React, {CSSProperties} from 'react';
 import {Link} from 'react-router-dom'
 
 interface Props {
-    id:string
+    id:string,
+    name: string
 }
 
 export default function NavItem(props:Props) {
 
     return (
         <Link to = {props.id} style = {navItemStyle}>
-            {props.id}
+            {props.name}
         </Link>
     );
 }
