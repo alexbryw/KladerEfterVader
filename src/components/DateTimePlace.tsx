@@ -12,7 +12,6 @@ export default function DateTimePlace() {
   
   return (
     <div style = {timeContainer}>
-        <h1>HELLO GBG!</h1>
         <Clock />
       <div style = {timeItem}>
         {currentDate}
