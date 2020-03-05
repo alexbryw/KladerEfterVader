@@ -3,7 +3,7 @@ import MainView from './MainView'
 import Navbar from './Navbar'
 import DayNightMode from './DayNightMode'
 
-function App() {
+export default function Layout() {
   return (
     <div>
         <MainView />
@@ -12,5 +12,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
