@@ -3,22 +3,31 @@ import React, {CSSProperties} from 'react';
 interface Props{}
 interface State{
   buttonText: string,
-
+  isDay: boolean
 }
 
 export default class DayNightMode extends React.Component <Props, State>{
   constructor(props:Props){
     super(props);
     this.state = {
-      buttonText: 'Dag'
+      buttonText: 'Dag',
+      isDay: true
     }
     this.toggleDayNight = this.toggleDayNight.bind(this)
   }
 
   toggleDayNight(){
-    const newText = (this.state.buttonText === 'Dag'? 'Natt': 'Dag');
-    this.setState({buttonText:newText})
+    const newDay = (this.state.isDay? false:true)
+    this.setState({isDay:newDay})
+
+    if (this.state.isDay){
+      this.setState({buttonText: "Dag"})
+    }
+    else{
+      this.setState({buttonText:"Natt"})
+    }
   }
+
 
   render(){
     return (
