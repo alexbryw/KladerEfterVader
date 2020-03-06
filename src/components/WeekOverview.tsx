@@ -22,13 +22,14 @@ export default class WeekOverview extends React.Component<Props, State>{
   }
 
   async componentDidMount() {
-    const response = await fetch("http://api.openweathermap.org/data/2.5/forecast?id=2673730&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
+    const response = await fetch("http://api.openweathermap.org/data/2.5/forecast?id=5695743&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
     const data = await response.json();
     const dataWeather = data.list.filter((reading:any) => reading.dt_txt.includes("12:00:00"));
     this.setState({
       weatherData: dataWeather,
     })
-    const responseToday  = await fetch("http://api.openweathermap.org/data/2.5/weather?id=2673730&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
+
+    const responseToday  = await fetch("http://api.openweathermap.org/data/2.5/weather?id=5695743&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
     const dataWeatherToday = await responseToday.json();
     this.setState({
       weatherToday: dataWeatherToday,
@@ -45,9 +46,14 @@ export default class WeekOverview extends React.Component<Props, State>{
     if (!weatherList) {
       return <p>Loading...</p>;
     }
+    console.log(weatherList)
+
     if (!weatherListToday) {
       return <p>Loading...</p>;
     }
+
+    console.log(weatherListToday)
+
 
     if(hour > 12){
       weatherList.pop();
@@ -65,8 +71,8 @@ export default class WeekOverview extends React.Component<Props, State>{
     return (
       <div style={{ ...weatherListContainer}}>
           {weatherList.map((weatherContent:any, index:number) => 
-          <WeekDay weatherContent={weatherContent} key={index} 
-      />)}
+          <WeekDay weatherContent={weatherContent} key={index}/>
+          )}
       </div>
     );
   }
