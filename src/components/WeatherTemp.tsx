@@ -1,4 +1,5 @@
 import React from 'react';
+import './WeatherTemp.css';
 
 interface Props{}
 interface State{
@@ -26,18 +27,19 @@ export default class WeatherTeamp extends React.Component<Props, State> {
     +this.state.city+"&lang="+this.state.language+"&appid=16da1da324d687a04c8aec0742e21c35")
     
     const data = await response.json()
-    console.log("data under")
-    console.log(data)   //Console to see what's inside API response.
+    // console.log("data under")
+    // console.log(data)   //Console to see what's inside API response.
     this.setState({
       weather: data,
       isLoaded: true
     })
   }
 
+  kToCelsius(kelvinIn: number):string{
+    return (kelvinIn - 273.15).toFixed(1);
+  }
 
   render(){
-
-
     if(!this.state.isLoaded){
       return(
         <div>
@@ -49,20 +51,32 @@ export default class WeatherTeamp extends React.Component<Props, State> {
     else {
     const weatherIconUrl = "http://openweathermap.org/img/wn/"+ this.state.weather.weather[0].icon +"@2x.png";
     const weatherIconALtDescription = "an icon of " + this.state.weather.weather[0].description;
-    const tempInCelsius =  (this.state.weather.main.temp - 273.15).toFixed(1);
-    const tempFeelsLikeC =  (this.state.weather.main.feels_like - 273.15).toFixed(1);
+    const tempInCelsius = this.kToCelsius(this.state.weather.main.temp);
+    const tempFeelsLikeC = this.kToCelsius(this.state.weather.main.feels_like);
+    const tempMin = this.kToCelsius(this.state.weather.main.temp_min);
+    const tempMax = this.kToCelsius(this.state.weather.main.temp_max);
+
+    // Maybe add sunset and sunrise later, fix timezones, could also be wrong timestamp from weatherAPI
+    // const sunrise = new Date(this.state.weather.sys.sunrise)
+    // const sunset = new Date(this.state.weather.sys.sunset)
+
+    // const formattedSunrise = sunrise.toLocaleTimeString();
+    // const formattedSunset= sunset.toLocaleTimeString();
+
       return (
         <div className="WeatherTemp">
           {/* <h2>{this.state.weather.name}</h2> */}
           <h2>{this.state.city}</h2>
           <h3>Temp: {tempInCelsius}°C </h3>
-          <h3>Känns som {tempFeelsLikeC}</h3>
-          <img src={weatherIconUrl} alt={weatherIconALtDescription}></img>
+          <h3>Känns som {tempFeelsLikeC}°C</h3>
+          <h3>Dagens min {tempMin}°C, max {tempMax}°C</h3>
+          <img src={weatherIconUrl} alt={weatherIconALtDescription} width="120"></img>
           <h3>{this.state.weather.weather[0].description}</h3>
-          <h3>Vind {this.state.weather.wind.speed} m/s </h3>
-          <h3>Riktning {this.state.weather.wind.deg}°</h3>
+          <h3>Vind {this.state.weather.wind.speed} m/s, riktning {this.state.weather.wind.deg}°</h3>
+          {/* <h3>Soluppgång {formattedSunrise}  nedgång {formattedSunset} </h3> */}
         </div>
       );
     }
   }
 }
+
