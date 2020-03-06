@@ -7,7 +7,8 @@ interface Props{}
 
 interface State{
   isDayMode: boolean,
-  buttonText: string
+  buttonText: string,
+  modeStyle: React.CSSProperties
 }
 
 export default class Layout extends React.Component <Props, State>{
@@ -15,7 +16,8 @@ export default class Layout extends React.Component <Props, State>{
     super(props)
     this.state = {
       isDayMode: true,
-      buttonText: 'Dag'
+      buttonText: 'Dag',
+      modeStyle: mainDayStyle
     }
     this.toggleDayNightMode = this.toggleDayNightMode.bind(this)
   }
@@ -25,27 +27,38 @@ export default class Layout extends React.Component <Props, State>{
     this.setState({isDayMode:newDay})
 
     if (this.state.isDayMode){
-      this.setState({buttonText: "Natt"})
+      this.setState({buttonText: "Natt"});
+      this.setState({modeStyle: mainNigthStyle});
     }
     else{
-      this.setState({buttonText:"Dag"})
+      this.setState({buttonText:"Dag"});
+      this.setState({modeStyle: mainDayStyle})
     }
   }
 
   render(){
     return (
-      <div style = {mainDayStyle}>
+      <div style = {this.state.modeStyle}>
           <MainView />
           <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
-          <Navbar />
+          <Navbar isDayMode = {this.state.isDayMode}/>
       </div>
     );
   }
 }
 
 const mainDayStyle:CSSProperties = {
-  backgroundColor: 'lightblue',
+  backgroundColor: '#b3d9ff',
   height: '100vh',
   width: '100%',
-  position: 'relative'
+  position: 'relative',
+  color: 'black'
+}
+
+const mainNigthStyle:CSSProperties = {
+  backgroundColor: '#000033',
+  height: '100vh',
+  width: '100%',
+  position: 'relative',
+  color: '#ffffcc'
 }
