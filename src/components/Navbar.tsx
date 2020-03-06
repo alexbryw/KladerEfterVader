@@ -2,7 +2,7 @@ import React, {CSSProperties} from 'react';
 import NavItem from './NavItem'
 
 export default function Navbar() {
-  const navLabels = ['Veckan', 'Kläder']
+  const navLabels = ['Prognos', 'Kläder']
 
   return (
     <div style = {navStyle}>
