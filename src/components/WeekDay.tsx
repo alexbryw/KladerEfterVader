@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ CSSProperties } from 'react';
 
 
 interface Props {
@@ -19,16 +19,24 @@ export default class WeekDay extends React.Component<Props>{
       const weekdayName = weekdayNameSE[weekdayNum]
 
       return (
-          <div>
-            <img width="40"
+          <div style={{ ...weatherCard}}>
+            <p>{weekdayName}</p>{" "}
+            <img
+              style={{ ...imageStyling}}
               src={imgURL} 
-              alt={this.props.weatherContent.weather[0].description}/>
+              alt={this.props.weatherContent.weather[0].description + " icon"}/>
             <p>
-              {weekdayName}{" - "}
-              {this.props.weatherContent.weather[0].description} {"  "}
               {(this.props.weatherContent.main.temp - 273.15).toFixed(1)}°C
-              </p>
+            </p>
           </div>
       );
   }
+}
+
+const weatherCard: CSSProperties = {
+  display: 'flex',
+}
+
+const imageStyling: CSSProperties = {
+  height: '3em',
 }

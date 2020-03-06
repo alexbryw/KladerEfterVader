@@ -24,7 +24,7 @@ export default class WeatherTeamp extends React.Component<Props, State> {
     this.setState({ isLoaded: false })
     
     const response =  await fetch("http://api.openweathermap.org/data/2.5/weather?q="
-    +this.state.city+"&lang="+this.state.language+"&appid=16da1da324d687a04c8aec0742e21c35")
+    +this.state.city+"&appid=16da1da324d687a04c8aec0742e21c35&lang=se")
     
     const data = await response.json()
     // console.log("data under")
