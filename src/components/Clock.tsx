@@ -17,21 +17,22 @@ export default class Clock extends React.Component<Props, State>{
         }
     }
 
+    private interval: NodeJS.Timeout | undefined = undefined;
+
     componentDidMount(){
        this.intervalID()
     }
 
     componentWillUnmount(){
-        clearInterval(this.intervalID());
+        if(this.interval){
+            clearInterval(this.interval)
+        }
     }
 
     intervalID(){
-
-        let intervalID = setInterval(
+        this.interval = setInterval(
             () => this.tick(), 1000
         )
-
-        return intervalID
     }
 
     tick(){
