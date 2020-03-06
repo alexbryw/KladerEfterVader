@@ -49,7 +49,8 @@ export default class WeatherTeamp extends React.Component<Props, State> {
       )
     }
     else {
-    const weatherIconUrl = "http://openweathermap.org/img/wn/"+ this.state.weather.weather[0].icon +"@2x.png";
+    const weatherIconUrl = require(`../asset/images/weatherIcons/${this.state.weather.weather[0].icon}.png`)
+
     const weatherIconALtDescription = "an icon of " + this.state.weather.weather[0].description;
     const tempInCelsius = this.kToCelsius(this.state.weather.main.temp);
     const tempFeelsLikeC = this.kToCelsius(this.state.weather.main.feels_like);

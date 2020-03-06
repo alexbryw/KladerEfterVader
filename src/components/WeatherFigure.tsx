@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ CSSProperties } from 'react';
 
 interface Props {
   weatherContent: any
@@ -17,7 +17,7 @@ export default class WeatherFigure extends React.Component<Props>{
       if (weather.main.temp < 278){
         //temp in Kelvin, about 5+ C
         weatherSlothIMG = "ColdSloth";
-      } else if (weather.weather[0].icon === "09d"){ // problem with ||
+      } else if (weather.weather[0].icon === "09d"){
         weatherSlothIMG = "WetSloth";
       } else if (weather.weather[0].icon === "09n"){
         weatherSlothIMG = "WetSloth";
@@ -36,13 +36,25 @@ export default class WeatherFigure extends React.Component<Props>{
         weatherSlothIMG = "MildSloth";
       }
 
-      let weatherSlothURL = `./images/weatherSloths/${weatherSlothIMG}.png`
+      let weatherSlothURL = require(`../asset/images/weatherSloths/${weatherSlothIMG}.png`)
+      const imgURL = require(`../asset/images/weatherIcons/${weather.weather[0].icon}.png`);
 
       return (
           <div>
-            <img src={weatherSlothURL} alt={weatherSlothIMG}/>
-            <p>{weather.weather[0].icon}</p>
+            <img src={imgURL} alt={weather.weather[0].description + " Ikon"} style={{...weatherlogoStyle}}/>
+            <img src={weatherSlothURL} alt={weatherSlothIMG} style={{...weatherSlothStyle}}/>
           </div>
       );
   }
 } 
+
+
+
+
+const weatherSlothStyle: CSSProperties = {
+  height:"15rem"
+}
+
+const weatherlogoStyle:CSSProperties = {
+  height:"7em"
+}
