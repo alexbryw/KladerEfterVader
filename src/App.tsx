@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Layout from './components/Layout'
 import { BrowserRouter } from 'react-router-dom'
+import ErrorBoundary from './components/ErrorBoundary'
 
 interface Props {}
 interface State {
@@ -40,7 +41,9 @@ class App extends Component<Props, State> {
     console.log(this.state.deviceSize)
     return (
       <BrowserRouter>
-        <Layout />
+        <ErrorBoundary>
+          <Layout />
+        </ErrorBoundary>
       </BrowserRouter>
     );
   }

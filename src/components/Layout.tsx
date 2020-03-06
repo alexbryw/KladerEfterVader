@@ -2,6 +2,7 @@ import React, {CSSProperties}from 'react';
 import MainView from './MainView'
 import Navbar from './Navbar'
 import DayNightMode from './DayNightMode'
+import ErrorBoundary from './ErrorBoundary'
 
 interface Props{}
 
@@ -39,7 +40,9 @@ export default class Layout extends React.Component <Props, State>{
   render(){
     return (
       <div style = {this.state.modeStyle}>
-          <MainView />
+          <ErrorBoundary>
+            <MainView />
+          </ErrorBoundary>
           <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
           <Navbar isDayMode = {this.state.isDayMode}/>
       </div>

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import WeatherFigure from './WeatherFigure'
 import WeatherDescription from './WeatherDescription'
+import ErrorBoundary from './ErrorBoundary'
 
 interface Props {
 }
@@ -75,7 +76,7 @@ export default class Clothes extends React.Component<Props, State>{
     return (
 
       <div>
-          <WeatherFigure weatherContent={weatherOutPut}/>
+          <ErrorBoundary><WeatherFigure weatherContent={weatherOutPut}/></ErrorBoundary>
           <WeatherDescription weatherContent={weatherOutPut}/>
           <button type="button" name="whatDay" value="today" onClick={this.handleClick}>Idag</button>
           <button type="button" name="whatDay" value="tomorrow" onClick={this.handleClick}>Imorgon</button>
