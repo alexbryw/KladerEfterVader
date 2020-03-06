@@ -1,6 +1,7 @@
 import React, {CSSProperties} from 'react';
 
 interface Props{}
+
 interface State{
   buttonText: string,
   isDay: boolean
@@ -21,10 +22,10 @@ export default class DayNightMode extends React.Component <Props, State>{
     this.setState({isDay:newDay})
 
     if (this.state.isDay){
-      this.setState({buttonText: "Dag"})
+      this.setState({buttonText: "Natt"})
     }
     else{
-      this.setState({buttonText:"Natt"})
+      this.setState({buttonText:"Dag"})
     }
   }
 
