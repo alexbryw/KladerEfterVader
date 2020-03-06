@@ -1,12 +1,13 @@
 import React, {CSSProperties} from 'react';
 import NavItem from './NavItem'
 
+
 interface Props{
   isDayMode:boolean
 }
 
 export default function Navbar(props:Props) {
-  const navLabels = ['Veckan', 'Kläder']
+  const navLabels = ['Prognos', 'Kläder']
 
   return (
     <div style = {navStyle}>

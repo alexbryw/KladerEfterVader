@@ -11,9 +11,9 @@ export default class WeekDay extends React.Component<Props>{
       this.state={};
     }
 
-
     render() {
-      const imgURL = `http://openweathermap.org/img/wn/${this.props.weatherContent.weather[0].icon}@2x.png`;
+      const imgURL = require(`../asset/images/weatherIcons/${this.props.weatherContent.weather[0].icon}.png`);
+
       const weekdayNameSE = ['Sön', 'Mån', 'Tis', 'Ons', 'Tor', 'Fre', 'Lör']
       const weekdayNum = new Date(this.props.weatherContent.dt * 1000).getDay();
       const weekdayName = weekdayNameSE[weekdayNum]
