@@ -1,4 +1,5 @@
 import React,{ CSSProperties } from 'react';
+import WindDirection from './WindDirection';
 
 
 interface Props {
@@ -34,6 +35,7 @@ export default class WeekDay extends React.Component<Props>{
             <p>
               {(this.props.weatherContent.main.temp - 273.15).toFixed(1)}°C
             </p>
+            <WindDirection windDeg={this.props.weatherContent.wind.deg} isDayMode={this.props.isDayMode} windStyle={windStyle} />
           </div>
       );
   }
@@ -45,4 +47,9 @@ const weatherCard: CSSProperties = {
 
 const imageStyling: CSSProperties = {
   height: '3em',
+}
+
+const windStyle: CSSProperties = {
+  padding: '0.25rem',
+  height: '2rem'
 }

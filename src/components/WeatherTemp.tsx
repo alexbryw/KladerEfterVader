@@ -1,4 +1,5 @@
 import React from 'react';
+import WindDirection from './WindDirection';
 
 interface Props{
   isDayMode:boolean
@@ -52,14 +53,11 @@ export default class WeatherTemp extends React.Component<Props, State> {
     }
     else {
       let weatherIconUrl: string;
-      let windDirectionURrl: string;
       
       if(this.props.isDayMode){
         weatherIconUrl = require(`../asset/images/weatherIcons/${this.state.weather.weather[0].icon}.png`);
-        windDirectionURrl = require(`../asset/images/weatherIcons/arrow.png`);
       } else {
         weatherIconUrl = require(`../asset/images/weatherIcons/NightMode/${this.state.weather.weather[0].icon}.png`);
-        windDirectionURrl = require(`../asset/images/weatherIcons/NightMode/arrow.png`);
       }
 
       const weatherIconALtDescription = "an icon of " + this.state.weather.weather[0].description;
@@ -68,11 +66,6 @@ export default class WeatherTemp extends React.Component<Props, State> {
       const tempMin = this.kToCelsius(this.state.weather.main.temp_min);
       const tempMax = this.kToCelsius(this.state.weather.main.temp_max);
 
-      let windDirectionStyle : React.CSSProperties = {
-        padding: "0.5rem",
-        transform: "rotate("+(this.state.weather.wind.deg+180)+"deg)"
-      }
-
       return (
         <div className="WeatherTemp" style={tempStyle}>
           {/* <h2>{this.state.weather.name}</h2> */}
@@ -80,10 +73,10 @@ export default class WeatherTemp extends React.Component<Props, State> {
           <h3>Temp: {tempInCelsius}°C </h3>
           <h3>Känns som {tempFeelsLikeC}°C</h3>
           <h3>Dagens min {tempMin}°C, max {tempMax}°C</h3>
-          <img src={weatherIconUrl} alt={weatherIconALtDescription} width="120"></img>
+          <img src={weatherIconUrl} alt={weatherIconALtDescription} style={weatherIconStyle}></img>
           <h3>{this.state.weather.weather[0].description}</h3>
           <h3>Vind {this.state.weather.wind.speed} m/s, riktning {this.state.weather.wind.deg}°</h3>
-          <img src={windDirectionURrl} alt="A wind direction arrow." width="120" style={windDirectionStyle}/>
+          <WindDirection windDeg={this.state.weather.wind.deg} isDayMode={this.props.isDayMode} windStyle={windStyle} />
         </div>
       );
     }
@@ -94,4 +87,13 @@ const tempStyle : React.CSSProperties = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center"
+}
+
+const weatherIconStyle : React.CSSProperties = {
+  width: "9rem"
+}
+
+const windStyle : React.CSSProperties = {
+  padding: "0.5rem",
+  width: "9rem",
 }
