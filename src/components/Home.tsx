@@ -1,11 +1,16 @@
 import React from 'react';
 import DateTimeContainer from './DateTimeContainer'
-import WeatherTeamp from './WeatherTemp';
+import WeatherTemp from './WeatherTemp';
 
-export default function Home() {
+interface Props{
+  isDayMode: boolean
+}
+
+
+export default function Home(props : Props) {
   return (
     <div>
-      <WeatherTeamp />
+      <WeatherTemp isDayMode={props.isDayMode}/>
       <DateTimeContainer />
     </div>
   );

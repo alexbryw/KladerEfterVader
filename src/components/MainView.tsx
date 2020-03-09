@@ -4,12 +4,17 @@ import Home from './Home';
 import WeekOverview from './WeekOverview';
 import Clothes from './Clothes';
 
-export default function MainView(){
+interface Props{
+    isDayMode: boolean
+}
+
+export default function MainView(props : Props){
     return (
         <Switch>
-            <Route exact path = '/' component = {Home} />
-            <Route path = '/Prognos' component = {WeekOverview} />
-            <Route path = '/Kläder' component = {Clothes} />
+            <Route exact path = '/' component={() => <Home isDayMode={props.isDayMode}/>} />
+            <Route path = '/Prognos' component={() => <WeekOverview  isDayMode={props.isDayMode}/>} />
+            <Route path = '/Kläder' component={() => <Clothes isDayMode={props.isDayMode}/>} />
         </Switch>
     )
 }
+

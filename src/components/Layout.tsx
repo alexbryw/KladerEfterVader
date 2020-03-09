@@ -7,7 +7,8 @@ import Home from './Home';
 import WeekOverview from './WeekOverview';
 import Clothes from './Clothes';
 
-interface Props{}
+interface Props{
+}
 
 interface State{
   isDayMode: boolean,
@@ -70,7 +71,7 @@ export default class Layout extends React.Component <Props, State>{
       return (
         <div style = {this.state.modeStyle}>
             <ErrorBoundary>
-              <MainView />
+              <MainView isDayMode = {this.state.isDayMode}/>
             </ErrorBoundary>
             <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
             <Navbar isDayMode = {this.state.isDayMode}/>
@@ -82,13 +83,13 @@ export default class Layout extends React.Component <Props, State>{
       return (
         <div style = {this.state.modeStyle}>
             <ErrorBoundary>
-              <Home />
+              <Home isDayMode={this.state.isDayMode}/>
             </ErrorBoundary>
             <ErrorBoundary>
-              <WeekOverview />
+              <WeekOverview isDayMode = {this.state.isDayMode}/>
             </ErrorBoundary>
             <ErrorBoundary>
-              <Clothes />
+              <Clothes isDayMode = {this.state.isDayMode}/>
             </ErrorBoundary>
             <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
         </div>

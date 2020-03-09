@@ -1,7 +1,10 @@
 import React from 'react';
 import './WeatherTemp.css';
 
-interface Props{}
+interface Props{
+  isDayMode:boolean
+}
+
 interface State{
   city: string
   language: string
@@ -49,7 +52,13 @@ export default class WeatherTeamp extends React.Component<Props, State> {
       )
     }
     else {
-    const weatherIconUrl = require(`../asset/images/weatherIcons/${this.state.weather.weather[0].icon}.png`)
+    let weatherIconUrl;
+    
+    if(this.props.isDayMode){
+      weatherIconUrl = require(`../asset/images/weatherIcons/${this.state.weather.weather[0].icon}.png`);
+    } else {
+      weatherIconUrl = require(`../asset/images/weatherIcons/NightMode/${this.state.weather.weather[0].icon}.png`);
+    }
 
     const weatherIconALtDescription = "an icon of " + this.state.weather.weather[0].description;
     const tempInCelsius = this.kToCelsius(this.state.weather.main.temp);

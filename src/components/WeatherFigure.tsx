@@ -1,7 +1,8 @@
 import React,{ CSSProperties } from 'react';
 
 interface Props {
-  weatherContent: any
+  weatherContent: any,
+  isDayMode: boolean
 }
 
 export default class WeatherFigure extends React.Component<Props>{
@@ -14,7 +15,9 @@ export default class WeatherFigure extends React.Component<Props>{
       const weather = this.props.weatherContent
       let weatherSlothIMG
 
-      if (weather.main.temp < 278){
+      if(!this.props.isDayMode){
+        weatherSlothIMG = "GothSloth";
+      } else if (weather.main.temp < 278){
         //temp in Kelvin, about 5+ C
         weatherSlothIMG = "ColdSloth";
       } else if (weather.weather[0].icon === "09d"){
@@ -37,7 +40,12 @@ export default class WeatherFigure extends React.Component<Props>{
       }
 
       let weatherSlothURL = require(`../asset/images/weatherSloths/${weatherSlothIMG}.png`)
-      const imgURL = require(`../asset/images/weatherIcons/${weather.weather[0].icon}.png`);
+      let imgURL
+      if (this.props.isDayMode){
+        imgURL = require(`../asset/images/weatherIcons/${weather.weather[0].icon}.png`);
+      } else {
+        imgURL = require(`../asset/images/weatherIcons/NightMode/${weather.weather[0].icon}.png`);
+      }
 
       return (
           <div style={{...weatherFigureContainer}}>
