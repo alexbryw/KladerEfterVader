@@ -41,26 +41,29 @@ export default class WeatherFigure extends React.Component<Props>{
 
       return (
           <div style={{...weatherFigureContainer}}>
-            <img src={imgURL} alt={weather.weather[0].description + " Ikon"} style={{...weatherlogoStyle}}/>
-            <img src={weatherSlothURL} alt={weatherSlothIMG} style={{...weatherSlothStyle}}/>
+            <img src={imgURL} alt={weather.weather[0].description + " Ikon"} style={weatherlogoStyle}/>
+            <img src={weatherSlothURL} alt={weatherSlothIMG} style={weatherSlothStyle}/>
           </div>
       );
   }
 } 
 
 const weatherFigureContainer: CSSProperties = {
-  height:"15em",
+  display: 'flex',
+  justifyContent: 'center',
+  padding:'2rem',
+  height: '70%'
+  
 }
 
 
 const weatherSlothStyle: CSSProperties = {
-  height:"15em",
-  position: "absolute",
-  left: "2em",
+  height:'80%',
+  marginLeft: " -8rem",
+  marginTop: '2rem',
+  objectFit: 'cover'
 }
 
 const weatherlogoStyle:CSSProperties = {
-  height:"7em",
-  position: "absolute",
-  left: "1em",
+  height:"50%",
 }

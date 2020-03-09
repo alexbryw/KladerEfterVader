@@ -64,6 +64,7 @@ export default class Layout extends React.Component <Props, State>{
   }
 
   render(){
+
     console.log(this.state.deviceSize)
    
     if(this.state.deviceSize === "isMobile"){
@@ -80,7 +81,7 @@ export default class Layout extends React.Component <Props, State>{
 
     else{
       return (
-        <div style = {this.state.modeStyle}>
+        <div style = {{...this.state.modeStyle, ...gridLayoutDesktop}}>
             <ErrorBoundary>
               <Home />
             </ErrorBoundary>
@@ -113,3 +114,17 @@ const mainNigthStyle:CSSProperties = {
   position: 'relative',
   color: '#ffffcc'
 }
+
+const gridLayoutDesktop: CSSProperties = {
+  display: 'grid',
+
+  width: '100%',
+  height: '100vh',
+
+  gridTemplateColumns: '55% 45%',
+  gridTemplateAreas: 
+  '"home clothes" "week clothes"',
+
+}
+
+

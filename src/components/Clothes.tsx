@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {CSSProperties} from 'react';
 import WeatherFigure from './WeatherFigure'
 import WeatherDescription from './WeatherDescription'
 
@@ -76,7 +76,7 @@ export default class Clothes extends React.Component<Props, State>{
     }
     return (
 
-      <div>
+      <div style = {clothesGridItem}>
           <WeatherFigure weatherContent={weatherOutPut}/>
           <WeatherDescription weatherContent={weatherOutPut} whatDayIsIt={whatDayIsIt}/>
           <button type="button" name="whatDay" value="today" onClick={this.handleClick}>Idag</button>
@@ -87,3 +87,7 @@ export default class Clothes extends React.Component<Props, State>{
   }
 }
 
+const clothesGridItem: CSSProperties = {
+  gridArea: 'clothes',
+  height: '100vh'
+}

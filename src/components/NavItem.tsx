@@ -21,21 +21,23 @@ export default function NavItem(props:Props) {
 }
 
 const navItemDayStyle: CSSProperties = {
-    padding: '1rem 2rem',
+    padding: '1rem 0',
     border: '1px solid black',
     cursor: 'pointer',
     display: 'flex',
     flexGrow: 1,
     textDecoration: 'none',
-    color: 'black'
+    color: 'black',
+    justifyContent: 'center'
 }
 
 const navItemNightStyle: CSSProperties = {
-    padding: '1rem 2rem',
+    padding: '1rem 0',
     border: '1px solid white',
     cursor: 'pointer',
     display: 'flex',
     flexGrow: 1,
     textDecoration: 'none',
-    color: '#ffffcc'
+    color: '#ffffcc',
+    justifyContent: 'center'
 }

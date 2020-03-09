@@ -48,8 +48,3 @@ export default class WeatherDescription extends React.Component<Props>{
       );
   }
 }
-
-
-
-
-

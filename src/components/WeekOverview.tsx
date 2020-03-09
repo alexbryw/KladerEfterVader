@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {CSSProperties} from 'react';
 import WeekDay from './WeekDay'
 
 
@@ -55,7 +55,7 @@ export default class WeekOverview extends React.Component<Props, State>{
     if(hour > 12){
       weatherList.pop();
       return (
-        <div style={{ ...weatherListContainer}}>
+        <div style={weekListStyle}>
             <WeekDay weatherContent={weatherListToday} key="0" />
             {
             weatherList.map((weatherContent:any, index:number) => 
@@ -66,7 +66,7 @@ export default class WeekOverview extends React.Component<Props, State>{
     }
 
     return (
-      <div style={{ ...weatherListContainer}}>
+      <div style={weekListStyle}>
           {weatherList.map((weatherContent:any, index:number) => 
           <WeekDay weatherContent={weatherContent} key={index}/>
           )}
@@ -76,7 +76,13 @@ export default class WeekOverview extends React.Component<Props, State>{
 }
 
 
-const weatherListContainer: React.CSSProperties = {
+const weatherListContainer: CSSProperties = {
   display: 'flex',
   flexDirection: 'column'
 }
+
+const weekOverviewGridItem: CSSProperties = {
+  gridArea: 'week'
+}
+
+const weekListStyle = {...weatherListContainer, ...weekOverviewGridItem}
