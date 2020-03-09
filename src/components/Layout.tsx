@@ -101,7 +101,7 @@ export default class Layout extends React.Component <Props, State>{
 
 const mainDayStyle:CSSProperties = {
   backgroundColor: '#b3d9ff',
-  height: '100vh',
+  height: '100%',
   width: '100%',
   position: 'relative',
   color: 'black'
@@ -117,14 +117,12 @@ const mainNigthStyle:CSSProperties = {
 
 const gridLayoutDesktop: CSSProperties = {
   display: 'grid',
-
   width: '100%',
-  height: '100vh',
+  height: '100%',
 
   gridTemplateColumns: '55% 45%',
   gridTemplateAreas: 
   '"home clothes" "week clothes"',
-
 }
 
 
