@@ -58,29 +58,30 @@ export default class Clothes extends React.Component<Props, State>{
   
   render() {
     let weatherOutPut;
+    let whatDayIsIt;
 
     if(this.state.whatDay === "today"){
       weatherOutPut = this.state.weatherToday;
+      whatDayIsIt = "Idag";
     } else if (this.state.whatDay === "tomorrow"){
       weatherOutPut = this.state.weatherTomorrow;
+      whatDayIsIt = "Imorgon";
     } else if (this.state.whatDay === "dayAfterTomorrow") {
       weatherOutPut = this.state.weatherDayAfterTomorrow;
+      whatDayIsIt = "I övermorgon";
     }
 
     if (!weatherOutPut) {
       return <p>Loading...</p>;
     }
-    console.log(this.state.weatherTomorrow)
-    console.log(this.state.weatherDayAfterTomorrow)
     return (
 
       <div>
           <WeatherFigure weatherContent={weatherOutPut}/>
-          <WeatherDescription weatherContent={weatherOutPut}/>
+          <WeatherDescription weatherContent={weatherOutPut} whatDayIsIt={whatDayIsIt}/>
           <button type="button" name="whatDay" value="today" onClick={this.handleClick}>Idag</button>
           <button type="button" name="whatDay" value="tomorrow" onClick={this.handleClick}>Imorgon</button>
           <button type="button" name="whatDay" value="dayAfterTomorrow" onClick={this.handleClick}>I övermorgon</button>
-          <p>{this.state.whatDay}</p>
       </div>
     );
   }

@@ -7,10 +7,9 @@ import Clothes from './Clothes';
 export default function MainView(){
     return (
         <Switch>
-                <Route exact path = '/' component = {Home} />
-                <Route path = '/Veckan' component = {WeekOverview} />
-                <Route path = '/Kläder' component = {Clothes} />
-                
+            <Route exact path = '/' component = {Home} />
+            <Route path = '/Prognos' component = {WeekOverview} />
+            <Route path = '/Kläder' component = {Clothes} />
         </Switch>
     )
 }
