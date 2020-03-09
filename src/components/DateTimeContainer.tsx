@@ -2,13 +2,17 @@ import React, {CSSProperties} from 'react';
 import moment from 'moment';
 import 'moment/locale/sv';
 import Clock from './Clock'
-import CitySelection from './CitySelection'
-
 
 export default function DateTimePlace() {
 
   //let currentTime = moment().format('LTS');
   let currentDate = moment().format('LL');
+
+
+/*  ------ FOR TESTING ERROR-BOUNDARIES-----
+ let errorTest: any = null
+  console.log(errorTest.kjdsfh)
+   */
   
   return (
     <div style = {timeContainer}>
@@ -16,7 +20,6 @@ export default function DateTimePlace() {
       <div style = {timeItem}>
         {currentDate}
       </div> 
-     <CitySelection />
     </div>
   );
 }

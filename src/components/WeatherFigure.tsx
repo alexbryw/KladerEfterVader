@@ -13,7 +13,7 @@ export default class WeatherFigure extends React.Component<Props>{
     render() {
       const weather = this.props.weatherContent
       let weatherSlothIMG
-      
+
       if (weather.main.temp < 278){
         //temp in Kelvin, about 5+ C
         weatherSlothIMG = "ColdSloth";
