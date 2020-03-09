@@ -2,10 +2,7 @@ import * as React from 'react';
 import WeekDay from './WeekDay'
 
 
-interface Props {
-  weatherContent: any,
-  key: number
-}
+interface Props {}
 
 interface State {
   weatherData?: any,
