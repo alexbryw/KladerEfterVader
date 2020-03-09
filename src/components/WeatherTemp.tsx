@@ -1,5 +1,4 @@
 import React from 'react';
-import './WeatherTemp.css';
 
 interface Props{
   isDayMode:boolean
@@ -74,7 +73,7 @@ export default class WeatherTeamp extends React.Component<Props, State> {
     // const formattedSunset= sunset.toLocaleTimeString();
 
       return (
-        <div className="WeatherTemp">
+        <div className="WeatherTemp" style={tempStyle}>
           {/* <h2>{this.state.weather.name}</h2> */}
           <h2>{this.state.city}</h2>
           <h3>Temp: {tempInCelsius}°C </h3>
@@ -88,5 +87,11 @@ export default class WeatherTeamp extends React.Component<Props, State> {
       );
     }
   }
+}
+
+const tempStyle : React.CSSProperties = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center"
 }
 
