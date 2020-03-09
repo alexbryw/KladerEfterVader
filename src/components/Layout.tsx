@@ -3,13 +3,17 @@ import MainView from './MainView'
 import Navbar from './Navbar'
 import DayNightMode from './DayNightMode'
 import ErrorBoundary from './ErrorBoundary'
+import Home from './Home';
+import WeekOverview from './WeekOverview';
+import Clothes from './Clothes';
 
 interface Props{}
 
 interface State{
   isDayMode: boolean,
   buttonText: string,
-  modeStyle: React.CSSProperties
+  modeStyle: React.CSSProperties,
+  deviceSize: "isMobile" | "isDesktop"
 }
 
 export default class Layout extends React.Component <Props, State>{
@@ -18,7 +22,8 @@ export default class Layout extends React.Component <Props, State>{
     this.state = {
       isDayMode: true,
       buttonText: 'Dag',
-      modeStyle: mainDayStyle
+      modeStyle: mainDayStyle,
+      deviceSize: this.calculateDeviceSize()
     }
     this.toggleDayNightMode = this.toggleDayNightMode.bind(this)
   }
@@ -37,16 +42,59 @@ export default class Layout extends React.Component <Props, State>{
     }
   }
 
+  updateDeviceSize = () => {
+    this.setState({ deviceSize: this.calculateDeviceSize() })
+
+  }
+
+  calculateDeviceSize(): "isMobile" | "isDesktop" {
+    if (window.innerWidth < 768) {
+      return 'isMobile'
+    } else {
+      return 'isDesktop'
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.updateDeviceSize)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDeviceSize)
+  }
+
   render(){
-    return (
-      <div style = {this.state.modeStyle}>
-          <ErrorBoundary>
-            <MainView />
-          </ErrorBoundary>
-          <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
-          <Navbar isDayMode = {this.state.isDayMode}/>
-      </div>
-    );
+    console.log(this.state.deviceSize)
+   
+    if(this.state.deviceSize === "isMobile"){
+      return (
+        <div style = {this.state.modeStyle}>
+            <ErrorBoundary>
+              <MainView />
+            </ErrorBoundary>
+            <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
+            <Navbar isDayMode = {this.state.isDayMode}/>
+        </div>
+      );
+    }
+
+    else{
+      return (
+        <div style = {this.state.modeStyle}>
+            <ErrorBoundary>
+              <Home />
+            </ErrorBoundary>
+            <ErrorBoundary>
+              <WeekOverview />
+            </ErrorBoundary>
+            <ErrorBoundary>
+              <Clothes />
+            </ErrorBoundary>
+            <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
+        </div>
+      );
+    }
+
   }
 }
 
