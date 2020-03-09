@@ -3,6 +3,7 @@ import WeatherFigure from './WeatherFigure'
 import WeatherDescription from './WeatherDescription'
 
 interface Props {
+  isDayMode: boolean
 }
 
 interface State {
@@ -77,7 +78,7 @@ export default class Clothes extends React.Component<Props, State>{
     return (
 
       <div>
-          <WeatherFigure weatherContent={weatherOutPut}/>
+          <WeatherFigure weatherContent={weatherOutPut} isDayMode={this.props.isDayMode}/>
           <WeatherDescription weatherContent={weatherOutPut} whatDayIsIt={whatDayIsIt}/>
           <button type="button" name="whatDay" value="today" onClick={this.handleClick}>Idag</button>
           <button type="button" name="whatDay" value="tomorrow" onClick={this.handleClick}>Imorgon</button>

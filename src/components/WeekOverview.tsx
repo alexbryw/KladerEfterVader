@@ -2,7 +2,9 @@ import * as React from 'react';
 import WeekDay from './WeekDay'
 
 
-interface Props {}
+interface Props {
+  isDayMode:boolean
+}
 
 interface State {
   weatherData?: any,
@@ -56,10 +58,10 @@ export default class WeekOverview extends React.Component<Props, State>{
       weatherList.pop();
       return (
         <div style={{ ...weatherListContainer}}>
-            <WeekDay weatherContent={weatherListToday} key="0" />
+            <WeekDay weatherContent={weatherListToday} key="0"  isDayMode={this.props.isDayMode}/>
             {
             weatherList.map((weatherContent:any, index:number) => 
-            <WeekDay weatherContent={weatherContent} key={index} 
+            <WeekDay weatherContent={weatherContent} key={index}  isDayMode={this.props.isDayMode}
             />)}
         </div>
       );
@@ -68,7 +70,7 @@ export default class WeekOverview extends React.Component<Props, State>{
     return (
       <div style={{ ...weatherListContainer}}>
           {weatherList.map((weatherContent:any, index:number) => 
-          <WeekDay weatherContent={weatherContent} key={index}/>
+          <WeekDay weatherContent={weatherContent} key={index} isDayMode={this.props.isDayMode}/>
           )}
       </div>
     );

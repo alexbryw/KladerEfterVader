@@ -2,7 +2,8 @@ import React,{ CSSProperties } from 'react';
 
 
 interface Props {
-  weatherContent: any
+  weatherContent: any,
+  isDayMode: boolean
 }
 
 export default class WeekDay extends React.Component<Props>{
@@ -12,7 +13,12 @@ export default class WeekDay extends React.Component<Props>{
     }
 
     render() {
-      const imgURL = require(`../asset/images/weatherIcons/${this.props.weatherContent.weather[0].icon}.png`);
+      let imgURL
+      if(this.props.isDayMode){
+        imgURL = require(`../asset/images/weatherIcons/${this.props.weatherContent.weather[0].icon}.png`);
+      } else {
+        imgURL = require(`../asset/images/weatherIcons/NightMode/${this.props.weatherContent.weather[0].icon}.png`);
+      }
 
       const weekdayNameSE = ['Sön', 'Mån', 'Tis', 'Ons', 'Tor', 'Fre', 'Lör']
       const weekdayNum = new Date(this.props.weatherContent.dt * 1000).getDay();
