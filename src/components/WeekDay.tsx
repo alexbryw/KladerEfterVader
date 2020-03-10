@@ -54,4 +54,3 @@ const windStyle: CSSProperties = {
   padding: '0.25rem',
   height: '2rem'
 }
-}

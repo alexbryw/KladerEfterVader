@@ -12,13 +12,13 @@ export default class WeatherDescription extends React.Component<Props>{
       super(props);
       this.state={};
     }
-
-
     render() {
       const weather = this.props.weatherContent;
       let whatClothes
 
-      if (weather.main.temp < 278){
+      if(weather.dt === 32503683661){ 
+        whatClothes = "Laddar...";
+      } else if (weather.main.temp < 278){
         //temp in Kelvin, about 5+ C
         whatClothes = "Ta på dig varmt";
       } else if (weather.weather[0].icon === "09d"){

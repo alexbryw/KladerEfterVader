@@ -2,7 +2,8 @@ import React from 'react';
 import WindDirection from './WindDirection';
 
 interface Props{
-  isDayMode:boolean
+  isDayMode:boolean,
+  loadWeather: object
 }
 
 interface State{
@@ -43,43 +44,39 @@ export default class WeatherTemp extends React.Component<Props, State> {
   }
 
   render(){
-    if(!this.state.isLoaded){
-      return(
-        <div>
-          <h1>Loading... </h1>
-          <h1>WeatherTemp</h1>
-        </div>
-      )
-    }
-    else {
-      let weatherIconUrl: string;
-      
-      if(this.props.isDayMode){
-        weatherIconUrl = require(`../asset/images/weatherIcons/${this.state.weather.weather[0].icon}.png`);
+      let weather;
+      if(!this.state.isLoaded){
+        weather = this.props.loadWeather;
       } else {
-        weatherIconUrl = require(`../asset/images/weatherIcons/NightMode/${this.state.weather.weather[0].icon}.png`);
+        weather = this.state.weather;
+      }
+      
+      let weatherIconUrl: string;
+      if(this.props.isDayMode){
+        weatherIconUrl = require(`../asset/images/weatherIcons/${weather.weather[0].icon}.png`);
+      } else {
+        weatherIconUrl = require(`../asset/images/weatherIcons/NightMode/${weather.weather[0].icon}.png`);
       }
 
-      const weatherIconALtDescription = "an icon of " + this.state.weather.weather[0].description;
-      const tempInCelsius = this.kToCelsius(this.state.weather.main.temp);
-      const tempFeelsLikeC = this.kToCelsius(this.state.weather.main.feels_like);
-      const tempMin = this.kToCelsius(this.state.weather.main.temp_min);
-      const tempMax = this.kToCelsius(this.state.weather.main.temp_max);
+      const weatherIconALtDescription = "an icon of " + weather.weather[0].description;
+      const tempInCelsius = this.kToCelsius(weather.main.temp);
+      const tempFeelsLikeC = this.kToCelsius(weather.main.feels_like);
+      const tempMin = this.kToCelsius(weather.main.temp_min);
+      const tempMax = this.kToCelsius(weather.main.temp_max);
 
       return (
         <div className="WeatherTemp" style={tempStyle}>
-          {/* <h2>{this.state.weather.name}</h2> */}
+          {/* <h2>{weather.name}</h2> */}
           <h2>{this.state.city}</h2>
           <h3>Temp: {tempInCelsius}°C </h3>
           <h3>Känns som {tempFeelsLikeC}°C</h3>
           <h3>Dagens min {tempMin}°C, max {tempMax}°C</h3>
           <img src={weatherIconUrl} alt={weatherIconALtDescription} style={weatherIconStyle}></img>
-          <h3>{this.state.weather.weather[0].description}</h3>
-          <h3>Vind {this.state.weather.wind.speed} m/s, riktning {this.state.weather.wind.deg}°</h3>
-          <WindDirection windDeg={this.state.weather.wind.deg} isDayMode={this.props.isDayMode} windStyle={windStyle} />
+          <h3>{weather.weather[0].description}</h3>
+          <h3>Vind {weather.wind.speed} m/s, riktning {weather.wind.deg}°</h3>
+          <WindDirection windDeg={weather.wind.deg} isDayMode={this.props.isDayMode} windStyle={windStyle} />
         </div>
       );
-    }
   }
 }
 
@@ -97,4 +94,4 @@ const windStyle : React.CSSProperties = {
   padding: "0.5rem",
   width: "9rem",
 }
-}
+
