@@ -52,7 +52,7 @@ const weatherFigureContainer: CSSProperties = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-
+  position: 'relative',
   height: '60vh',
   width: '100%',
   
@@ -65,8 +65,8 @@ const weatherSlothStyle: CSSProperties = {
 }
 
 const weatherlogoStyle:CSSProperties = {
-  height:"20%",
+  height:"30%",
   position: 'absolute',
   top: '8vh',
-  left: '8vw'
+  left: '10%'
 }

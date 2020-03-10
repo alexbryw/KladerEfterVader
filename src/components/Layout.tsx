@@ -48,7 +48,7 @@ export default class Layout extends React.Component <Props, State>{
   }
 
   calculateDeviceSize(): "isMobile" | "isDesktop" {
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 900) {
       return 'isMobile'
     } else {
       return 'isDesktop'
