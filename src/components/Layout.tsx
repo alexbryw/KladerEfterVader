@@ -164,7 +164,7 @@ const gridLayoutDesktop: CSSProperties = {
   display: 'grid',
   width: '100%',
   height: '100%',
-  gridTemplateColumns: '40% 20% 40%',
+  gridTemplateColumns: '35% 25% 40%',
   gridTemplateAreas: 
   '"home week clothes"',
 }

@@ -49,5 +49,5 @@ export default class Clock extends React.Component<Props, State>{
 }
 
 const clockStyle:CSSProperties = {
-    fontSize: '3rem'
+    fontSize: '2.5rem'
 }

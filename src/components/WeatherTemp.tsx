@@ -70,20 +70,24 @@ export default class WeatherTemp extends React.Component<Props, State> {
       return (
         <div style = {weatherTempStyle}>
           {/* <h2>{this.state.weather.name}</h2> */}
+          <img src={weatherIconUrl} alt={weatherIconALtDescription} style={weatherIconStyle}></img>
           <h2>{this.state.city}</h2>
+
+          
+
+          <div>
+          <h3>{weather.weather[0].description}</h3>
+          </div>
 
           <div>
             <h3>Temp: {tempInCelsius}°C </h3>
-            <h3>Känns som {tempFeelsLikeC}°C</h3>
-            <h3>Dagens min {tempMin}°C, max {tempMax}°C</h3>
+            <h5>Känns som {tempFeelsLikeC}°C</h5>
+            {/* <h3>Dagens min {tempMin}°C, max {tempMax}°C</h3> */}
           </div>
 
-          <img src={weatherIconUrl} alt={weatherIconALtDescription} style={weatherIconStyle}></img>
-          
-          <div>
-          <h3>{weather.weather[0].description}</h3>
-          <h3>Vind {weather.wind.speed} m/s, riktning {weather.wind.deg}°</h3>
-          <WindDirection windDeg={weather.wind.deg} isDayMode={this.props.isDayMode} windStyle={windStyle} />
+          <div style = {windWrap}>
+            <h5>Vind {weather.wind.speed} m/s{/* , riktning {weather.wind.deg}° */}</h5>
+            <WindDirection windDeg={weather.wind.deg} isDayMode={this.props.isDayMode}/>
           </div>
         </div>
       );
@@ -95,7 +99,7 @@ const weatherTempStyle:CSSProperties = {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'space-between',
-  height: '50vh',
+  height: '60vh',
   textAlign: 'center'
 }
 
@@ -104,8 +108,10 @@ const weatherIconStyle:CSSProperties = {
   width: "9rem"
 }
 
-const windStyle:CSSProperties = {
-  padding: "0.5rem",
-  width: "9rem",
+const windWrap: CSSProperties = {
+  display:'flex',
+  alignItems: 'center',
+  justifyContent: 'space-around'
 }
+
 
