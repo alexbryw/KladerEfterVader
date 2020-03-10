@@ -51,8 +51,8 @@ export default class WeatherFigure extends React.Component<Props>{
 const weatherFigureContainer: CSSProperties = {
   display: 'flex',
   justifyContent: 'center',
-  padding:'2rem',
-  height: '70%'
+  padding:'2rem 2rem 0 2rem',
+  height: '60%'
   
 }
 

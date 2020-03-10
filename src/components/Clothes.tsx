@@ -79,9 +79,11 @@ export default class Clothes extends React.Component<Props, State>{
       <div style = {clothesGridItem}>
           <WeatherFigure weatherContent={weatherOutPut}/>
           <WeatherDescription weatherContent={weatherOutPut} whatDayIsIt={whatDayIsIt}/>
-          <button type="button" name="whatDay" value="today" onClick={this.handleClick}>Idag</button>
-          <button type="button" name="whatDay" value="tomorrow" onClick={this.handleClick}>Imorgon</button>
-          <button type="button" name="whatDay" value="dayAfterTomorrow" onClick={this.handleClick}>I övermorgon</button>
+        <div style = {buttonWrapper}>
+          <button style = {buttonStyle} type="button" name="whatDay" value="today" onClick={this.handleClick}>Idag</button>
+          <button style = {buttonStyle} type="button" name="whatDay" value="tomorrow" onClick={this.handleClick}>Imorgon</button>
+          <button style = {buttonStyle} type="button" name="whatDay" value="dayAfterTomorrow" onClick={this.handleClick}>I över-<br/>morgon</button>
+        </div>
       </div>
     );
   }
@@ -90,4 +92,21 @@ export default class Clothes extends React.Component<Props, State>{
 const clothesGridItem: CSSProperties = {
   gridArea: 'clothes',
   height: '100vh'
+}
+
+const buttonWrapper:CSSProperties = {
+  display: 'flex',
+  justifyContent: 'space-around',
+  alignItems: 'center',
+  height: '10%'
+}
+
+const buttonStyle:CSSProperties={
+  height: '3rem',
+  width: '5rem',
+  padding: '0.25rem 0.5rem',
+  borderRadius: '25px',
+  border: '3px solid black',
+  outline: 'none',
+  cursor: 'pointer',
 }

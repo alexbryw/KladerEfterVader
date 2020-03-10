@@ -10,7 +10,7 @@ interface Props {
 export default function NavItem(props:Props) {
 
 
-    let colorOfText = props.isDayMode?(navItemDayStyle): (navItemNightStyle)
+    let colorOfText = props.isDayMode?({...navItemDayStyle, ...navItemStyle}): ({...navItemNightStyle, ...navItemStyle})
     
 
     return (
@@ -21,23 +21,24 @@ export default function NavItem(props:Props) {
 }
 
 const navItemDayStyle: CSSProperties = {
+    color: 'black',
+    backgroundColor: '#b3d9ff',
+}
+
+const navItemStyle: CSSProperties = {
     padding: '1rem 0',
-    border: '1px solid black',
     cursor: 'pointer',
     display: 'flex',
     flexGrow: 1,
     textDecoration: 'none',
     color: 'black',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    border: '3px solid black',
+    borderBottomLeftRadius: '25px',
+    borderBottomRightRadius: '25px'
 }
 
 const navItemNightStyle: CSSProperties = {
-    padding: '1rem 0',
-    border: '1px solid white',
-    cursor: 'pointer',
-    display: 'flex',
-    flexGrow: 1,
-    textDecoration: 'none',
     color: '#ffffcc',
-    justifyContent: 'center'
+    backgroundColor: '#000033',
 }

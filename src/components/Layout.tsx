@@ -69,9 +69,11 @@ export default class Layout extends React.Component <Props, State>{
    
     if(this.state.deviceSize === "isMobile"){
       return (
-        <div style = {this.state.modeStyle}>
+        <div style = {mainStyle}>
             <ErrorBoundary>
-              <MainView />
+              <div style = {{...borderMobile, ...this.state.modeStyle}}>
+                <MainView />
+              </div>
             </ErrorBoundary>
             <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
             <Navbar isDayMode = {this.state.isDayMode}/>
@@ -81,7 +83,7 @@ export default class Layout extends React.Component <Props, State>{
 
     else{
       return (
-        <div style = {{...this.state.modeStyle, ...gridLayoutDesktop}}>
+        <div style = {{...this.state.modeStyle, ...gridLayoutDesktop, ...mainStyle, ...borderDesktop}}>
             <ErrorBoundary>
               <Home />
             </ErrorBoundary>
@@ -101,25 +103,40 @@ export default class Layout extends React.Component <Props, State>{
 
 const mainDayStyle:CSSProperties = {
   backgroundColor: '#b3d9ff',
-  height: '100%',
-  width: '100%',
-  position: 'relative',
   color: 'black'
+  
 }
 
 const mainNigthStyle:CSSProperties = {
   backgroundColor: '#000033',
-  height: '100vh',
-  width: '100%',
-  position: 'relative',
   color: '#ffffcc'
 }
+
+const mainStyle:CSSProperties = {
+  height: '100%',
+  width: '100%',
+  position: 'relative',
+}
+
+const borderMobile:CSSProperties = {
+  borderTop: '3px solid black',
+  borderRight: '3px solid black',
+  borderLeft: '3px solid black',
+  borderTopLeftRadius: '25px',
+  borderTopRightRadius: '25px',
+  height: '95%'
+}
+
+const borderDesktop:CSSProperties = {
+  border: '3px solid black',
+  borderRadius: '25px'
+}
+
 
 const gridLayoutDesktop: CSSProperties = {
   display: 'grid',
   width: '100%',
   height: '100%',
-
   gridTemplateColumns: '55% 45%',
   gridTemplateAreas: 
   '"home clothes" "week clothes"',

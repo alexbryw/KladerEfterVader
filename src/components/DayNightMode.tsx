@@ -11,7 +11,7 @@ export default class DayNightMode extends React.Component <Props>{
   render(){
     return (
       <div style = {dayNightContainer}>
-        <button onClick = {this.props.onToggleMode}> {this.props.buttonText} </button>
+        <button style = {buttonStyle} onClick = {this.props.onToggleMode}> {this.props.buttonText} </button>
       </div>
     );
   }
@@ -19,7 +19,15 @@ export default class DayNightMode extends React.Component <Props>{
 
 const dayNightContainer:CSSProperties = {
   position: 'absolute',
-  top: '2%',
-  right: '2%',
-  zIndex: 2
+  top: '5%',
+  right: '7%',
+  zIndex: 2,
+}
+
+const buttonStyle:CSSProperties = {
+  borderRadius: '25px',
+  height: '3.3rem',
+  width: '3.3rem',
+  padding: '0.5rem',
+  border: '3px solid black'
 }
