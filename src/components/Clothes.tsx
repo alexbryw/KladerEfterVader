@@ -56,6 +56,7 @@ export default class Clothes extends React.Component<Props, State>{
         isLoaded: true
       })
     }
+    console.log("Cloths API call.")
   }
 
   handleClick = (event: any) => {

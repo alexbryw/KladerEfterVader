@@ -42,6 +42,7 @@ export default class WeekOverview extends React.Component<Props, State>{
       weatherToday: dataWeatherToday,
       isLoadedDataWeatherToday: true
     })
+    console.log("WeekOverview API call")
   }
 
 
@@ -64,7 +65,7 @@ export default class WeekOverview extends React.Component<Props, State>{
       weatherList = this.state.weatherData;
       weatherListToday = this.state.weatherToday;
     }
-
+        
     if(hour > 12){
       weatherList.pop();
       return (

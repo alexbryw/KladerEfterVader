@@ -37,6 +37,8 @@ export default class WeatherTemp extends React.Component<Props, State> {
       weather: data,
       isLoaded: true
     })
+
+    console.log("WeatherTemp API call.")
   }
 
   kToCelsius(kelvinIn: number):string{
