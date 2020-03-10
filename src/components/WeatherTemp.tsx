@@ -1,5 +1,5 @@
 import React from 'react';
-import './WeatherTemp.css';
+import WindDirection from './WindDirection';
 
 interface Props{
   isDayMode:boolean
@@ -12,7 +12,7 @@ interface State{
   weather: any
 }
 
-export default class WeatherTeamp extends React.Component<Props, State> {
+export default class WeatherTemp extends React.Component<Props, State> {
   constructor(props: Props){
     super(props)
     this.state = {
@@ -52,39 +52,49 @@ export default class WeatherTeamp extends React.Component<Props, State> {
       )
     }
     else {
-    let weatherIconUrl;
-    
-    if(this.props.isDayMode){
-      weatherIconUrl = require(`../asset/images/weatherIcons/${this.state.weather.weather[0].icon}.png`);
-    } else {
-      weatherIconUrl = require(`../asset/images/weatherIcons/NightMode/${this.state.weather.weather[0].icon}.png`);
-    }
+      let weatherIconUrl: string;
+      
+      if(this.props.isDayMode){
+        weatherIconUrl = require(`../asset/images/weatherIcons/${this.state.weather.weather[0].icon}.png`);
+      } else {
+        weatherIconUrl = require(`../asset/images/weatherIcons/NightMode/${this.state.weather.weather[0].icon}.png`);
+      }
 
-    const weatherIconALtDescription = "an icon of " + this.state.weather.weather[0].description;
-    const tempInCelsius = this.kToCelsius(this.state.weather.main.temp);
-    const tempFeelsLikeC = this.kToCelsius(this.state.weather.main.feels_like);
-    const tempMin = this.kToCelsius(this.state.weather.main.temp_min);
-    const tempMax = this.kToCelsius(this.state.weather.main.temp_max);
-    //arrowIconStyle.transform = `rotate(180deg)`
-    // Maybe add sunset and sunrise later, fix timezones, could also be wrong timestamp from weatherAPI
-    // const sunrise = new Date(this.state.weather.sys.sunrise)
-    // const sunset = new Date(this.state.weather.sys.sunset)
-    // const formattedSunrise = sunrise.toLocaleTimeString();
-    // const formattedSunset= sunset.toLocaleTimeString();
-//${this.state.weather.wind.deg}
+      const weatherIconALtDescription = "an icon of " + this.state.weather.weather[0].description;
+      const tempInCelsius = this.kToCelsius(this.state.weather.main.temp);
+      const tempFeelsLikeC = this.kToCelsius(this.state.weather.main.feels_like);
+      const tempMin = this.kToCelsius(this.state.weather.main.temp_min);
+      const tempMax = this.kToCelsius(this.state.weather.main.temp_max);
+
       return (
-        <div className="WeatherTemp">
+        <div className="WeatherTemp" style={tempStyle}>
           {/* <h2>{this.state.weather.name}</h2> */}
           <h2>{this.state.city}</h2>
           <h3>Temp: {tempInCelsius}°C </h3>
           <h3>Känns som {tempFeelsLikeC}°C</h3>
           <h3>Dagens min {tempMin}°C, max {tempMax}°C</h3>
-          <img src={weatherIconUrl} alt={weatherIconALtDescription} width="120"></img>
+          <img src={weatherIconUrl} alt={weatherIconALtDescription} style={weatherIconStyle}></img>
           <h3>{this.state.weather.weather[0].description}</h3>
-          <h3>Vind {this.state.weather.wind.speed} m/s</h3>
-          {/* <h3>Soluppgång {formattedSunrise}  nedgång {formattedSunset} </h3> */}
+          <h3>Vind {this.state.weather.wind.speed} m/s, riktning {this.state.weather.wind.deg}°</h3>
+          <WindDirection windDeg={this.state.weather.wind.deg} isDayMode={this.props.isDayMode} windStyle={windStyle} />
         </div>
       );
     }
   }
+}
+
+const tempStyle : React.CSSProperties = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center"
+}
+
+const weatherIconStyle : React.CSSProperties = {
+  width: "9rem"
+}
+
+const windStyle : React.CSSProperties = {
+  padding: "0.5rem",
+  width: "9rem",
+}
 }
