@@ -13,7 +13,7 @@ export default class WeekDay extends React.Component<Props>{
     }
 
     render() {
-      let imgURL
+      let imgURL;
       if(this.props.isDayMode){
         imgURL = require(`../asset/images/weatherIcons/${this.props.weatherContent.weather[0].icon}.png`);
       } else {
@@ -28,11 +28,12 @@ export default class WeekDay extends React.Component<Props>{
           <div style={{ ...weatherCard}}>
             <p>{weekdayName}</p>{" "}
             <img
-              style={{ ...imageStyling}}
+              style={imageStyling}
               src={imgURL} 
               alt={this.props.weatherContent.weather[0].description + " icon"}/>
             <p>
-              {(this.props.weatherContent.main.temp - 273.15).toFixed(1)}°C
+              {(this.props.weatherContent.main.temp - 273.15).toFixed(1)}°C - 
+              Vind {this.props.weatherContent.wind.speed}m/s 
             </p>
           </div>
       );
@@ -45,4 +46,5 @@ const weatherCard: CSSProperties = {
 
 const imageStyling: CSSProperties = {
   height: '3em',
+  width: '3em'
 }

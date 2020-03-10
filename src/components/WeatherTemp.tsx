@@ -65,14 +65,13 @@ export default class WeatherTeamp extends React.Component<Props, State> {
     const tempFeelsLikeC = this.kToCelsius(this.state.weather.main.feels_like);
     const tempMin = this.kToCelsius(this.state.weather.main.temp_min);
     const tempMax = this.kToCelsius(this.state.weather.main.temp_max);
-
+    //arrowIconStyle.transform = `rotate(180deg)`
     // Maybe add sunset and sunrise later, fix timezones, could also be wrong timestamp from weatherAPI
     // const sunrise = new Date(this.state.weather.sys.sunrise)
     // const sunset = new Date(this.state.weather.sys.sunset)
-
     // const formattedSunrise = sunrise.toLocaleTimeString();
     // const formattedSunset= sunset.toLocaleTimeString();
-
+//${this.state.weather.wind.deg}
       return (
         <div className="WeatherTemp">
           {/* <h2>{this.state.weather.name}</h2> */}
@@ -82,11 +81,10 @@ export default class WeatherTeamp extends React.Component<Props, State> {
           <h3>Dagens min {tempMin}°C, max {tempMax}°C</h3>
           <img src={weatherIconUrl} alt={weatherIconALtDescription} width="120"></img>
           <h3>{this.state.weather.weather[0].description}</h3>
-          <h3>Vind {this.state.weather.wind.speed} m/s, riktning {this.state.weather.wind.deg}°</h3>
+          <h3>Vind {this.state.weather.wind.speed} m/s</h3>
           {/* <h3>Soluppgång {formattedSunrise}  nedgång {formattedSunset} </h3> */}
         </div>
       );
     }
   }
 }
-

@@ -40,19 +40,15 @@ export default class WeekOverview extends React.Component<Props, State>{
   render() {
     const weatherList = this.state.weatherData;
     const weatherListToday = this.state.weatherToday;
-    const hour = new Date().getHours()
+    const hour = new Date().getHours();
 
     if (!weatherList) {
       return <p>Loading...</p>;
     }
-    console.log(weatherList)
 
     if (!weatherListToday) {
       return <p>Loading...</p>;
     }
-
-    console.log(weatherListToday)
-
 
     if(hour > 12){
       weatherList.pop();
