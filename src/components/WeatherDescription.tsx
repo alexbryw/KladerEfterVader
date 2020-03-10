@@ -4,7 +4,7 @@ import React from 'react';
 
 interface Props {
   weatherContent: any,
-  whatDayIsIt: any
+  whatDayIsIt: string | undefined
 }
 
 export default class WeatherDescription extends React.Component<Props>{

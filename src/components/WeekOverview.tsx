@@ -8,8 +8,8 @@ interface Props {
 }
 
 interface State {
-  weatherData?: any,
-  weatherToday?: any,
+  weatherData?: object,
+  weatherToday?: object,
   isLoadedDataWeather: boolean,
   isLoadedDataWeatherToday: boolean
 }
