@@ -20,7 +20,12 @@ export default class ErrorBoundary extends React.Component <Props, State> {
     render() {
         
         if (this.state.hasError){
-            return <h1>User, we have a problem</h1>
+            return (
+                <div>
+                    <img src={require(`../asset/images/weatherSloths/confusedSloth.png`)} alt="Confused Sloth"/>
+                    <h1>User, we have a problem</h1>
+                </div>
+            )
         }
 
         return this.props.children;

@@ -66,12 +66,38 @@ export default class Layout extends React.Component <Props, State>{
 
   render(){
     console.log(this.state.deviceSize)
+    const loadWeather = {
+      "dt":32503683661,
+      "main":{
+          "temp":273.15,
+          "feels_like":273.15,
+          "temp_min":273.15,
+          "temp_max":273.15,
+          "pressure":1000,
+          "sea_level":1000,
+          "grnd_level":1000,
+          "humidity":100,
+          "temp_kf":0
+      },"weather":[{
+          "id":800,
+          "main":"Weather",
+          "description":"väder",
+          "icon":"load"
+      }],"clouds":{
+          "all":0
+      },"wind":{
+          "speed":0.00,
+          "deg":236},
+          "sys":{
+          "pod":"n"
+      },"dt_txt":"3000-01-01 01:01:01"
+  }
    
     if(this.state.deviceSize === "isMobile"){
       return (
         <div style = {this.state.modeStyle}>
             <ErrorBoundary>
-              <MainView isDayMode = {this.state.isDayMode}/>
+              <MainView isDayMode = {this.state.isDayMode} loadWeather={loadWeather}/>
             </ErrorBoundary>
             <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
             <Navbar isDayMode = {this.state.isDayMode}/>
@@ -83,13 +109,13 @@ export default class Layout extends React.Component <Props, State>{
       return (
         <div style = {this.state.modeStyle}>
             <ErrorBoundary>
-              <Home isDayMode={this.state.isDayMode}/>
+              <Home isDayMode={this.state.isDayMode} loadWeather = {loadWeather}/>
             </ErrorBoundary>
             <ErrorBoundary>
-              <WeekOverview isDayMode = {this.state.isDayMode}/>
+              <WeekOverview isDayMode = {this.state.isDayMode} loadWeather = {loadWeather}/>
             </ErrorBoundary>
             <ErrorBoundary>
-              <Clothes isDayMode = {this.state.isDayMode}/>
+              <Clothes isDayMode = {this.state.isDayMode} loadWeather = {loadWeather}/>
             </ErrorBoundary>
             <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
         </div>

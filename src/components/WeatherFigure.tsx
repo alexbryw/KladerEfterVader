@@ -15,7 +15,9 @@ export default class WeatherFigure extends React.Component<Props>{
       const weather = this.props.weatherContent
       let weatherSlothIMG
 
-      if(!this.props.isDayMode){
+      if(weather.dt === 32503683661){ 
+        weatherSlothIMG = "DefaultSloth";
+      } else if(!this.props.isDayMode){
         weatherSlothIMG = "GothSloth";
       } else if (weather.main.temp < 278){
         //temp in Kelvin, about 5+ C
