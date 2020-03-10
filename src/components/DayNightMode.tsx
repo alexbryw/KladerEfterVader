@@ -19,8 +19,8 @@ export default class DayNightMode extends React.Component <Props>{
 
 const dayNightContainer:CSSProperties = {
   position: 'absolute',
-  top: '5%',
-  right: '7%',
+  top: '1.5rem',
+  right: '1.5rem',
   zIndex: 2,
 }
 

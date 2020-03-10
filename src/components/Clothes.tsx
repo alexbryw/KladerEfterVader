@@ -91,7 +91,7 @@ export default class Clothes extends React.Component<Props, State>{
 
 const clothesGridItem: CSSProperties = {
   gridArea: 'clothes',
-  height: '100vh'
+  height: '100%'
 }
 
 const buttonWrapper:CSSProperties = {

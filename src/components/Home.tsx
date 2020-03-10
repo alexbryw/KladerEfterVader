@@ -5,17 +5,17 @@ import WeatherTeamp from './WeatherTemp';
 export default function Home() {
   return (
     <div style = {homeGridItem}>
-      <WeatherTeamp />
       <DateTimeContainer />
+      <WeatherTeamp />   
     </div>
   );
 }
 
 const homeGridItem: CSSProperties = {
   gridArea: 'home',
-  height: '90vh',
+  height: '95vh',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'space-around'
+  justifyContent: 'center',
 }
