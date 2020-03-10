@@ -78,7 +78,10 @@ export default class WeekOverview extends React.Component<Props, State>{
 
 const weatherListContainer: CSSProperties = {
   display: 'flex',
-  flexDirection: 'column'
+  flexDirection: 'column',
+  height: '75vh',
+  justifyContent: 'space-around',
+  margin: '10vh 2rem 0 2rem'
 }
 
 const weekOverviewGridItem: CSSProperties = {
