@@ -129,7 +129,7 @@ const borderMobile:CSSProperties = {
 
 const borderDesktop:CSSProperties = {
   border: '3px solid black',
-  borderRadius: '25px'
+  borderRadius: '25px',
 }
 
 
@@ -141,5 +141,6 @@ const gridLayoutDesktop: CSSProperties = {
   gridTemplateAreas: 
   '"home clothes" "week clothes"',
 }
+
 
 
