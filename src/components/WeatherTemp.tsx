@@ -1,5 +1,4 @@
 import React, {CSSProperties} from 'react';
-
 interface Props{}
 interface State{
   city: string
@@ -49,7 +48,6 @@ export default class WeatherTeamp extends React.Component<Props, State> {
     }
     else {
     const weatherIconUrl = require(`../asset/images/weatherIcons/${this.state.weather.weather[0].icon}.png`)
-
     const weatherIconALtDescription = "an icon of " + this.state.weather.weather[0].description;
     const tempInCelsius = this.kToCelsius(this.state.weather.main.temp);
     const tempFeelsLikeC = this.kToCelsius(this.state.weather.main.feels_like);
@@ -67,18 +65,20 @@ export default class WeatherTeamp extends React.Component<Props, State> {
         <div style = {weatherTempStyle}>
           {/* <h2>{this.state.weather.name}</h2> */}
           <h2>{this.state.city}</h2>
+
           <div>
-          <h3>Temp: {tempInCelsius}°C </h3>
-          <h3>Känns som {tempFeelsLikeC}°C</h3>
-          <h3>Dagens min {tempMin}°C, max {tempMax}°C</h3>
+            <h3>Temp: {tempInCelsius}°C </h3>
+            <h3>Känns som {tempFeelsLikeC}°C</h3>
+            <h3>Dagens min {tempMin}°C, max {tempMax}°C</h3>
           </div>
-          
+
           <img src={weatherIconUrl} alt={weatherIconALtDescription} width="120"></img>
+          
           <div>
-          <h3>{this.state.weather.weather[0].description}</h3>
-          <h3>Vind {this.state.weather.wind.speed} m/s, riktning {this.state.weather.wind.deg}°</h3>
-          {/* <h3>Soluppgång {formattedSunrise}  nedgång {formattedSunset} </h3> */}
-        </div>
+            <h3>{this.state.weather.weather[0].description}</h3>
+            <h3>Vind {this.state.weather.wind.speed} m/s, riktning {this.state.weather.wind.deg}°</h3>
+            {/* <h3>Soluppgång {formattedSunrise}  nedgång {formattedSunset} </h3> */}
+          </div>
         </div>
       );
     }

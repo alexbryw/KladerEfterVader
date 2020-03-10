@@ -9,10 +9,8 @@ interface Props {
 
 export default function NavItem(props:Props) {
 
-
     let colorOfText = props.isDayMode?({...navItemDayStyle, ...navItemStyle}): ({...navItemNightStyle, ...navItemStyle})
     
-
     return (
         <Link to = {props.id} style = {colorOfText}>
             {props.name}

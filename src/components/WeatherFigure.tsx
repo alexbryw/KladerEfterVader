@@ -58,7 +58,6 @@ const weatherFigureContainer: CSSProperties = {
   
 }
 
-
 const weatherSlothStyle: CSSProperties = {
   height: '70%',
   zIndex: 3

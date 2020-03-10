@@ -141,6 +141,3 @@ const gridLayoutDesktop: CSSProperties = {
   gridTemplateAreas: 
   '"home week clothes"',
 }
-
-
-
