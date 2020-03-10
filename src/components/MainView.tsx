@@ -12,19 +12,28 @@ interface Props{
 export default function MainView(props : Props){
     
     return (
+        //use render, not component function, to stop mounting/unmounting of components on every update.
+        //remove old commented out code later, when everything is working.
         <Switch>
             <Route exact path = '/' component={() => <Home 
+                {...props}
                 isDayMode={props.isDayMode} 
                 loadWeather={props.loadWeather} 
             />} />
             <Route path = '/Prognos' component={() => <WeekOverview 
+                {...props}
                 isDayMode={props.isDayMode}
                 loadWeather={props.loadWeather}
             />} />
             <Route path = '/Kläder' component={() => <Clothes
+                {...props}
                 isDayMode={props.isDayMode}
                 loadWeather={props.loadWeather}
             />}/>
+            {/* <Route exact path = '/' component={() => <Home isDayMode={props.isDayMode}/>} /> */}
+            {/* <Route path = '/Prognos' component={() => <WeekOverview  isDayMode={props.isDayMode}/>} /> */}
+            {/* <Route path = '/Kläder' component={() => <Clothes isDayMode={props.isDayMode}/>} /> */}
+
         </Switch>
     )
 }

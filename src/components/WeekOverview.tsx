@@ -42,6 +42,7 @@ export default class WeekOverview extends React.Component<Props, State>{
       weatherToday: dataWeatherToday,
       isLoadedDataWeatherToday: true
     })
+    console.log("WeekOverview API call")
   }
 
 
