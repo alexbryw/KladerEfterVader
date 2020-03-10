@@ -1,12 +1,18 @@
 import React, {CSSProperties} from 'react';
 import DateTimeContainer from './DateTimeContainer'
-import WeatherTeamp from './WeatherTemp';
+import WeatherTemp from './WeatherTemp';
 
-export default function Home() {
+interface Props{
+  isDayMode: boolean,
+  loadWeather: object
+}
+
+
+export default function Home(props : Props) {
   return (
     <div style = {homeGridItem}>
       <DateTimeContainer />
-      <WeatherTeamp />   
+      <WeatherTemp isDayMode={props.isDayMode} loadWeather={props.loadWeather}/>  
     </div>
   );
 }

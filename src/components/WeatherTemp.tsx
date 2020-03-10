@@ -1,5 +1,12 @@
+
 import React, {CSSProperties} from 'react';
-interface Props{}
+import WindDirection from './WindDirection';
+
+interface Props{
+  isDayMode:boolean,
+  loadWeather: object
+}
+
 interface State{
   city: string
   language: string
@@ -7,7 +14,7 @@ interface State{
   weather: any
 }
 
-export default class WeatherTeamp extends React.Component<Props, State> {
+export default class WeatherTemp extends React.Component<Props, State> {
   constructor(props: Props){
     super(props)
     this.state = {
@@ -31,6 +38,8 @@ export default class WeatherTeamp extends React.Component<Props, State> {
       weather: data,
       isLoaded: true
     })
+
+    console.log("WeatherTemp API call.")
   }
 
   kToCelsius(kelvinIn: number):string{
@@ -38,28 +47,25 @@ export default class WeatherTeamp extends React.Component<Props, State> {
   }
 
   render(){
-    if(!this.state.isLoaded){
-      return(
-        <div>
-          <h1>Loading... </h1>
-          <h1>WeatherTemp</h1>
-        </div>
-      )
-    }
-    else {
-    const weatherIconUrl = require(`../asset/images/weatherIcons/${this.state.weather.weather[0].icon}.png`)
-    const weatherIconALtDescription = "an icon of " + this.state.weather.weather[0].description;
-    const tempInCelsius = this.kToCelsius(this.state.weather.main.temp);
-    const tempFeelsLikeC = this.kToCelsius(this.state.weather.main.feels_like);
-    const tempMin = this.kToCelsius(this.state.weather.main.temp_min);
-    const tempMax = this.kToCelsius(this.state.weather.main.temp_max);
+      let weather;
+      if(!this.state.isLoaded){
+        weather = this.props.loadWeather;
+      } else {
+        weather = this.state.weather;
+      }
+      
+      let weatherIconUrl: string;
+      if(this.props.isDayMode){
+        weatherIconUrl = require(`../asset/images/weatherIcons/${weather.weather[0].icon}.png`);
+      } else {
+        weatherIconUrl = require(`../asset/images/weatherIcons/NightMode/${weather.weather[0].icon}.png`);
+      }
 
-    // Maybe add sunset and sunrise later, fix timezones, could also be wrong timestamp from weatherAPI
-    // const sunrise = new Date(this.state.weather.sys.sunrise)
-    // const sunset = new Date(this.state.weather.sys.sunset)
-
-    // const formattedSunrise = sunrise.toLocaleTimeString();
-    // const formattedSunset= sunset.toLocaleTimeString();
+      const weatherIconALtDescription = "an icon of " + weather.weather[0].description;
+      const tempInCelsius = this.kToCelsius(weather.main.temp);
+      const tempFeelsLikeC = this.kToCelsius(weather.main.feels_like);
+      const tempMin = this.kToCelsius(weather.main.temp_min);
+      const tempMax = this.kToCelsius(weather.main.temp_max);
 
       return (
         <div style = {weatherTempStyle}>
@@ -72,16 +78,15 @@ export default class WeatherTeamp extends React.Component<Props, State> {
             <h3>Dagens min {tempMin}°C, max {tempMax}°C</h3>
           </div>
 
-          <img src={weatherIconUrl} alt={weatherIconALtDescription} width="120"></img>
+          <img src={weatherIconUrl} alt={weatherIconALtDescription} style={weatherIconStyle}></img>
           
           <div>
-            <h3>{this.state.weather.weather[0].description}</h3>
-            <h3>Vind {this.state.weather.wind.speed} m/s, riktning {this.state.weather.wind.deg}°</h3>
-            {/* <h3>Soluppgång {formattedSunrise}  nedgång {formattedSunset} </h3> */}
+          <h3>{weather.weather[0].description}</h3>
+          <h3>Vind {weather.wind.speed} m/s, riktning {weather.wind.deg}°</h3>
+          <WindDirection windDeg={weather.wind.deg} isDayMode={this.props.isDayMode} windStyle={windStyle} />
           </div>
         </div>
       );
-    }
   }
 }
 
@@ -93,3 +98,14 @@ const weatherTempStyle:CSSProperties = {
   height: '50vh',
   textAlign: 'center'
 }
+
+
+const weatherIconStyle:CSSProperties = {
+  width: "9rem"
+}
+
+const windStyle:CSSProperties = {
+  padding: "0.5rem",
+  width: "9rem",
+}
+

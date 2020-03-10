@@ -3,9 +3,12 @@ import WeatherFigure from './WeatherFigure'
 import WeatherDescription from './WeatherDescription'
 
 interface Props {
+  isDayMode: boolean,
+  loadWeather: object
 }
 
 interface State {
+  isLoaded: boolean
   weatherToday?: any,
   weatherTomorrow?: any,
   weatherDayAfterTomorrow?: any,
@@ -19,11 +22,13 @@ export default class Clothes extends React.Component<Props, State>{
       weatherToday: undefined,
       weatherTomorrow: undefined,
       weatherDayAfterTomorrow: undefined,
-      whatDay: "today"
+      whatDay: "today",
+      isLoaded: false,
     };
   }
 
   async componentDidMount() {
+    this.setState({ isLoaded: false })
     const hour = new Date().getHours()
     if(hour < 12){
       const response = await fetch("http://api.openweathermap.org/data/2.5/forecast?id=5695743&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
@@ -31,12 +36,14 @@ export default class Clothes extends React.Component<Props, State>{
       const dataWeather = data.list.filter((reading:any) => reading.dt_txt.includes("12:00:00"));
       this.setState({
         weatherTomorrow: dataWeather[1],
-        weatherDayAfterTomorrow: dataWeather[2]
+        weatherDayAfterTomorrow: dataWeather[2],
+        isLoaded: true
       })
       const responseToday  = await fetch("http://api.openweathermap.org/data/2.5/weather?id=5695743&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
       const dataWeatherToday = await responseToday.json();
       this.setState({
         weatherToday: dataWeatherToday,
+        isLoaded: true
       })
     } else {
       const response = await fetch("http://api.openweathermap.org/data/2.5/forecast?id=5695743&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
@@ -45,9 +52,11 @@ export default class Clothes extends React.Component<Props, State>{
       this.setState({
         weatherToday: dataWeather[0],
         weatherTomorrow: dataWeather[1],
-        weatherDayAfterTomorrow: dataWeather[2]
+        weatherDayAfterTomorrow: dataWeather[2],
+        isLoaded: true
       })
     }
+    console.log("Cloths API call.")
   }
 
   handleClick = (event: any) => {
@@ -60,7 +69,9 @@ export default class Clothes extends React.Component<Props, State>{
     let weatherOutPut;
     let whatDayIsIt;
 
-    if(this.state.whatDay === "today"){
+    if(!this.state.isLoaded){
+      weatherOutPut = this.props.loadWeather
+    }else if(this.state.whatDay === "today"){
       weatherOutPut = this.state.weatherToday;
       whatDayIsIt = "Idag";
     } else if (this.state.whatDay === "tomorrow"){
@@ -75,9 +86,8 @@ export default class Clothes extends React.Component<Props, State>{
       return <p>Loading...</p>;
     }
     return (
-
       <div style = {clothesGridItem}>
-          <WeatherFigure weatherContent={weatherOutPut}/>
+          <WeatherFigure weatherContent={weatherOutPut} isDayMode={this.props.isDayMode}/>
           <WeatherDescription weatherContent={weatherOutPut} whatDayIsIt={whatDayIsIt}/>
         <div style = {buttonWrapper}>
           <button style = {buttonStyle} type="button" name="whatDay" value="today" onClick={this.handleClick}>Idag</button>
