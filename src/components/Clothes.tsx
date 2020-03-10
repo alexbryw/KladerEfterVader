@@ -49,6 +49,7 @@ export default class Clothes extends React.Component<Props, State>{
         weatherDayAfterTomorrow: dataWeather[2]
       })
     }
+    console.log("Cloths API call.")
   }
 
   handleClick = (event: any) => {
