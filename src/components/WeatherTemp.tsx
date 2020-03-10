@@ -1,5 +1,4 @@
-import React from 'react';
-import './WeatherTemp.css';
+import React, {CSSProperties} from 'react';
 
 interface Props{}
 interface State{
@@ -65,19 +64,32 @@ export default class WeatherTeamp extends React.Component<Props, State> {
     // const formattedSunset= sunset.toLocaleTimeString();
 
       return (
-        <div className="WeatherTemp">
+        <div style = {weatherTempStyle}>
           {/* <h2>{this.state.weather.name}</h2> */}
           <h2>{this.state.city}</h2>
+          <div>
           <h3>Temp: {tempInCelsius}°C </h3>
           <h3>Känns som {tempFeelsLikeC}°C</h3>
           <h3>Dagens min {tempMin}°C, max {tempMax}°C</h3>
+          </div>
+          
           <img src={weatherIconUrl} alt={weatherIconALtDescription} width="120"></img>
+          <div>
           <h3>{this.state.weather.weather[0].description}</h3>
           <h3>Vind {this.state.weather.wind.speed} m/s, riktning {this.state.weather.wind.deg}°</h3>
           {/* <h3>Soluppgång {formattedSunrise}  nedgång {formattedSunset} </h3> */}
+        </div>
         </div>
       );
     }
   }
 }
 
+const weatherTempStyle:CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  height: '50vh',
+  textAlign: 'center'
+}

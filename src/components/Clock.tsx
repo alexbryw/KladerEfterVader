@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import moment from 'moment';
 
 interface Props{
@@ -43,8 +43,11 @@ export default class Clock extends React.Component<Props, State>{
 
     render(){
         return (
-        <p>{this.state.time}</p>
+        <p style = {clockStyle}>{this.state.time}</p>
         )
     }
+}
 
+const clockStyle:CSSProperties = {
+    fontSize: '3rem'
 }

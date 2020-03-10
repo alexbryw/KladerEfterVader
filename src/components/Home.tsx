@@ -12,5 +12,10 @@ export default function Home() {
 }
 
 const homeGridItem: CSSProperties = {
-  gridArea: 'home'
+  gridArea: 'home',
+  height: '90vh',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'space-around'
 }
