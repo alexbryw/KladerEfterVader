@@ -5,7 +5,7 @@ import { WeatherResponse } from '../api-typings';
 
 interface Props{
   isDayMode:boolean,
-  loadWeather: WeatherResponse
+  loadWeather: object
 }
 
 interface State{
