@@ -19,6 +19,7 @@ export default class DayNightMode extends React.Component <Props>{
     return (
       <div style = {dayNightContainer} onClick = {this.props.onToggleMode}>
           <img style={dayNightButton} src={imgURL} alt={this.props.buttonText}/> 
+
       </div>
     );
   }
@@ -26,17 +27,17 @@ export default class DayNightMode extends React.Component <Props>{
 
 const dayNightContainer:CSSProperties = {
   position: 'absolute',
-  top: '2%',
-  right: '2%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  top: '0.7rem',
+  right: '0.7rem',
   zIndex: 2,
-  height:'4.2em',
-  width: '4.2em',
+  height:'4.5rem',
+  width: '4.5rem',
   backgroundColor: '#FFF',
   borderRadius: '4em',
-  border: '0.1em black solid',
-  display: 'block',
-  marginLeft: 'auto',
-  marginRight: 'auto'
+  border: '0.2rem black solid',
 }
 
 const dayNightButton:CSSProperties = {

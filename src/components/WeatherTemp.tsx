@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, {CSSProperties} from 'react';
 import WindDirection from './WindDirection';
 
 interface Props{
@@ -67,33 +68,50 @@ export default class WeatherTemp extends React.Component<Props, State> {
       const tempMax = this.kToCelsius(weather.main.temp_max);
 
       return (
-        <div className="WeatherTemp" style={tempStyle}>
-          {/* <h2>{weather.name}</h2> */}
-          <h2>{this.state.city}</h2>
-          <h3>Temp: {tempInCelsius}°C </h3>
-          <h3>Känns som {tempFeelsLikeC}°C</h3>
-          <h3>Dagens min {tempMin}°C, max {tempMax}°C</h3>
+        <div style = {weatherTempStyle}>
+          {/* <h2>{this.state.weather.name}</h2> */}
           <img src={weatherIconUrl} alt={weatherIconALtDescription} style={weatherIconStyle}></img>
+          <h2>{this.state.city}</h2>
+
+          
+
+          <div>
           <h3>{weather.weather[0].description}</h3>
-          <h3>Vind {weather.wind.speed} m/s, riktning {weather.wind.deg}°</h3>
-          <WindDirection windDeg={weather.wind.deg} isDayMode={this.props.isDayMode} windStyle={windStyle} />
+          </div>
+
+          <div>
+            <h3>Temp: {tempInCelsius}°C </h3>
+            <h5>Känns som {tempFeelsLikeC}°C</h5>
+            {/* <h3>Dagens min {tempMin}°C, max {tempMax}°C</h3> */}
+          </div>
+
+          <div style = {windWrap}>
+            <h5>Vind {weather.wind.speed} m/s{/* , riktning {weather.wind.deg}° */}</h5>
+            <WindDirection windDeg={weather.wind.deg} isDayMode={this.props.isDayMode}/>
+          </div>
         </div>
       );
   }
 }
 
-const tempStyle : React.CSSProperties = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center"
+const weatherTempStyle:CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  height: '60vh',
+  textAlign: 'center'
 }
 
-const weatherIconStyle : React.CSSProperties = {
+
+const weatherIconStyle:CSSProperties = {
   width: "9rem"
 }
 
-const windStyle : React.CSSProperties = {
-  padding: "0.5rem",
-  width: "9rem",
+const windWrap: CSSProperties = {
+  display:'flex',
+  alignItems: 'center',
+  justifyContent: 'space-around'
 }
+
 
