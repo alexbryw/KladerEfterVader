@@ -14,8 +14,8 @@ export default function Navbar(props:Props){
 
       return (
         <div style = {navStyle}>
-          <NavItem id = {"/"} name = {"Hem"} isDayMode = {props.isDayMode} onViewSelected = {props.onViewSelected}/>
-          {navLabels.map((value) => <NavItem  isDayMode = {props.isDayMode} key ={value} id = {value} name = {value} onViewSelected = {props.onViewSelected}/>)}
+          <NavItem id = {"/"} name = {"Hem"} isDayMode = {props.isDayMode} onViewSelected = {props.onViewSelected} currentView = {props.currentView}/>
+          {navLabels.map((value) => <NavItem  isDayMode = {props.isDayMode} key ={value} id = {value} name = {value} onViewSelected = {props.onViewSelected} currentView = {props.currentView} />)}
         </div>
       );
     }

@@ -26,7 +26,7 @@ export default class Layout extends React.Component <Props, State>{
       buttonText: 'Dag',
       modeStyle: mainDayStyle,
       deviceSize: this.calculateDeviceSize(),
-      currentView:'hem'
+      currentView:'Hem'
     }
     this.toggleDayNightMode = this.toggleDayNightMode.bind(this)
   }

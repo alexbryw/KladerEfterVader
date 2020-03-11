@@ -1,28 +1,41 @@
 import React, {CSSProperties} from 'react';
 import {Link} from 'react-router-dom'
+import { render } from '@testing-library/react';
 
 interface Props {
     id:string,
     name: string,
     isDayMode: boolean,
     onViewSelected: (name: string) => void,
+    currentView: string
 }
 
-export default function NavItem(props:Props) {
+export default class NavItem extends React.Component<Props>{
+        
+    render(){
+        let buttonStyle
+        if(this.props.currentView === this.props.name){
+            this.props.isDayMode?buttonStyle = buttonActiveDay:buttonStyle = buttonActiveNight
+        }
+        else{
+            buttonStyle = buttonUnActive
+        }
 
-        let colorOfText = props.isDayMode?({...navItemDayStyle, ...navItemStyle}): ({...navItemNightStyle, ...navItemStyle})
-        const onClick = () => props.onViewSelected(props.name)
+        let colorOfText = this.props.isDayMode?({...navItemDayStyle, ...navItemStyle}): ({...navItemNightStyle, ...navItemStyle})
+        const onClick = () => this.props.onViewSelected(this.props.name)
 
         return (
-            <Link to = {props.id} style = {{...colorOfText}} onClick={onClick}>
-                {props.name}
+            <Link to = {this.props.id} style = {{...colorOfText, ...buttonStyle}} onClick={onClick}>
+                {this.props.name}
             </Link>
         );
+    }
+
 }
 
 const navItemDayStyle: CSSProperties = {
     color: 'black',
-    backgroundColor: '#b3d9ff',
+    
     
 }
 
@@ -32,13 +45,33 @@ const navItemStyle: CSSProperties = {
     display: 'flex',
     flexGrow: 1,
     textDecoration: 'none',
-    justifyContent: 'center',
-    border: '3px solid black',
+    justifyContent: 'center',    
     borderBottomLeftRadius: '25px',
     borderBottomRightRadius: '25px'
 }
 
 const navItemNightStyle: CSSProperties = {
-    color: '#ffffcc',
-    backgroundColor: '#000033',
+    color: '#ffffcc',   
 }
+
+const buttonActiveDay:CSSProperties = {
+    backgroundColor: '#b3d9ff',
+    borderTop: 0,
+    borderRight: '3px solid black',
+    borderBottom: '3px solid black',
+    borderLeft: '3px solid black'
+}
+
+const buttonActiveNight:CSSProperties = {
+    backgroundColor: '#000033',
+    borderTop: 0,
+    borderRight: '3px solid black',
+    borderBottom: '3px solid black',
+    borderLeft: '3px solid black'
+}
+
+const buttonUnActive:CSSProperties = {
+    border: '3px solid black',
+    backgroundColor: '#4d4dff',
+}
+
