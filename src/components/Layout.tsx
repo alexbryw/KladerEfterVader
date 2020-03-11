@@ -49,7 +49,7 @@ export default class Layout extends React.Component <Props, State>{
   }
 
   calculateDeviceSize(): "isMobile" | "isDesktop" {
-    if (window.innerWidth < 900) {
+    if (window.innerWidth < 1000) {
       return 'isMobile'
     } else {
       return 'isDesktop'
@@ -151,7 +151,9 @@ const borderMobile:CSSProperties = {
   borderLeft: '3px solid black',
   borderTopLeftRadius: '25px',
   borderTopRightRadius: '25px',
-  height: '95%'
+  height: '95%',
+  display: 'flex',
+  justifyContent: 'center',
 }
 
 const borderDesktop:CSSProperties = {
