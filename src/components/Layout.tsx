@@ -152,6 +152,8 @@ const borderMobile:CSSProperties = {
   borderTopLeftRadius: '25px',
   borderTopRightRadius: '25px',
   height: '95%',
+  display: 'flex',
+  justifyContent: 'center',
 }
 
 const borderDesktop:CSSProperties = {
