@@ -1,9 +1,8 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 
 interface Props{
     windDeg: number
     isDayMode: boolean
-    windStyle?: React.CSSProperties
 }
 interface State{}
 
@@ -23,9 +22,14 @@ export default class WindDirection extends React.Component<Props,State>{
             windArrowUrl = require('../asset/images/weatherIcons/NightMode/arrow.png');
         }
         return(
-            <div className="WindDirection">
-                <img src={windArrowUrl} alt="A wind arrow" style={ {...this.props.windStyle, ...rotateStyle}}/>
+            <div>
+                <img src={windArrowUrl} alt="A wind arrow" style={ {...rotateStyle, ...arrowStyle}}/>
             </div>
         )
     }
+}
+
+const arrowStyle:CSSProperties = {
+    height: '2.5rem',
+    padding: '0.5rem'
 }

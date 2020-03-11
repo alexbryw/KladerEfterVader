@@ -33,5 +33,6 @@ const timeContainer: CSSProperties = {
 }
 
 const timeItem: CSSProperties = {
-  margin: '0 0 2rem 0'
+  margin: '0 0 2rem 0',
+  fontSize: '1.2rem'
 }

@@ -26,17 +26,19 @@ export default class WeekDay extends React.Component<Props>{
       const weekdayName = weekdayNameSE[weekdayNum]
 
       return (
-          <div style={{ ...weatherCard}}>
+          <div style={weatherCard}>
             <p>{weekdayName}</p>{" "}
             <img
               style={imageStyling}
               src={imgURL} 
               alt={this.props.weatherContent.weather[0].description + " icon"}/>
             <p>
-              {(this.props.weatherContent.main.temp - 273.15).toFixed(1)}°C - 
-              Vind {this.props.weatherContent.wind.speed}m/s 
+              {(this.props.weatherContent.main.temp - 273.15).toFixed(1)}°C
             </p>
-            <WindDirection windDeg={this.props.weatherContent.wind.deg} isDayMode={this.props.isDayMode} windStyle={windStyle} />
+            <WindDirection windDeg={this.props.weatherContent.wind.deg} isDayMode={this.props.isDayMode}/>
+            <p>
+               {this.props.weatherContent.wind.speed}m/s 
+            </p>
           </div>
       );
   }
@@ -44,13 +46,11 @@ export default class WeekDay extends React.Component<Props>{
 
 const weatherCard: CSSProperties = {
   display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center'
 }
 
 const imageStyling: CSSProperties = {
   height: '3em',
 }
 
-const windStyle: CSSProperties = {
-  padding: '0.25rem',
-  height: '2rem'
-}

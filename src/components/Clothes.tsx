@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {CSSProperties} from 'react';
 import WeatherFigure from './WeatherFigure'
 import WeatherDescription from './WeatherDescription'
 
@@ -86,15 +86,37 @@ export default class Clothes extends React.Component<Props, State>{
       return <p>Loading...</p>;
     }
     return (
-
-      <div>
+      <div style = {clothesGridItem}>
           <WeatherFigure weatherContent={weatherOutPut} isDayMode={this.props.isDayMode}/>
           <WeatherDescription weatherContent={weatherOutPut} whatDayIsIt={whatDayIsIt}/>
-          <button type="button" name="whatDay" value="today" onClick={this.handleClick}>Idag</button>
-          <button type="button" name="whatDay" value="tomorrow" onClick={this.handleClick}>Imorgon</button>
-          <button type="button" name="whatDay" value="dayAfterTomorrow" onClick={this.handleClick}>I övermorgon</button>
+        <div style = {buttonWrapper}>
+          <button style = {buttonStyle} type="button" name="whatDay" value="today" onClick={this.handleClick}>Idag</button>
+          <button style = {buttonStyle} type="button" name="whatDay" value="tomorrow" onClick={this.handleClick}>Imorgon</button>
+          <button style = {buttonStyle} type="button" name="whatDay" value="dayAfterTomorrow" onClick={this.handleClick}>I över-<br/>morgon</button>
+        </div>
       </div>
     );
   }
 }
 
+const clothesGridItem: CSSProperties = {
+  gridArea: 'clothes',
+  height: '100%'
+}
+
+const buttonWrapper:CSSProperties = {
+  display: 'flex',
+  justifyContent: 'space-around',
+  alignItems: 'center',
+  height: '10%'
+}
+
+const buttonStyle:CSSProperties={
+  height: '3rem',
+  width: '5rem',
+  padding: '0.25rem 0.5rem',
+  borderRadius: '25px',
+  border: '3px solid black',
+  outline: 'none',
+  cursor: 'pointer',
+}

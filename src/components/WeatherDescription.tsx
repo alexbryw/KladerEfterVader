@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 
 
 
@@ -41,7 +41,7 @@ export default class WeatherDescription extends React.Component<Props>{
       }
 
       return (
-          <div>
+          <div style = {textStyle}>
             <p>{this.props.whatDayIsIt} är det {(weather.main.temp - 273.15).toFixed(1)} ° grader och {weather.weather[0].description}</p>
             <p>{whatClothes}</p>
           </div>
@@ -49,7 +49,12 @@ export default class WeatherDescription extends React.Component<Props>{
   }
 }
 
-
-
-
-
+const textStyle:CSSProperties = {
+  display: 'flex',
+  height: '10%',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'space-around',
+  marginBottom: '1rem',
+  textAlign: 'center'
+}
