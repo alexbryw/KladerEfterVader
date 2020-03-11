@@ -101,7 +101,11 @@ export default class Clothes extends React.Component<Props, State>{
 
 const clothesGridItem: CSSProperties = {
   gridArea: 'clothes',
-  height: '100%'
+  height: '100%',
+  maxWidth: '100rem',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'space-around'
 }
 
 const buttonWrapper:CSSProperties = {

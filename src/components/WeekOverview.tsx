@@ -66,8 +66,11 @@ export default class WeekOverview extends React.Component<Props, State>{
       weatherListToday = this.state.weatherToday;
     }
 
-    if(hour > 12){
-      weatherList.pop();
+    if(hour < 12){
+      if(weatherList.length > 4){
+        console.log(weatherList.length + " weatherlist length after kl12 shift().") //TODO remove later.
+        weatherList.pop();
+      }
       return (
 
         <div style={weekListStyle}>

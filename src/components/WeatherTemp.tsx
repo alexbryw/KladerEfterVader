@@ -79,12 +79,13 @@ export default class WeatherTemp extends React.Component<Props, State> {
             <h3>Temp: {tempInCelsius}°C </h3>
             <h5>Känns som {tempFeelsLikeC}°C</h5>
             {/* <h3>Dagens min {tempMin}°C, max {tempMax}°C</h3> */}
-          </div>
-
-          <div style = {windWrap}>
+            <div style = {windWrap}>
             <h5>Vind {weather.wind.speed} m/s{/* , riktning {weather.wind.deg}° */}</h5>
             <WindDirection windDeg={weather.wind.deg} isDayMode={this.props.isDayMode}/>
           </div>
+          </div>
+
+
         </div>
       );
   }
@@ -94,7 +95,7 @@ const weatherTempStyle:CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'space-between',
+  justifyContent: 'space-around',
   height: '60vh',
   textAlign: 'center'
 }

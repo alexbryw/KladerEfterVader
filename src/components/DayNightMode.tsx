@@ -33,14 +33,14 @@ const dayNightContainer:CSSProperties = {
   top: '0.7rem',
   right: '0.7rem',
   zIndex: 2,
-  height:'4.5rem',
-  width: '4.5rem',
+  height:'4rem',
+  width: '4rem',
   backgroundColor: '#FFF',
   borderRadius: '4em',
   border: '0.2rem black solid',
 }
 
 const dayNightButton:CSSProperties = {
-  height:'3.5em',
-  width: '3.5em',
+  height:'3em',
+  width: '3em',
 }
