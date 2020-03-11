@@ -30,8 +30,8 @@ export default class Clothes extends React.Component<Props, State>{
   async componentDidMount() {
     this.setState({ isLoaded: false })
     const hour = new Date().getHours()
-    if(hour < 12){
-      const response = await fetch("http://api.openweathermap.org/data/2.5/forecast?id=5695743&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
+    if(hour > 12){
+      const response = await fetch("http://api.openweathermap.org/data/2.5/forecast?q=Göteborg&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
       const data = await response.json();
       const dataWeather = data.list.filter((reading:any) => reading.dt_txt.includes("12:00:00"));
       this.setState({
@@ -39,14 +39,14 @@ export default class Clothes extends React.Component<Props, State>{
         weatherDayAfterTomorrow: dataWeather[2],
         isLoaded: true
       })
-      const responseToday  = await fetch("http://api.openweathermap.org/data/2.5/weather?id=5695743&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
+      const responseToday  = await fetch("http://api.openweathermap.org/data/2.5/weather?q=Göteborg&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
       const dataWeatherToday = await responseToday.json();
       this.setState({
         weatherToday: dataWeatherToday,
         isLoaded: true
       })
     } else {
-      const response = await fetch("http://api.openweathermap.org/data/2.5/forecast?id=5695743&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
+      const response = await fetch("http://api.openweathermap.org/data/2.5/forecast?q=Göteborg&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
       const data = await response.json();
       const dataWeather = data.list.filter((reading:any) => reading.dt_txt.includes("12:00:00"));
       this.setState({
