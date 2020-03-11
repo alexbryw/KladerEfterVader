@@ -19,7 +19,6 @@ export default class DayNightMode extends React.Component <Props>{
     return (
       <div style = {dayNightContainer} onClick = {this.props.onToggleMode}>
           <img style={dayNightButton} src={imgURL} alt={this.props.buttonText}/> 
-
       </div>
     );
   }

@@ -3,19 +3,24 @@ import NavItem from './NavItem'
 
 
 interface Props{
-  isDayMode:boolean
+  isDayMode:boolean;
+  currentView: string;
+  onViewSelected: (name:string) => void
 }
 
-export default class Navbar(props:Props) {
-  const navLabels = ['Prognos', 'Kläder']
+export default function Navbar(props:Props){
 
-  return (
-    <div style = {navStyle}>
-      <NavItem id = {"/"} name = {"Hem"} isDayMode = {props.isDayMode}/>
-      {navLabels.map((value) => <NavItem  isDayMode = {props.isDayMode} key ={value} id = {value} name = {value}/>)}
-    </div>
-  );
-}
+      const navLabels = ['Prognos', 'Kläder']
+
+      return (
+        <div style = {navStyle}>
+          <NavItem id = {"/"} name = {"Hem"} isDayMode = {props.isDayMode} onViewSelected = {props.onViewSelected}/>
+          {navLabels.map((value) => <NavItem  isDayMode = {props.isDayMode} key ={value} id = {value} name = {value} onViewSelected = {props.onViewSelected}/>)}
+        </div>
+      );
+    }
+
+
 
 const navStyle: CSSProperties = {
   width: '100%',

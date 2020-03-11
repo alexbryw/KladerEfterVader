@@ -14,7 +14,8 @@ interface State{
   isDayMode: boolean,
   buttonText: string,
   modeStyle: React.CSSProperties,
-  deviceSize: "isMobile" | "isDesktop"
+  deviceSize: "isMobile" | "isDesktop",
+  currentView: string
 }
 
 export default class Layout extends React.Component <Props, State>{
@@ -24,9 +25,14 @@ export default class Layout extends React.Component <Props, State>{
       isDayMode: true,
       buttonText: 'Dag',
       modeStyle: mainDayStyle,
-      deviceSize: this.calculateDeviceSize()
+      deviceSize: this.calculateDeviceSize(),
+      currentView:'hem'
     }
     this.toggleDayNightMode = this.toggleDayNightMode.bind(this)
+  }
+
+  setView = (name: string) => {
+    this.setState({ currentView: name});
   }
 
   toggleDayNightMode() {
@@ -65,7 +71,7 @@ export default class Layout extends React.Component <Props, State>{
   }
 
   render(){
-
+    console.log(this.state.currentView)
     console.log(this.state.deviceSize)
     const loadWeather = {
       "dt":32503683661,
@@ -103,7 +109,7 @@ export default class Layout extends React.Component <Props, State>{
             </div>
             </ErrorBoundary>
             <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
-            <Navbar isDayMode = {this.state.isDayMode}/>
+            <Navbar isDayMode = {this.state.isDayMode} currentView = {this.state.currentView} onViewSelected={this.setView}/>
         </div>
       );
     }

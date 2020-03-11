@@ -4,18 +4,20 @@ import {Link} from 'react-router-dom'
 interface Props {
     id:string,
     name: string,
-    isDayMode: boolean
+    isDayMode: boolean,
+    onViewSelected: (name: string) => void,
 }
 
 export default function NavItem(props:Props) {
 
-    let colorOfText = props.isDayMode?({...navItemDayStyle, ...navItemStyle}): ({...navItemNightStyle, ...navItemStyle})
-    
-    return (
-        <Link to = {props.id} style = {colorOfText}>
-            {props.name}
-        </Link>
-    );
+        let colorOfText = props.isDayMode?({...navItemDayStyle, ...navItemStyle}): ({...navItemNightStyle, ...navItemStyle})
+        const onClick = () => props.onViewSelected(props.name)
+
+        return (
+            <Link to = {props.id} style = {{...colorOfText}} onClick={onClick}>
+                {props.name}
+            </Link>
+        );
 }
 
 const navItemDayStyle: CSSProperties = {
