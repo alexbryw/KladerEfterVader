@@ -64,8 +64,8 @@ export default class WeatherTemp extends React.Component<Props, State> {
       const weatherIconALtDescription = "an icon of " + weather.weather[0].description;
       const tempInCelsius = this.kToCelsius(weather.main.temp);
       const tempFeelsLikeC = this.kToCelsius(weather.main.feels_like);
-      const tempMin = this.kToCelsius(weather.main.temp_min);
-      const tempMax = this.kToCelsius(weather.main.temp_max);
+      // const tempMin = this.kToCelsius(weather.main.temp_min);
+      // const tempMax = this.kToCelsius(weather.main.temp_max); //TODO remove later.
 
       return (
         <div style = {weatherTempStyle}>
