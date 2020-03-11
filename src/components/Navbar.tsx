@@ -6,7 +6,7 @@ interface Props{
   isDayMode:boolean
 }
 
-export default function Navbar(props:Props) {
+export default class Navbar(props:Props) {
   const navLabels = ['Prognos', 'Kläder']
 
   return (

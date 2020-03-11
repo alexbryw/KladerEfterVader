@@ -21,6 +21,7 @@ export default function NavItem(props:Props) {
 const navItemDayStyle: CSSProperties = {
     color: 'black',
     backgroundColor: '#b3d9ff',
+    
 }
 
 const navItemStyle: CSSProperties = {
@@ -29,7 +30,6 @@ const navItemStyle: CSSProperties = {
     display: 'flex',
     flexGrow: 1,
     textDecoration: 'none',
-    color: 'black',
     justifyContent: 'center',
     border: '3px solid black',
     borderBottomLeftRadius: '25px',
