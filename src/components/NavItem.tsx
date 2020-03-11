@@ -21,22 +21,15 @@ export default class NavItem extends React.Component<Props>{
             buttonStyle = buttonUnActive
         }
 
-        let colorOfText = this.props.isDayMode?({...navItemDayStyle, ...navItemStyle}): ({...navItemNightStyle, ...navItemStyle})
         const onClick = () => this.props.onViewSelected(this.props.name)
 
         return (
-            <Link to = {this.props.id} style = {{...colorOfText, ...buttonStyle}} onClick={onClick}>
+            <Link to = {this.props.id} style = {{...navItemStyle, ...buttonStyle}} onClick={onClick}>
                 {this.props.name}
             </Link>
         );
     }
 
-}
-
-const navItemDayStyle: CSSProperties = {
-    color: 'black',
-    
-    
 }
 
 const navItemStyle: CSSProperties = {
@@ -50,16 +43,13 @@ const navItemStyle: CSSProperties = {
     borderBottomRightRadius: '25px'
 }
 
-const navItemNightStyle: CSSProperties = {
-    color: '#ffffcc',   
-}
-
 const buttonActiveDay:CSSProperties = {
     backgroundColor: '#b3d9ff',
     borderTop: 0,
     borderRight: '3px solid black',
     borderBottom: '3px solid black',
-    borderLeft: '3px solid black'
+    borderLeft: '3px solid black',
+    color: 'black'
 }
 
 const buttonActiveNight:CSSProperties = {
@@ -67,11 +57,13 @@ const buttonActiveNight:CSSProperties = {
     borderTop: 0,
     borderRight: '3px solid black',
     borderBottom: '3px solid black',
-    borderLeft: '3px solid black'
+    borderLeft: '3px solid black',
+    color: '#ffffcc',
 }
 
 const buttonUnActive:CSSProperties = {
     border: '3px solid black',
     backgroundColor: '#4d4dff',
+    color: 'black'
 }
 
