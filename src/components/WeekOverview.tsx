@@ -27,7 +27,7 @@ export default class WeekOverview extends React.Component<Props, State>{
   async componentDidMount() {
     this.setState({ isLoadedDataWeather: false });
     this.setState({ isLoadedDataWeatherToday: false });
-    const response = await fetch("http://api.openweathermap.org/data/2.5/forecast?id=5695743&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
+    const response = await fetch("http://api.openweathermap.org/data/2.5/forecast?q=Göteborg&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
     const data = await response.json();
     const dataWeather = data.list.filter((reading:any) => reading.dt_txt.includes("12:00:00"));
     this.setState({
@@ -35,7 +35,7 @@ export default class WeekOverview extends React.Component<Props, State>{
       isLoadedDataWeather: true
     })
 
-    const responseToday  = await fetch("http://api.openweathermap.org/data/2.5/weather?id=5695743&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
+    const responseToday  = await fetch("http://api.openweathermap.org/data/2.5/weather?q=Göteborg&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
     const dataWeatherToday = await responseToday.json();
     this.setState({
       weatherToday: dataWeatherToday,
@@ -65,7 +65,7 @@ export default class WeekOverview extends React.Component<Props, State>{
       weatherListToday = this.state.weatherToday;
     }
 
-    if(hour < 12){
+    if(hour > 12){
       if(weatherList.length > 4){
         console.log(weatherList.length + " weatherlist length after kl12 shift().") //TODO remove later.
         weatherList.pop();

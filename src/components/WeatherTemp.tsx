@@ -1,16 +1,17 @@
 import React, {CSSProperties} from 'react';
 import WindDirection from './WindDirection';
+import { WeatherResponse } from '../api-typings';
 
 interface Props{
   isDayMode:boolean,
-  loadWeather: object
+  loadWeather: object //TODO change to WeatherResponce type.
 }
 
 interface State{
   city: string
   language: string
   isLoaded: boolean
-  weather: any
+  weather: WeatherResponse | undefined
 }
 
 export default class WeatherTemp extends React.Component<Props, State> {
@@ -20,25 +21,34 @@ export default class WeatherTemp extends React.Component<Props, State> {
       city: "Göteborg",
       language: "se",
       isLoaded: false,
-      weather: null
+      weather: undefined
     }
   }
 
   async componentDidMount(){
-    this.setState({ isLoaded: false })
-    
-    const response =  await fetch("http://api.openweathermap.org/data/2.5/weather?q="
-    +this.state.city+"&appid=16da1da324d687a04c8aec0742e21c35&lang=se")
-    
-    const data = await response.json()
-    // console.log("data under")
-    // console.log(data)   //Console to see what's inside API response.
-    this.setState({
-      weather: data,
-      isLoaded: true
-    })
-
-    console.log("WeatherTemp API call.")
+    try {
+      this.setState({ isLoaded: false })
+      
+      const response =  await fetch("http://api.openweathermap.org/data/2.5/weather?q="
+      +this.state.city+"&appid=16da1da324d687a04c8aec0742e21c35&lang=se")
+      
+      const data = await response.json()
+      console.log("data under")
+      console.log(data)   //Console to see what's inside API response.
+      if(data.cod !== "404"){
+        this.setState({
+          weather: data as WeatherResponse,
+          isLoaded: true
+        })
+      }
+  
+      console.log("WeatherTemp API call.")
+      
+    } catch (error) {
+      // respond to problems
+      console.log("error from WeatherTemp API")
+      console.log(error)
+    }
   }
 
   kToCelsius(kelvinIn: number):string{
@@ -48,10 +58,11 @@ export default class WeatherTemp extends React.Component<Props, State> {
   render(){
       let weather;
       if(!this.state.isLoaded){
-        weather = this.props.loadWeather;
+        weather = this.props.loadWeather as WeatherResponse;
       } else {
-        weather = this.state.weather;
+        weather = this.state.weather as WeatherResponse;
       }
+      // const weather = this.state.weather as WeatherResponse;
       
       let weatherIconUrl: string;
       if(this.props.isDayMode){
@@ -63,8 +74,6 @@ export default class WeatherTemp extends React.Component<Props, State> {
       const weatherIconALtDescription = "an icon of " + weather.weather[0].description;
       const tempInCelsius = this.kToCelsius(weather.main.temp);
       const tempFeelsLikeC = this.kToCelsius(weather.main.feels_like);
-      // const tempMin = this.kToCelsius(weather.main.temp_min);
-      // const tempMax = this.kToCelsius(weather.main.temp_max); //TODO remove later.
 
       return (
         <div style = {weatherTempStyle}>
