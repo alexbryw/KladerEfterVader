@@ -70,7 +70,7 @@ const weatherFigureContainer: CSSProperties = {
 const weatherSlothStyle: CSSProperties = {
   height: '50%',
   zIndex: 3,
-  margin: '0 0 5rem 0'
+  margin: '0 0 4.5rem 0'
 }
 
 const weatherlogoStyle:CSSProperties = {
