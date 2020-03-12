@@ -127,7 +127,7 @@ export default class Layout extends React.Component <Props, State>{
 }
 
 const mainStyle:CSSProperties = {
-  height: '100%',
+  height: '98vh',
   width: '100%',
   position: 'relative',
 }
@@ -148,7 +148,7 @@ const styleMobile:CSSProperties = {
   borderLeft: '3px solid black',
   borderTopLeftRadius: '25px',
   borderTopRightRadius: '25px',
-  height: '95%',
+  height: '88%',
   display: 'flex',
   justifyContent: 'center',
 }

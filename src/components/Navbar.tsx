@@ -41,7 +41,6 @@ const navStyle: CSSProperties = {
   flexDirection: 'row',
   justifyContent: 'space-around',
   textDecoration: 'none',
-  position: 'absolute',
-  bottom: 0,
+  marginTop: '-0.2rem',
   zIndex: 2
 }

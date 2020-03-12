@@ -61,15 +61,16 @@ export default class WeatherFigure extends React.Component<Props>{
 const weatherFigureContainer: CSSProperties = {
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center',
+  alignItems: 'flex-end',
   position: 'relative',
   height: '60vh',
   width: '100%',
 }
 
 const weatherSlothStyle: CSSProperties = {
-  height: '70%',
-  zIndex: 3
+  height: '50%',
+  zIndex: 3,
+  margin: '0 0 5rem 0'
 }
 
 const weatherlogoStyle:CSSProperties = {
