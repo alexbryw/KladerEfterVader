@@ -1,7 +1,6 @@
 import React, {CSSProperties} from 'react';
 import WeekDay from './WeekDay'
 
-
 interface Props {
   isDayMode:boolean,
   loadWeather: object
@@ -71,8 +70,8 @@ export default class WeekOverview extends React.Component<Props, State>{
         console.log(weatherList.length + " weatherlist length after kl12 shift().") //TODO remove later.
         weatherList.pop();
       }
-      return (
 
+      return (
         <div style={weekListStyle}>
             <WeekDay weatherContent={weatherListToday} key="0"  isDayMode={this.props.isDayMode}/>
             {
@@ -99,7 +98,7 @@ const weatherListContainer: CSSProperties = {
   flexDirection: 'column',
   height: '75vh',
   justifyContent: 'space-around',
-  margin: '10vh 2rem 0 2rem'
+  margin: '10vh 1rem 0 1rem'
 }
 
 const weekOverviewGridItem: CSSProperties = {

@@ -2,7 +2,6 @@ import React, {CSSProperties} from 'react';
 import moment from 'moment';
 
 interface Props{
-
 }
 
 interface State {

@@ -4,23 +4,30 @@ import {Link} from 'react-router-dom'
 interface Props {
     id:string,
     name: string,
-    isDayMode: boolean
+    isDayMode: boolean,
+    onViewSelected: (name: string) => void,
+    activeView: string
 }
 
-export default function NavItem(props:Props) {
+export default class NavItem extends React.Component<Props>{    
 
-    let colorOfText = props.isDayMode?({...navItemDayStyle, ...navItemStyle}): ({...navItemNightStyle, ...navItemStyle})
-    
-    return (
-        <Link to = {props.id} style = {colorOfText}>
-            {props.name}
-        </Link>
-    );
-}
+    render(){
+        let buttonStyle
+        if(this.props.activeView === this.props.name){
+            this.props.isDayMode?buttonStyle = buttonActiveDay:buttonStyle = buttonActiveNight
+        }
+        else{
+            buttonStyle = buttonUnActive 
+        }
 
-const navItemDayStyle: CSSProperties = {
-    color: 'black',
-    backgroundColor: '#b3d9ff',
+        const handleOnclick = () => this.props.onViewSelected(this.props.name)
+
+        return (
+            <Link to = {this.props.id} style = {{...navItemStyle, ...buttonStyle}} onClick={handleOnclick}>
+                {this.props.name}
+            </Link>
+        );
+    }
 }
 
 const navItemStyle: CSSProperties = {
@@ -29,14 +36,32 @@ const navItemStyle: CSSProperties = {
     display: 'flex',
     flexGrow: 1,
     textDecoration: 'none',
-    color: 'black',
-    justifyContent: 'center',
-    border: '3px solid black',
+    justifyContent: 'center',    
     borderBottomLeftRadius: '25px',
     borderBottomRightRadius: '25px'
 }
 
-const navItemNightStyle: CSSProperties = {
-    color: '#ffffcc',
-    backgroundColor: '#000033',
+const buttonActiveDay:CSSProperties = {
+    backgroundColor: '#b3d9ff',
+    borderTop: 0,
+    borderRight: '3px solid black',
+    borderBottom: '3px solid black',
+    borderLeft: '3px solid black',
+    color: 'black'
 }
+
+const buttonActiveNight:CSSProperties = {
+    backgroundColor: '#000033',
+    borderTop: 0,
+    borderRight: '3px solid black',
+    borderBottom: '3px solid black',
+    borderLeft: '3px solid black',
+    color: '#ffffcc',
+}
+
+const buttonUnActive:CSSProperties = {
+    border: '3px solid black',
+    backgroundColor: '#4d4dff',
+    color: 'black'
+}
+
