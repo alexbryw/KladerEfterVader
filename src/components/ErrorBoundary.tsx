@@ -21,13 +21,31 @@ export default class ErrorBoundary extends React.Component <Props, State> {
         
         if (this.state.hasError){
             return (
-                <div>
-                    <img src={require(`../asset/images/weatherSloths/confusedSloth.png`)} alt="Confused Sloth"/>
-                    <h1>User, we have a problem</h1>
+                <div className="ErrorBoundary" style={errorDivStyle}>
+                    <img style={errorImgStyle} src={require(`../asset/images/weatherSloths/confusedSloth.png`)} alt="Confused Sloth"/>
+                    <h3 style={textStyle}>User, we have a problem</h3>
                 </div>
             )
         }
 
         return this.props.children;
     }
+}
+
+const errorImgStyle: React.CSSProperties = {
+    display: "flex",
+    width: "10rem",
+    margin: "auto",
+
+}
+
+const errorDivStyle: React.CSSProperties = {
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: "25vh"
+}
+
+const textStyle: React.CSSProperties = {
+    textAlign: "center"
 }
