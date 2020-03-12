@@ -1,7 +1,9 @@
 import React, {CSSProperties} from 'react';
+import { WeatherResponse } from '../api-typings';
+
 
 interface Props {
-  weatherContent: any,
+  weatherContent: WeatherResponse,
   whatDayIsIt: string | undefined
 }
 
@@ -11,7 +13,7 @@ export default class WeatherDescription extends React.Component<Props>{
       this.state={};
     }
     render() {
-      const weather = this.props.weatherContent;
+      const weather:WeatherResponse = this.props.weatherContent;
       let whatClothes
 
       if(weather.dt === 32503683661){ 

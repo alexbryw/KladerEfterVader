@@ -51,56 +51,30 @@ export default class Layout extends React.Component <Props, State>{
 
   calculateDeviceSize(): "isMobile" | "isDesktop" {
     if (window.innerWidth < 1000) {
-      return 'isMobile'
+      return 'isMobile';
     } else {
-      return 'isDesktop'
+      return 'isDesktop';
     }
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.updateDeviceSize)
+    window.addEventListener('resize', this.updateDeviceSize);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDeviceSize)
+    window.removeEventListener('resize', this.updateDeviceSize);
   }
 
   render(){
-    const weatherContent = this.props.weatherContent
-    console.log(this.state.deviceSize)
-    const loadWeather = {
-      "dt":32503683661,
-      "main":{
-          "temp":273.15,
-          "feels_like":273.15,
-          "temp_min":273.15,
-          "temp_max":273.15,
-          "pressure":1000,
-          "sea_level":1000,
-          "grnd_level":1000,
-          "humidity":100,
-          "temp_kf":0
-      },"weather":[{
-          "id":800,
-          "main":"Weather",
-          "description":"väder",
-          "icon":"load"
-      }],"clouds":{
-          "all":0
-      },"wind":{
-          "speed":0.00,
-          "deg":236},
-          "sys":{
-          "pod":"n"
-      },"dt_txt":"3000-01-01 01:01:01"
-  }
+    const weatherContent:WeatherResponse[] = this.props.weatherContent;
+    console.log(this.state.deviceSize);
    
     if(this.state.deviceSize === "isMobile"){
       return (
         <div style = {mainStyle}>
             <ErrorBoundary>
             <div style = {{...styleMobile, ...this.state.modeStyle}}>
-              <MainView isDayMode = {this.state.isDayMode} loadWeather={loadWeather} weatherContent={weatherContent}/>
+              <MainView isDayMode = {this.state.isDayMode} weatherContent={weatherContent}/>
             </div>
             </ErrorBoundary>
             <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
@@ -113,13 +87,13 @@ export default class Layout extends React.Component <Props, State>{
       return (
         <div style = {{...this.state.modeStyle, ...gridLayoutDesktop, ...mainStyle, ...styleDesktop}}>
             <ErrorBoundary>
-              <Home isDayMode={this.state.isDayMode} loadWeather = {loadWeather} weatherContent={weatherContent}/>
+              <Home isDayMode={this.state.isDayMode} weatherContent={weatherContent}/>
             </ErrorBoundary>
             <ErrorBoundary>
-              <WeekOverview isDayMode = {this.state.isDayMode} loadWeather = {loadWeather} weatherContent={weatherContent}/>
+              <WeekOverview isDayMode = {this.state.isDayMode} weatherContent={weatherContent}/>
             </ErrorBoundary>
             <ErrorBoundary>
-              <Clothes isDayMode = {this.state.isDayMode} loadWeather = {loadWeather} weatherContent={weatherContent}/>
+              <Clothes isDayMode = {this.state.isDayMode} weatherContent={weatherContent}/>
             </ErrorBoundary>
             <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
         </div>

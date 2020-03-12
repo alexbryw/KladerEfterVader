@@ -7,7 +7,6 @@ import ErrorBoundary from './ErrorBoundary';
 
 interface Props{
   isDayMode: boolean,
-  loadWeather: object,
   weatherContent: WeatherResponse[],
 }
 
@@ -16,7 +15,7 @@ export default function Home(props : Props) {
     <div style = {homeGridItem}>
       <DateTimeContainer />
       <ErrorBoundary>
-        <WeatherTemp isDayMode={props.isDayMode} loadWeather={props.loadWeather} weatherContent={props.weatherContent}/>  
+        <WeatherTemp isDayMode={props.isDayMode} weatherContent={props.weatherContent}/>  
       </ErrorBoundary>  
     </div>
   );

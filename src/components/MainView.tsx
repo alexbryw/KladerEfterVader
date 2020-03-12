@@ -7,7 +7,6 @@ import { WeatherResponse } from '../api-typings';
 
 interface Props{
     isDayMode: boolean,
-    loadWeather: object,
     weatherContent: WeatherResponse[]
 }
 
@@ -20,18 +19,15 @@ export default function MainView(props : Props){
             <Route exact path = '/' render={() => <Home
                 {...props}
                 isDayMode={props.isDayMode}
-                loadWeather={props.loadWeather}
                 weatherContent={props.weatherContent}
             />} />
             <Route path = '/Prognos' render={() => <WeekOverview
                 {...props}  isDayMode={props.isDayMode}
-                loadWeather={props.loadWeather}
                 weatherContent={props.weatherContent}
             />} />
             <Route path = '/Kläder' render={() => <Clothes
                 {...props}
                 isDayMode={props.isDayMode}
-                loadWeather={props.loadWeather}
                 weatherContent={props.weatherContent}
             />} />
             {/* <Route exact path = '/' component={() => <Home isDayMode={props.isDayMode}/>} /> */}

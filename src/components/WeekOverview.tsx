@@ -4,7 +4,6 @@ import { WeatherResponse } from '../api-typings';
 
 interface Props {
   isDayMode:boolean,
-  loadWeather: object,
   weatherContent: WeatherResponse[],
 }
 
@@ -21,7 +20,7 @@ export default class WeekOverview extends React.Component<Props, State>{
   render() {
     return(
       <div style={weekListStyle}>
-        {this.props.weatherContent.map((weatherContent:any, index:number) =>
+        {this.props.weatherContent.map((weatherContent:WeatherResponse, index:number) =>
         <WeekDay weatherContent={weatherContent} key={index} isDayMode={this.props.isDayMode}/>
       )}
     </div>
