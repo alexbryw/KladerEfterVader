@@ -6,8 +6,10 @@ import ErrorBoundary from './ErrorBoundary'
 import Home from './Home';
 import WeekOverview from './WeekOverview';
 import Clothes from './Clothes';
+import { WeatherResponse } from '../api-typings';
 
 interface Props{
+  weatherContent: WeatherResponse[]
 }
 
 interface State{
@@ -65,7 +67,7 @@ export default class Layout extends React.Component <Props, State>{
   }
 
   render(){
-
+    const weatherContent = this.props.weatherContent
     console.log(this.state.deviceSize)
     const loadWeather = {
       "dt":32503683661,
@@ -99,7 +101,7 @@ export default class Layout extends React.Component <Props, State>{
         <div style = {mainStyle}>
             <ErrorBoundary>
             <div style = {{...borderMobile, ...this.state.modeStyle}}>
-              <MainView isDayMode = {this.state.isDayMode} loadWeather={loadWeather}/>
+              <MainView isDayMode = {this.state.isDayMode} loadWeather={loadWeather} weatherContent={weatherContent}/>
             </div>
             </ErrorBoundary>
             <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
@@ -112,13 +114,13 @@ export default class Layout extends React.Component <Props, State>{
       return (
         <div style = {{...this.state.modeStyle, ...gridLayoutDesktop, ...mainStyle, ...borderDesktop}}>
             <ErrorBoundary>
-              <Home isDayMode={this.state.isDayMode} loadWeather = {loadWeather}/>
+              <Home isDayMode={this.state.isDayMode} loadWeather = {loadWeather} weatherContent={weatherContent}/>
             </ErrorBoundary>
             <ErrorBoundary>
-              <WeekOverview isDayMode = {this.state.isDayMode} loadWeather = {loadWeather}/>
+              <WeekOverview isDayMode = {this.state.isDayMode} loadWeather = {loadWeather} weatherContent={weatherContent}/>
             </ErrorBoundary>
             <ErrorBoundary>
-              <Clothes isDayMode = {this.state.isDayMode} loadWeather = {loadWeather}/>
+              <Clothes isDayMode = {this.state.isDayMode} loadWeather = {loadWeather} weatherContent={weatherContent}/>
             </ErrorBoundary>
             <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
         </div>

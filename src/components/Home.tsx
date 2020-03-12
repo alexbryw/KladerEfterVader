@@ -1,10 +1,13 @@
 import React, {CSSProperties} from 'react';
 import DateTimeContainer from './DateTimeContainer'
 import WeatherTemp from './WeatherTemp';
+import { WeatherResponse } from '../api-typings';
+
 
 interface Props{
   isDayMode: boolean,
-  loadWeather: object
+  loadWeather: object,
+  weatherContent: WeatherResponse[],
 }
 
 

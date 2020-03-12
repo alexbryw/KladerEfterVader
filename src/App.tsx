@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import Layout from './components/Layout'
+import WeatherData from './components/WeatherData'
 import { BrowserRouter } from 'react-router-dom'
 import ErrorBoundary from './components/ErrorBoundary'
 
@@ -15,7 +15,7 @@ export default class App extends Component<Props, State> {
     return (
       <BrowserRouter>
           <ErrorBoundary>
-            <Layout/>
+            <WeatherData/>
           </ErrorBoundary>
       </BrowserRouter>
     );

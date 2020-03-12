@@ -1,10 +1,12 @@
 import React, {CSSProperties} from 'react';
-import WeekDay from './WeekDay'
+import WeekDay from './WeekDay';
+import { WeatherResponse } from '../api-typings';
 
 
 interface Props {
   isDayMode:boolean,
-  loadWeather: object
+  loadWeather: object,
+  weatherContent: WeatherResponse[],
 }
 
 interface State {

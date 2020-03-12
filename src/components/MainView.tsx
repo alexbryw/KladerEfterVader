@@ -3,10 +3,12 @@ import {Switch, Route} from 'react-router-dom';
 import Home from './Home';
 import WeekOverview from './WeekOverview';
 import Clothes from './Clothes';
+import { WeatherResponse } from '../api-typings';
 
 interface Props{
     isDayMode: boolean,
-    loadWeather: object
+    loadWeather: object,
+    weatherContent: WeatherResponse[]
 }
 
 export default function MainView(props : Props){
@@ -19,15 +21,18 @@ export default function MainView(props : Props){
                 {...props}
                 isDayMode={props.isDayMode}
                 loadWeather={props.loadWeather}
+                weatherContent={props.weatherContent}
             />} />
             <Route path = '/Prognos' render={() => <WeekOverview
                 {...props}  isDayMode={props.isDayMode}
                 loadWeather={props.loadWeather}
+                weatherContent={props.weatherContent}
             />} />
             <Route path = '/Kläder' render={() => <Clothes
                 {...props}
                 isDayMode={props.isDayMode}
                 loadWeather={props.loadWeather}
+                weatherContent={props.weatherContent}
             />} />
             {/* <Route exact path = '/' component={() => <Home isDayMode={props.isDayMode}/>} /> */}
             {/* <Route path = '/Prognos' component={() => <WeekOverview  isDayMode={props.isDayMode}/>} /> */}

@@ -13,7 +13,7 @@ export default class WeatherFigure extends React.Component<Props>{
 
     render() {
       const weather = this.props.weatherContent
-      let weatherSlothIMG
+      let weatherSlothIMG;
 
       if(weather.dt === 32503683661){ 
         weatherSlothIMG = "DefaultSloth";

@@ -1,10 +1,12 @@
 import React, {CSSProperties} from 'react';
 import WeatherFigure from './WeatherFigure';
 import WeatherDescription from './WeatherDescription';
+import { WeatherResponse } from '../api-typings';
 
 interface Props {
   isDayMode: boolean,
-  loadWeather: object
+  loadWeather: object,
+  weatherContent: WeatherResponse[]
 }
 
 interface State {
@@ -105,10 +107,13 @@ export default class Clothes extends React.Component<Props, State>{
     } else if (this.state.whatDay === "tomorrow"){
       weatherOutPut = this.state.weatherTomorrow;
       whatDayIsIt = "Imorgon";
-      
     } else if (this.state.whatDay === "dayAfterTomorrow") {
       weatherOutPut = this.state.weatherDayAfterTomorrow;
       whatDayIsIt = "I övermorgon";
+    }
+
+    if (!weatherOutPut) {
+      return <p>Loading...</p>;
     }
 
     return (
