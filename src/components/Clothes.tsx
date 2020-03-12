@@ -1,6 +1,6 @@
 import React, {CSSProperties} from 'react';
-import WeatherFigure from './WeatherFigure'
-import WeatherDescription from './WeatherDescription'
+import WeatherFigure from './WeatherFigure';
+import WeatherDescription from './WeatherDescription';
 
 interface Props {
   isDayMode: boolean,
@@ -90,9 +90,27 @@ export default class Clothes extends React.Component<Props, State>{
           <WeatherFigure weatherContent={weatherOutPut} isDayMode={this.props.isDayMode}/>
           <WeatherDescription weatherContent={weatherOutPut} whatDayIsIt={whatDayIsIt}/>
         <div style = {buttonWrapper}>
-          <button style = {buttonStyle} type="button" name="whatDay" value="today" onClick={this.handleClick}>Idag</button>
-          <button style = {buttonStyle} type="button" name="whatDay" value="tomorrow" onClick={this.handleClick}>Imorgon</button>
-          <button style = {buttonStyle} type="button" name="whatDay" value="dayAfterTomorrow" onClick={this.handleClick}>I över-<br/>morgon</button>
+          <button
+            style = {buttonStyle}
+            type="button" name="whatDay"
+            value="today"
+            ref="today"
+            onClick={this.handleClick}>
+          Idag</button>
+          <button style = {buttonStyle}
+            type="button"
+            name="whatDay" 
+            value="tomorrow" 
+            ref="tomorrow" 
+            onClick={this.handleClick}>
+          Imorgon</button>
+          <button style = {buttonStyle}
+            type="button"
+            name="whatDay"
+            value="dayAfterTomorrow"
+            onClick={this.handleClick}>
+          I över-<br/>
+          morgon</button>
         </div>
       </div>
     );
@@ -110,9 +128,9 @@ const clothesGridItem: CSSProperties = {
 
 const buttonWrapper:CSSProperties = {
   display: 'flex',
-  justifyContent: 'space-around',
+  justifyContent: 'center',
   alignItems: 'center',
-  height: '10%'
+  height: '10%',
 }
 
 const buttonStyle:CSSProperties={
@@ -123,4 +141,5 @@ const buttonStyle:CSSProperties={
   border: '3px solid black',
   outline: 'none',
   cursor: 'pointer',
+  margin: '1em 0.5em 0'
 }
