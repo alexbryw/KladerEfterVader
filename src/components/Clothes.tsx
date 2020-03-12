@@ -1,6 +1,6 @@
 import React, {CSSProperties} from 'react';
-import WeatherFigure from './WeatherFigure'
-import WeatherDescription from './WeatherDescription'
+import WeatherFigure from './WeatherFigure';
+import WeatherDescription from './WeatherDescription';
 
 interface Props {
   isDayMode: boolean,
@@ -12,7 +12,11 @@ interface State {
   weatherToday?: any,
   weatherTomorrow?: any,
   weatherDayAfterTomorrow?: any,
-  whatDay: string
+  whatDay: string,
+  todayButton: string,
+  tomorrowButton: string,
+  dayAfterTomorrowButton: string,
+
 }
 
 export default class Clothes extends React.Component<Props, State>{
@@ -24,6 +28,9 @@ export default class Clothes extends React.Component<Props, State>{
       weatherDayAfterTomorrow: undefined,
       whatDay: "today",
       isLoaded: false,
+      todayButton: "#D3D3D3",
+      tomorrowButton: "#FFF",
+      dayAfterTomorrowButton: "#FFF",
     };
   }
 
@@ -61,9 +68,30 @@ export default class Clothes extends React.Component<Props, State>{
 
   handleClick = (event: any) => {
       this.setState({
-        whatDay: event.target.value
+        whatDay: event.target.value,
       })
+      if(event.target.value === "today"){
+        this.setState({
+          todayButton: "#D3D3D3",
+          tomorrowButton: "#FFF",
+          dayAfterTomorrowButton: "#FFF",
+        })
+      } else if (event.target.value === "tomorrow"){
+        this.setState({
+          todayButton: "#FFF",
+          tomorrowButton: "#D3D3D3",
+          dayAfterTomorrowButton: "#FFF",
+        })
+      } else if (event.target.value === "dayAfterTomorrow"){
+        this.setState({
+          todayButton: "#FFF",
+          tomorrowButton: "#FFF",
+          dayAfterTomorrowButton: "#D3D3D3",
+        })
+      }
   }
+
+
   
   render() {
     let weatherOutPut;
@@ -77,22 +105,46 @@ export default class Clothes extends React.Component<Props, State>{
     } else if (this.state.whatDay === "tomorrow"){
       weatherOutPut = this.state.weatherTomorrow;
       whatDayIsIt = "Imorgon";
+      
     } else if (this.state.whatDay === "dayAfterTomorrow") {
       weatherOutPut = this.state.weatherDayAfterTomorrow;
       whatDayIsIt = "I övermorgon";
     }
-
+    
     if (!weatherOutPut) {
       return <p>Loading...</p>;
     }
+    
     return (
       <div style = {clothesGridItem}>
           <WeatherFigure weatherContent={weatherOutPut} isDayMode={this.props.isDayMode}/>
           <WeatherDescription weatherContent={weatherOutPut} whatDayIsIt={whatDayIsIt}/>
         <div style = {buttonWrapper}>
-          <button style = {buttonStyle} type="button" name="whatDay" value="today" onClick={this.handleClick}>Idag</button>
-          <button style = {buttonStyle} type="button" name="whatDay" value="tomorrow" onClick={this.handleClick}>Imorgon</button>
-          <button style = {buttonStyle} type="button" name="whatDay" value="dayAfterTomorrow" onClick={this.handleClick}>I över-<br/>morgon</button>
+          <button 
+            style = {{...buttonStyle, backgroundColor:this.state.todayButton}}
+            type="button"
+            name="whatDay"
+            value="today"
+            onClick={this.handleClick}
+            >Idag
+          </button>
+          <button 
+            style = {{...buttonStyle, backgroundColor:this.state.tomorrowButton}}
+            type="button"
+            name="whatDay"
+            value="tomorrow"
+            onClick={this.handleClick}
+            >Imorgon
+          </button>
+          <button 
+            style = {{...buttonStyle,
+            backgroundColor:this.state.dayAfterTomorrowButton}}
+            type="button"
+            name="whatDay"
+            value="dayAfterTomorrow"
+            onClick={this.handleClick}
+            >I över-<br/>morgon
+          </button>
         </div>
       </div>
     );
@@ -110,9 +162,9 @@ const clothesGridItem: CSSProperties = {
 
 const buttonWrapper:CSSProperties = {
   display: 'flex',
-  justifyContent: 'space-around',
+  justifyContent: 'center',
   alignItems: 'center',
-  height: '10%'
+  height: '10%',
 }
 
 const buttonStyle:CSSProperties={
@@ -123,4 +175,5 @@ const buttonStyle:CSSProperties={
   border: '3px solid black',
   outline: 'none',
   cursor: 'pointer',
+  margin: '1em 0.5em 0'
 }

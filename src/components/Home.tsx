@@ -1,6 +1,7 @@
 import React, {CSSProperties} from 'react';
 import DateTimeContainer from './DateTimeContainer'
 import WeatherTemp from './WeatherTemp';
+import ErrorBoundary from './ErrorBoundary';
 
 interface Props{
   isDayMode: boolean,
@@ -11,7 +12,9 @@ export default function Home(props : Props) {
   return (
     <div style = {homeGridItem}>
       <DateTimeContainer />
-      <WeatherTemp isDayMode={props.isDayMode} loadWeather={props.loadWeather}/>  
+      <ErrorBoundary>
+        <WeatherTemp isDayMode={props.isDayMode} loadWeather={props.loadWeather}/>
+      </ErrorBoundary>  
     </div>
   );
 }
