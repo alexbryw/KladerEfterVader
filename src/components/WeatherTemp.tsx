@@ -1,3 +1,5 @@
+//HomeScreen component that shows city nam, Weather icon, temperature and wind direction. 
+//Fetched from OpenWeatherMap API. 
 import React, {CSSProperties} from 'react';
 import WindDirection from './WindDirection';
 import { WeatherResponse } from '../api-typings';
@@ -9,7 +11,6 @@ interface Props{
 
 interface State{
   city: string
-  language: string
   isLoaded: boolean
   weather: WeatherResponse | undefined
 }
@@ -19,79 +20,91 @@ export default class WeatherTemp extends React.Component<Props, State> {
     super(props)
     this.state = {
       city: "Göteborg",
-      language: "se",
       isLoaded: false,
       weather: undefined
     }
   }
 
+  //Use async so the code will wait for the slow fetch response from the internet.
   async componentDidMount(){
+    // Openweathermap API url.
+    const weatherAPIUrl: string = "http://api.openweathermap.org/data/2.5/weather?q="
+    +this.state.city+"&appid=16da1da324d687a04c8aec0742e21c35&lang=se"
+
     try {
-      this.setState({ isLoaded: false })
-      
-      const response =  await fetch("http://api.openweathermap.org/data/2.5/weather?q="
-      +this.state.city+"&appid=16da1da324d687a04c8aec0742e21c35&lang=se")
-      
+      this.setState({ isLoaded: false }) //TO know when API data has loaded.
+      const response =  await fetch(weatherAPIUrl)
       const data = await response.json()
-      console.log("data under")
-      console.log(data)   //Console to see what's inside API response.
-      if(data.cod !== "404"){
+
+      // console.log("data under")
+      // console.log(data)   //TODO remove later. Console to see what's inside API response.
+      
+      if(data.cod === 200){ //Code 200 means good response.
         this.setState({
           weather: data as WeatherResponse,
           isLoaded: true
         })
+      } else if(data.cod != null) {   //print error code if there is a code. Test with wrong city name.
+        console.log("API error code: " + data.cod) 
+        console.log(data.message)
       }
   
-      console.log("WeatherTemp API call.")
+      // console.log("WeatherTemp API call.") //TODO remove later.
       
-    } catch (error) {
-      // respond to problems
-      console.log("error from WeatherTemp API")
+    } catch (error) {   //Show if other errors happen like fail to fetch. Test with wrong url.
+      console.log("error from WeatherTemp API - error message below:") 
       console.log(error)
     }
   }
 
+  // Return kelvin to celsius.
   kToCelsius(kelvinIn: number):string{
     return (kelvinIn - 273.15).toFixed(1);
   }
 
+  //Returns real API response or fake placeholder data from props until API is ready.
+  useAPIorPlaceholderData():WeatherResponse{
+    let weather: WeatherResponse
+    if(!this.state.isLoaded){
+      weather = this.props.loadWeather as WeatherResponse;
+    } else {
+      weather = this.state.weather as WeatherResponse;
+    }
+    return weather;
+  }
+
+  //Change weather icon file path if props is NightMode or not.
+  setIconDayNightModeUrl(weather: WeatherResponse): string{
+    let weatherIconUrl: string;
+    if(this.props.isDayMode){
+      weatherIconUrl = require(`../asset/images/weatherIcons/${weather.weather[0].icon}.png`);
+    } else {
+      weatherIconUrl = require(`../asset/images/weatherIcons/NightMode/${weather.weather[0].icon}.png`);
+    }
+    return weatherIconUrl;
+  }
+
   render(){
-      let weather;
-      if(!this.state.isLoaded){
-        weather = this.props.loadWeather as WeatherResponse;
-      } else {
-        weather = this.state.weather as WeatherResponse;
-      }
-      // const weather = this.state.weather as WeatherResponse;
-      
-      let weatherIconUrl: string;
-      if(this.props.isDayMode){
-        weatherIconUrl = require(`../asset/images/weatherIcons/${weather.weather[0].icon}.png`);
-      } else {
-        weatherIconUrl = require(`../asset/images/weatherIcons/NightMode/${weather.weather[0].icon}.png`);
-      }
+    const weather = this.useAPIorPlaceholderData();
+    const weatherIconUrl = this.setIconDayNightModeUrl(weather);
+    const weatherIconALtDescription = "an icon of " + weather.weather[0].description;
+    const tempInCelsius = this.kToCelsius(weather.main.temp);
+    const tempFeelsLikeC = this.kToCelsius(weather.main.feels_like);
 
-      const weatherIconALtDescription = "an icon of " + weather.weather[0].description;
-      const tempInCelsius = this.kToCelsius(weather.main.temp);
-      const tempFeelsLikeC = this.kToCelsius(weather.main.feels_like);
-
-      return (
-        <div style = {weatherTempStyle}>
-          {/* <h2>{this.state.weather.name}</h2> */}
-          <img src={weatherIconUrl} alt={weatherIconALtDescription} style={weatherIconStyle}></img>
-          <h2>{this.state.city}</h2>
-          <div>
-            <h3>Temp: {tempInCelsius}°C </h3>
-            <h5>Känns som {tempFeelsLikeC}°C</h5>
-            {/* <h3>Dagens min {tempMin}°C, max {tempMax}°C</h3> */}
-            <div style = {windWrap}>
-              <h5>Vind {weather.wind.speed} m/s{/* , riktning {weather.wind.deg}° */}</h5>
-              <WindDirection windDeg={weather.wind.deg} isDayMode={this.props.isDayMode}/>
-            </div>
+    return (
+      <div style = {weatherTempStyle}>
+        <img src={weatherIconUrl} alt={weatherIconALtDescription} style={weatherIconStyle}></img>
+        <h2>{this.state.city}</h2>
+        <div>
+          <h3>Temp: {tempInCelsius}°C </h3>
+          <h5>Känns som {tempFeelsLikeC}°C</h5>
+          <div style = {windWrap}>
+            <h5>Vind {weather.wind.speed} m/s</h5>
+            <WindDirection windDeg={weather.wind.deg} isDayMode={this.props.isDayMode}/>
           </div>
-
         </div>
-      );
+      </div>
+    );
   }
 }
 
@@ -103,7 +116,6 @@ const weatherTempStyle:CSSProperties = {
   height: '60vh',
   textAlign: 'center'
 }
-
 
 const weatherIconStyle:CSSProperties = {
   width: "9rem"
