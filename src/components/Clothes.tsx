@@ -1,6 +1,6 @@
 import React, {CSSProperties} from 'react';
-import WeatherFigure from './WeatherFigure'
-import WeatherDescription from './WeatherDescription'
+import WeatherFigure from './WeatherFigure';
+import WeatherDescription from './WeatherDescription';
 
 interface Props {
   isDayMode: boolean,
@@ -171,5 +171,5 @@ const buttonStyle:CSSProperties={
   border: '3px solid black',
   outline: 'none',
   cursor: 'pointer',
-  margin: '1em'
+  margin: '1em 0.5em 0'
 }

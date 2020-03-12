@@ -37,7 +37,7 @@ export default class WeatherDescription extends React.Component<Props>{
         //temp in Kelvin, about 20+ C
         whatClothes = "Klä dig svalt, glöm inte hatt.";
       } else {
-        whatClothes = "Inte varmt eller kallt, men glöm inte jacka.";
+        whatClothes = "Inte varmt eller kallt, glöm inte jacka.";
       }
 
       return (
