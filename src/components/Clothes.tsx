@@ -110,7 +110,11 @@ export default class Clothes extends React.Component<Props, State>{
       weatherOutPut = this.state.weatherDayAfterTomorrow;
       whatDayIsIt = "I övermorgon";
     }
-
+    
+    if (!weatherOutPut) {
+      return <p>Loading...</p>;
+    }
+    
     return (
       <div style = {clothesGridItem}>
           <WeatherFigure weatherContent={weatherOutPut} isDayMode={this.props.isDayMode}/>
