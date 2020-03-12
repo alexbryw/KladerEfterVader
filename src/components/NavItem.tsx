@@ -7,24 +7,24 @@ interface Props {
     name: string,
     isDayMode: boolean,
     onViewSelected: (name: string) => void,
-    currentView: string
+    activeView: string
 }
 
-export default class NavItem extends React.Component<Props>{
-        
+export default class NavItem extends React.Component<Props>{    
+
     render(){
         let buttonStyle
-        if(this.props.currentView === this.props.name){
+        if(this.props.activeView === this.props.name){
             this.props.isDayMode?buttonStyle = buttonActiveDay:buttonStyle = buttonActiveNight
         }
         else{
-            buttonStyle = buttonUnActive
+            buttonStyle = buttonUnActive 
         }
 
-        const onClick = () => this.props.onViewSelected(this.props.name)
+        const handleOnclick = () => this.props.onViewSelected(this.props.name)
 
         return (
-            <Link to = {this.props.id} style = {{...navItemStyle, ...buttonStyle}} onClick={onClick}>
+            <Link to = {this.props.id} style = {{...navItemStyle, ...buttonStyle}} onClick={handleOnclick}>
                 {this.props.name}
             </Link>
         );

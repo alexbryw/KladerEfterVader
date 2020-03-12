@@ -15,7 +15,6 @@ interface State{
   buttonText: string,
   modeStyle: React.CSSProperties,
   deviceSize: "isMobile" | "isDesktop",
-  currentView: string
 }
 
 export default class Layout extends React.Component <Props, State>{
@@ -26,18 +25,12 @@ export default class Layout extends React.Component <Props, State>{
       buttonText: 'Dag',
       modeStyle: mainDayStyle,
       deviceSize: this.calculateDeviceSize(),
-      currentView:'Hem'
     }
     this.toggleDayNightMode = this.toggleDayNightMode.bind(this)
   }
 
-  setView = (name: string) => {
-    this.setState({ currentView: name});
-  }
-
   toggleDayNightMode() {
-    const newDay = (this.state.isDayMode? false:true)
-    this.setState({isDayMode:newDay})
+    this.setState({isDayMode:!this.state.isDayMode})
 
     if (this.state.isDayMode){
       this.setState({buttonText: "Natt"});
@@ -51,7 +44,6 @@ export default class Layout extends React.Component <Props, State>{
 
   updateDeviceSize = () => {
     this.setState({ deviceSize: this.calculateDeviceSize() })
-
   }
 
   calculateDeviceSize(): "isMobile" | "isDesktop" {
@@ -71,7 +63,6 @@ export default class Layout extends React.Component <Props, State>{
   }
 
   render(){
-    console.log(this.state.currentView)
     console.log(this.state.deviceSize)
     const loadWeather = {
       "dt":32503683661,
@@ -104,19 +95,19 @@ export default class Layout extends React.Component <Props, State>{
       return (
         <div style = {mainStyle}>
             <ErrorBoundary>
-            <div style = {{...borderMobile, ...this.state.modeStyle}}>
+            <div style = {{...styleMobile, ...this.state.modeStyle}}>
               <MainView isDayMode = {this.state.isDayMode} loadWeather={loadWeather}/>
             </div>
             </ErrorBoundary>
             <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
-            <Navbar isDayMode = {this.state.isDayMode} currentView = {this.state.currentView} onViewSelected={this.setView}/>
+            <Navbar isDayMode = {this.state.isDayMode} />
         </div>
       );
     }
 
     else{
       return (
-        <div style = {{...this.state.modeStyle, ...gridLayoutDesktop, ...mainStyle, ...borderDesktop}}>
+        <div style = {{...this.state.modeStyle, ...gridLayoutDesktop, ...mainStyle, ...styleDesktop}}>
             <ErrorBoundary>
               <Home isDayMode={this.state.isDayMode} loadWeather = {loadWeather}/>
             </ErrorBoundary>
@@ -134,10 +125,15 @@ export default class Layout extends React.Component <Props, State>{
   }
 }
 
+const mainStyle:CSSProperties = {
+  height: '100%',
+  width: '100%',
+  position: 'relative',
+}
+
 const mainDayStyle:CSSProperties = {
   backgroundColor: '#b3d9ff',
   color: 'black'
-  
 }
 
 const mainNigthStyle:CSSProperties = {
@@ -145,13 +141,7 @@ const mainNigthStyle:CSSProperties = {
   color: '#ffffcc'
 }
 
-const mainStyle:CSSProperties = {
-  height: '100%',
-  width: '100%',
-  position: 'relative',
-}
-
-const borderMobile:CSSProperties = {
+const styleMobile:CSSProperties = {
   borderTop: '3px solid black',
   borderRight: '3px solid black',
   borderLeft: '3px solid black',
@@ -162,7 +152,7 @@ const borderMobile:CSSProperties = {
   justifyContent: 'center',
 }
 
-const borderDesktop:CSSProperties = {
+const styleDesktop:CSSProperties = {
   border: '3px solid black',
   borderRadius: '25px',
 }

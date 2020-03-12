@@ -32,8 +32,6 @@ export default function MainView(props : Props){
             {/* <Route exact path = '/' component={() => <Home isDayMode={props.isDayMode}/>} /> */}
             {/* <Route path = '/Prognos' component={() => <WeekOverview  isDayMode={props.isDayMode}/>} /> */}
             {/* <Route path = '/Kläder' component={() => <Clothes isDayMode={props.isDayMode}/>} /> */}
-
         </Switch>
     )
 }
-

@@ -99,7 +99,7 @@ const weatherListContainer: CSSProperties = {
   flexDirection: 'column',
   height: '75vh',
   justifyContent: 'space-around',
-  margin: '10vh 2rem 0 2rem'
+  margin: '10vh 1rem 0 1rem'
 }
 
 const weekOverviewGridItem: CSSProperties = {
