@@ -2,6 +2,7 @@ import React, {CSSProperties} from 'react';
 import DateTimeContainer from './DateTimeContainer'
 import WeatherTemp from './WeatherTemp';
 import { WeatherResponse } from '../api-typings';
+import ErrorBoundary from './ErrorBoundary';
 
 
 interface Props{
@@ -10,12 +11,13 @@ interface Props{
   weatherContent: WeatherResponse[],
 }
 
-
 export default function Home(props : Props) {
   return (
     <div style = {homeGridItem}>
       <DateTimeContainer />
-      <WeatherTemp isDayMode={props.isDayMode} loadWeather={props.loadWeather} weatherContent={props.weatherContent}/>  
+      <ErrorBoundary>
+        <WeatherTemp isDayMode={props.isDayMode} loadWeather={props.loadWeather} weatherContent={props.weatherContent}/>  
+      </ErrorBoundary>  
     </div>
   );
 }

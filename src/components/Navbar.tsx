@@ -3,18 +3,36 @@ import NavItem from './NavItem'
 
 
 interface Props{
-  isDayMode:boolean
+  isDayMode:boolean;
 }
 
-export default function Navbar(props:Props) {
-  const navLabels = ['Prognos', 'Kläder']
+interface State{
+  activeView: string
+}
 
-  return (
-    <div style = {navStyle}>
-      <NavItem id = {"/"} name = {"Hem"} isDayMode = {props.isDayMode}/>
-      {navLabels.map((value) => <NavItem  isDayMode = {props.isDayMode} key ={value} id = {value} name = {value}/>)}
-    </div>
-  );
+export default class Navbar extends React.Component <Props, State>{
+  constructor(props:Props){
+    super(props)
+    this.state = {
+      activeView:'Hem'
+    }
+  }
+
+  setView = (name: string) => {
+    this.setState({ activeView: name});
+  }
+  
+  render(){
+    const navLabels = ['Prognos', 'Kläder']
+
+    return (
+      <div style = {navStyle}>
+        <NavItem id = {"/"} name = {"Hem"} isDayMode = {this.props.isDayMode} onViewSelected = {this.setView} activeView = {this.state.activeView}/>
+        {navLabels.map((value) => <NavItem  isDayMode = {this.props.isDayMode} key ={value} id = {value} name = {value} onViewSelected = {this.setView} activeView = {this.state.activeView} />)}
+      </div>
+    );
+  }
+
 }
 
 const navStyle: CSSProperties = {
@@ -23,7 +41,6 @@ const navStyle: CSSProperties = {
   flexDirection: 'row',
   justifyContent: 'space-around',
   textDecoration: 'none',
-  position: 'absolute',
-  bottom: 0,
+  marginTop: '-0.2rem',
   zIndex: 2
 }

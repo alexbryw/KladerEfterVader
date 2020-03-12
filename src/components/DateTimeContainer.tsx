@@ -4,10 +4,7 @@ import 'moment/locale/sv';
 import Clock from './Clock'
 
 export default function DateTimePlace() {
-
-  //let currentTime = moment().format('LTS');
   let currentDate = moment().format('LL');
-
 
 /*  ------ FOR TESTING ERROR-BOUNDARIES-----
  let errorTest: any = null
