@@ -15,7 +15,7 @@ export default function Home(props : Props) {
   return (
     <div style = {homeGridItem}>
       <DateTimeContainer />
-      <WeatherTemp isDayMode={props.isDayMode} loadWeather={props.loadWeather}/>  
+      <WeatherTemp isDayMode={props.isDayMode} loadWeather={props.loadWeather} weatherContent={props.weatherContent}/>  
     </div>
   );
 }

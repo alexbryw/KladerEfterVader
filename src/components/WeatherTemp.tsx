@@ -6,6 +6,7 @@ import { WeatherResponse } from '../api-typings';
 interface Props{
   isDayMode:boolean,
   loadWeather: object //TODO change to WeatherResponce type.
+  weatherContent: WeatherResponse[]
 }
 
 interface State{
