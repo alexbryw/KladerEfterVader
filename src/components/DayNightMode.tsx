@@ -10,7 +10,7 @@ export default class DayNightMode extends React.Component <Props>{
 
   render(){
     let imgURL;
-    if(this.props.buttonText === "Natt"){
+    if(!this.props.isDayMode){
       imgURL = require(`../asset/images/weatherIcons/Night.png`);
     } else {
       imgURL = require(`../asset/images/weatherIcons/Day.png`);

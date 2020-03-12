@@ -1,6 +1,5 @@
 import React, {CSSProperties} from 'react';
 import {Link} from 'react-router-dom'
-import { render } from '@testing-library/react';
 
 interface Props {
     id:string,
@@ -29,7 +28,6 @@ export default class NavItem extends React.Component<Props>{
             </Link>
         );
     }
-
 }
 
 const navItemStyle: CSSProperties = {

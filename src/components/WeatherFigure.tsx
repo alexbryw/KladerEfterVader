@@ -65,7 +65,6 @@ const weatherFigureContainer: CSSProperties = {
   position: 'relative',
   height: '60vh',
   width: '100%',
-  
 }
 
 const weatherSlothStyle: CSSProperties = {

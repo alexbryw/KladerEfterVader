@@ -12,6 +12,7 @@ interface Props{
 
 interface State{
   isDayMode: boolean,
+  // DO WE ACTUALLY STILL NEED THIS? Is isDayMode enough?
   buttonText: string,
   modeStyle: React.CSSProperties,
   deviceSize: "isMobile" | "isDesktop",

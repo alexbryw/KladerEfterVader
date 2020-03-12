@@ -7,7 +7,6 @@ interface Props{
   loadWeather: object
 }
 
-
 export default function Home(props : Props) {
   return (
     <div style = {homeGridItem}>

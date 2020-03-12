@@ -1,7 +1,6 @@
 import React,{ CSSProperties } from 'react';
 import WindDirection from './WindDirection';
 
-
 interface Props {
   weatherContent: any,
   isDayMode: boolean

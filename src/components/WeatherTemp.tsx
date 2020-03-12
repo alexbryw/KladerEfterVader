@@ -1,4 +1,3 @@
-
 import React, {CSSProperties} from 'react';
 import WindDirection from './WindDirection';
 
@@ -72,17 +71,15 @@ export default class WeatherTemp extends React.Component<Props, State> {
           {/* <h2>{this.state.weather.name}</h2> */}
           <img src={weatherIconUrl} alt={weatherIconALtDescription} style={weatherIconStyle}></img>
           <h2>{this.state.city}</h2>
-
           <div>
             <h3>Temp: {tempInCelsius}°C </h3>
             <h5>Känns som {tempFeelsLikeC}°C</h5>
             {/* <h3>Dagens min {tempMin}°C, max {tempMax}°C</h3> */}
             <div style = {windWrap}>
-            <h5>Vind {weather.wind.speed} m/s{/* , riktning {weather.wind.deg}° */}</h5>
-            <WindDirection windDeg={weather.wind.deg} isDayMode={this.props.isDayMode}/>
+              <h5>Vind {weather.wind.speed} m/s{/* , riktning {weather.wind.deg}° */}</h5>
+              <WindDirection windDeg={weather.wind.deg} isDayMode={this.props.isDayMode}/>
+            </div>
           </div>
-          </div>
-
 
         </div>
       );
