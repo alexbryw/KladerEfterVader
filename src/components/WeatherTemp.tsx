@@ -55,43 +55,50 @@ export default class WeatherTemp extends React.Component<Props, State> {
     return (kelvinIn - 273.15).toFixed(1);
   }
 
+  useAPIorPlaceholderData():WeatherResponse{
+    let weather: WeatherResponse
+    if(!this.state.isLoaded){
+      weather = this.props.loadWeather as WeatherResponse;
+    } else {
+      weather = this.state.weather as WeatherResponse;
+    }
+    return weather;
+  }
+
+  setIconDayNightModeUrl(weather: WeatherResponse): string{
+    let weatherIconUrl: string;
+    if(this.props.isDayMode){
+      weatherIconUrl = require(`../asset/images/weatherIcons/${weather.weather[0].icon}.png`);
+    } else {
+      weatherIconUrl = require(`../asset/images/weatherIcons/NightMode/${weather.weather[0].icon}.png`);
+    }
+    return weatherIconUrl;
+  }
+
   render(){
-      let weather;
-      if(!this.state.isLoaded){
-        weather = this.props.loadWeather as WeatherResponse;
-      } else {
-        weather = this.state.weather as WeatherResponse;
-      }
-      // const weather = this.state.weather as WeatherResponse;
-      
-      let weatherIconUrl: string;
-      if(this.props.isDayMode){
-        weatherIconUrl = require(`../asset/images/weatherIcons/${weather.weather[0].icon}.png`);
-      } else {
-        weatherIconUrl = require(`../asset/images/weatherIcons/NightMode/${weather.weather[0].icon}.png`);
-      }
+    const weather = this.useAPIorPlaceholderData();
+    const weatherIconUrl = this.setIconDayNightModeUrl(weather);
 
-      const weatherIconALtDescription = "an icon of " + weather.weather[0].description;
-      const tempInCelsius = this.kToCelsius(weather.main.temp);
-      const tempFeelsLikeC = this.kToCelsius(weather.main.feels_like);
+    const weatherIconALtDescription = "an icon of " + weather.weather[0].description;
+    const tempInCelsius = this.kToCelsius(weather.main.temp);
+    const tempFeelsLikeC = this.kToCelsius(weather.main.feels_like);
 
-      return (
-        <div style = {weatherTempStyle}>
-          {/* <h2>{this.state.weather.name}</h2> */}
-          <img src={weatherIconUrl} alt={weatherIconALtDescription} style={weatherIconStyle}></img>
-          <h2>{this.state.city}</h2>
-          <div>
-            <h3>Temp: {tempInCelsius}°C </h3>
-            <h5>Känns som {tempFeelsLikeC}°C</h5>
-            {/* <h3>Dagens min {tempMin}°C, max {tempMax}°C</h3> */}
-            <div style = {windWrap}>
-              <h5>Vind {weather.wind.speed} m/s{/* , riktning {weather.wind.deg}° */}</h5>
-              <WindDirection windDeg={weather.wind.deg} isDayMode={this.props.isDayMode}/>
-            </div>
+    return (
+      <div style = {weatherTempStyle}>
+        {/* <h2>{this.state.weather.name}</h2> */}
+        <img src={weatherIconUrl} alt={weatherIconALtDescription} style={weatherIconStyle}></img>
+        <h2>{this.state.city}</h2>
+        <div>
+          <h3>Temp: {tempInCelsius}°C </h3>
+          <h5>Känns som {tempFeelsLikeC}°C</h5>
+          {/* <h3>Dagens min {tempMin}°C, max {tempMax}°C</h3> */}
+          <div style = {windWrap}>
+            <h5>Vind {weather.wind.speed} m/s{/* , riktning {weather.wind.deg}° */}</h5>
+            <WindDirection windDeg={weather.wind.deg} isDayMode={this.props.isDayMode}/>
           </div>
-
         </div>
-      );
+      </div>
+    );
   }
 }
 
