@@ -7,8 +7,7 @@ import { WeatherResponse } from '../api-typings';
 interface Props {
 }
 interface State {
-    isLoadedForecast: boolean,
-    isLoadedToday: boolean,
+    isLoaded: boolean,
     weatherDataToday:WeatherResponse | undefined,
     weatherData: any,
 }
@@ -17,24 +16,16 @@ export default class WeatherData extends Component<Props, State> {
     constructor(props: Props){
         super(props)
         this.state = {
-        isLoadedToday: false,
-        isLoadedForecast: false,
+        isLoaded: false,
         weatherDataToday: undefined,
         weatherData: undefined,
         }
       }
     async componentDidMount() {
-        this.setState({ isLoadedForecast: false });
-        this.setState({ isLoadedToday: false });
-
-        const responseToday  = await fetch("http://api.openweathermap.org/data/2.5/weather?q=Göteborg&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
-        const tempDataWeatherToday = await responseToday.json();
-        this.setState({
-          weatherDataToday: tempDataWeatherToday,
-          isLoadedToday: true
-        })
+        this.setState({ isLoaded: false });
         const response = await fetch("http://api.openweathermap.org/data/2.5/forecast?q=Göteborg&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
         const data = await response.json();
+        console.log(data)
         const tempDataWeather = data.list.filter((reading:any) => reading.dt_txt.includes("12:00:00"));
         const hour = new Date().getHours();
         if(hour > 12){
@@ -43,15 +34,16 @@ export default class WeatherData extends Component<Props, State> {
             tempDataWeather.shift();
         }
         this.setState({
-          weatherData: tempDataWeather,
-          isLoadedForecast: true,
+            weatherDataToday: data.list[0],
+            weatherData: tempDataWeather,
+            isLoaded: true,
         })
         console.log("WeatherData API call.")
     }
 
     render() {
     let weatherContent = [];
-    if(!this.state.isLoadedToday || !this.state.isLoadedForecast){
+    if(!this.state.isLoaded){
         for(let i = 0; i < 5 ; i++){
         weatherContent.push({
             "dt":32503683661,
