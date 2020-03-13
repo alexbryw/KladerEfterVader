@@ -9,7 +9,6 @@ import Clothes from './Clothes';
 import { WeatherResponse } from '../api-typings';
 
 interface Props{
-  weatherContent: WeatherResponse[]
 }
 
 interface State{
@@ -18,6 +17,9 @@ interface State{
   buttonText: string,
   modeStyle: React.CSSProperties,
   deviceSize: "isMobile" | "isDesktop",
+  isLoaded: boolean,
+  weatherDataToday:WeatherResponse | undefined,
+  weatherData: any,
 }
 
 export default class Layout extends React.Component <Props, State>{
@@ -28,9 +30,13 @@ export default class Layout extends React.Component <Props, State>{
       buttonText: 'Dag',
       modeStyle: mainDayStyle,
       deviceSize: this.calculateDeviceSize(),
+      isLoaded: false,
+      weatherDataToday: undefined,
+      weatherData: undefined,
     }
     this.toggleDayNightMode = this.toggleDayNightMode.bind(this)
   }
+
 
   toggleDayNightMode() {
     this.setState({isDayMode:!this.state.isDayMode})
@@ -57,16 +63,68 @@ export default class Layout extends React.Component <Props, State>{
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     window.addEventListener('resize', this.updateDeviceSize);
-  }
+    this.setState({ isLoaded: false });
+    const response = await fetch("http://api.openweathermap.org/data/2.5/forecast?q=Göteborg&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
+    const data = await response.json();
+    console.log(data)
+    const tempDataWeather = data.list.filter((reading:any) => reading.dt_txt.includes("12:00:00"));
+    const hour = new Date().getHours();
+    if(hour > 12){
+        tempDataWeather.pop();
+    } else {
+        tempDataWeather.shift();
+    }
+    this.setState({
+        weatherDataToday: data.list[0],
+        weatherData: tempDataWeather,
+        isLoaded: true,
+    })
+    console.log("WeatherData API call.")
+}
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateDeviceSize);
   }
 
   render(){
-    const weatherContent:WeatherResponse[] = this.props.weatherContent;
+    let weatherContent = [];
+    if(!this.state.isLoaded){
+        for(let i = 0; i < 5 ; i++){
+        weatherContent.push({
+            "dt":32503683661,
+            "main":{
+                "temp":273.15,
+                "feels_like":273.15,
+                "temp_min":273.15,
+                "temp_max":273.15,
+                "pressure":1000,
+                "sea_level":1000,
+                "grnd_level":1000,
+                "humidity":100,
+                "temp_kf":0
+            },"weather":[{
+                "id":800,
+                "main":"Weather",
+                "description":"väder",
+                "icon":"load"
+            }],"clouds":{
+                "all":0
+            },"wind":{
+                "speed":0.00,
+                "deg":123},
+                "sys":{
+                "pod":"n"
+            },"dt_txt":"3000-01-01 01:01:01"
+        })} 
+    } else {
+        weatherContent.push(this.state.weatherDataToday)
+        for(let i = 0; i < 4 ; i++){
+            weatherContent.push(this.state.weatherData[i])
+        }
+    }
+
     console.log(this.state.deviceSize);
    
     if(this.state.deviceSize === "isMobile"){
