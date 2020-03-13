@@ -1,5 +1,5 @@
+  
 import React, {CSSProperties}from 'react';
-import MainView from './MainView'
 import Navbar from './Navbar'
 import DayNightMode from './DayNightMode'
 import ErrorBoundary from './ErrorBoundary'
@@ -7,7 +7,7 @@ import Home from './Home';
 import WeekOverview from './WeekOverview';
 import Clothes from './Clothes';
 import { WeatherResponse } from '../api-typings';
-
+import {Switch, Route} from 'react-router-dom';
 interface Props{
 }
 
@@ -92,7 +92,7 @@ export default class Layout extends React.Component <Props, State>{
     console.log("WeatherData API call.")
   }
 
-  loadWeatherContent(){
+  loadWeatherContent = () =>{
     let weatherContent = []
     if(!this.state.isLoaded){
       for(let i = 0; i < 5 ; i++){
@@ -131,42 +131,54 @@ export default class Layout extends React.Component <Props, State>{
     return weatherContent
   }
 
-  render(){
-    let weatherContent = this.loadWeatherContent();
+  get homeRoute(){
 
-    console.log(this.state.deviceSize);
-   
-    if(this.state.deviceSize === "isMobile"){
-      return (
+    if(this.state.deviceSize === 'isMobile'){
+      return(
         <div style = {mainStyle}>
-            <ErrorBoundary>
             <div style = {{...styleMobile, ...this.state.modeStyle}}>
-              <MainView isDayMode = {this.state.isDayMode} weatherContent={weatherContent}/>
+              <Route exact path = '/' render={() => <Home
+              {...this.props}
+              isDayMode={this.state.isDayMode}
+              weatherContent={this.loadWeatherContent()}
+              />} />
+              <Route path = '/Prognos' render={() => <WeekOverview
+                {...this.props}  isDayMode={this.state.isDayMode}
+                weatherContent={this.loadWeatherContent()}
+                />} />
+              <Route path = '/Kläder' render={() => <Clothes
+              {...this.props}
+              isDayMode={this.state.isDayMode}
+              weatherContent={this.loadWeatherContent()}
+          />} />
             </div>
-            </ErrorBoundary>
             <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
             <Navbar isDayMode = {this.state.isDayMode} />
-        </div>
-      );
+        
+      </div>
+    )
     }
-
-    else{
-      return (
-        <div style = {{...this.state.modeStyle, ...gridLayoutDesktop, ...mainStyle, ...styleDesktop}}>
-            <ErrorBoundary>
-              <Home isDayMode={this.state.isDayMode} weatherContent={weatherContent}/>
-            </ErrorBoundary>
-            <ErrorBoundary>
-              <WeekOverview isDayMode = {this.state.isDayMode} weatherContent={weatherContent}/>
-            </ErrorBoundary>
-            <ErrorBoundary>
-              <Clothes isDayMode = {this.state.isDayMode} weatherContent={weatherContent}/>
-            </ErrorBoundary>
+      else {
+            
+       return(
+        <Route path = '/' render={() => 
+          <div style = {{...this.state.modeStyle, ...gridLayoutDesktop, ...mainStyle, ...styleDesktop}}>
+            <Home isDayMode={this.state.isDayMode} weatherContent={this.loadWeatherContent()}/>
+            <WeekOverview isDayMode = {this.state.isDayMode} weatherContent={this.loadWeatherContent()}/>
+            <Clothes isDayMode = {this.state.isDayMode} weatherContent={this.loadWeatherContent()}/>
             <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
-        </div>
-      );
-    }
+          </div>
+        }/>
+       )
+      }
+  }
 
+  render(){
+    return(
+      <Switch>       
+        {this.homeRoute}
+      </Switch>
+    )
   }
 }
 
