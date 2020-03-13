@@ -84,7 +84,7 @@ export default class Layout extends React.Component <Props, State>{
 
       if(data.cod === "200"){ //Code 200 means good response.
 
-        const tempDataWeather = data.list.filter((reading:any) => reading.dt_txt.includes("12:00:00"));
+        const tempDataWeather: WeatherResponse[] = data.list.filter((reading: WeatherResponse) => reading.dt_txt.includes("12:00:00"));
         const hour = new Date().getHours();
         if(hour > 12){
             tempDataWeather.pop();
