@@ -1,5 +1,5 @@
-import React,{ CSSProperties } from 'react';
-import { WeatherResponse } from '../api-typings';
+import React,{ CSSProperties } from 'react'
+import { WeatherResponse } from '../api-typings'
 
 interface Props {
   weatherContent: WeatherResponse,
@@ -8,46 +8,46 @@ interface Props {
 
 export default class WeatherFigure extends React.Component<Props>{
     constructor(props:Props){
-      super(props);
-      this.state={};
+      super(props)
+      this.state={}
     }
 
     render() {
       const weather = this.props.weatherContent
-      let weatherSlothIMG;
+      let weatherSlothIMG
 
       if(weather.dt === 32503683661){ 
-        weatherSlothIMG = "DefaultSloth";
+        weatherSlothIMG = "DefaultSloth"
       } else if(!this.props.isDayMode){
-        weatherSlothIMG = "GothSloth";
+        weatherSlothIMG = "GothSloth"
       } else if (weather.main.temp < 278){
         //temp in Kelvin, about 5+ C
-        weatherSlothIMG = "ColdSloth";
+        weatherSlothIMG = "ColdSloth"
       } else if (weather.weather[0].icon === "09d"){
-        weatherSlothIMG = "WetSloth";
+        weatherSlothIMG = "WetSloth"
       } else if (weather.weather[0].icon === "09n"){
-        weatherSlothIMG = "WetSloth";
+        weatherSlothIMG = "WetSloth"
       } else if (weather.weather[0].icon === "10d"){
-        weatherSlothIMG = "WetSloth";
+        weatherSlothIMG = "WetSloth"
       } else if (weather.weather[0].icon === "10n"){
-        weatherSlothIMG = "WetSloth";
+        weatherSlothIMG = "WetSloth"
       } else if (weather.weather[0].icon === "11d"){
-        weatherSlothIMG = "WetSloth";
+        weatherSlothIMG = "WetSloth"
       } else if (weather.weather[0].icon === "11n"){
-        weatherSlothIMG = "WetSloth";
+        weatherSlothIMG = "WetSloth"
       } else if (weather.main.temp > 293){
         //temp in Kelvin, about 20+ C
-        weatherSlothIMG = "HotSloth";
+        weatherSlothIMG = "HotSloth"
       } else {
-        weatherSlothIMG = "MildSloth";
+        weatherSlothIMG = "MildSloth"
       }
 
       let weatherSlothURL = require(`../asset/images/weatherSloths/${weatherSlothIMG}.png`)
       let imgURL
       if (this.props.isDayMode){
-        imgURL = require(`../asset/images/weatherIcons/${weather.weather[0].icon}.png`);
+        imgURL = require(`../asset/images/weatherIcons/${weather.weather[0].icon}.png`)
       } else {
-        imgURL = require(`../asset/images/weatherIcons/NightMode/${weather.weather[0].icon}.png`);
+        imgURL = require(`../asset/images/weatherIcons/NightMode/${weather.weather[0].icon}.png`)
       }
 
       return (
@@ -55,7 +55,7 @@ export default class WeatherFigure extends React.Component<Props>{
             <img src={imgURL} alt={weather.weather[0].description + " Ikon"} style={weatherlogoStyle}/>
             <img src={weatherSlothURL} alt={weatherSlothIMG} style={weatherSlothStyle}/>
           </div>
-      );
+      )
   }
 } 
 
