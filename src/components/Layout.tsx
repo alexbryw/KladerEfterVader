@@ -137,7 +137,6 @@ export default class Layout extends React.Component <Props, State>{
       return(
         <>
           <div style = {{...styleMobile, ...this.state.modeStyle}}>
-            
             <Route exact path = '/' render={() => 
               <ErrorBoundary>
                 <Home {...this.props}
@@ -164,8 +163,9 @@ export default class Layout extends React.Component <Props, State>{
                   weatherContent={this.loadWeatherContent()}
                 />
               </ErrorBoundary>} 
-            /> 
+            />
         </div>
+
         <Navbar isDayMode = {this.state.isDayMode} />
       </>
     )
