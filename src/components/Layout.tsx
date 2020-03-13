@@ -1,12 +1,12 @@
-import React, {CSSProperties}from 'react';
+import React, {CSSProperties}from 'react'
 import MainView from './MainView'
 import Navbar from './Navbar'
 import DayNightMode from './DayNightMode'
 import ErrorBoundary from './ErrorBoundary'
-import Home from './Home';
-import WeekOverview from './WeekOverview';
-import Clothes from './Clothes';
-import { WeatherResponse } from '../api-typings';
+import Home from './Home'
+import WeekOverview from './WeekOverview'
+import Clothes from './Clothes'
+import { WeatherResponse } from '../api-typings'
 
 interface Props{
 }
@@ -34,19 +34,18 @@ export default class Layout extends React.Component <Props, State>{
       weatherDataToday: undefined,
       weatherData: undefined,
     }
-    this.toggleDayNightMode = this.toggleDayNightMode.bind(this)
   }
 
 
-  toggleDayNightMode() {
+  toggleDayNightMode = () => {
     this.setState({isDayMode:!this.state.isDayMode})
 
     if (this.state.isDayMode){
-      this.setState({buttonText: "Natt"});
-      this.setState({modeStyle: mainNigthStyle});
+      this.setState({buttonText: "Natt"})
+      this.setState({modeStyle: mainNigthStyle})
     }
     else{
-      this.setState({buttonText:"Dag"});
+      this.setState({buttonText:"Dag"})
       this.setState({modeStyle: mainDayStyle})
     }
   }
@@ -57,9 +56,9 @@ export default class Layout extends React.Component <Props, State>{
 
   calculateDeviceSize(): "isMobile" | "isDesktop" {
     if (window.innerWidth < 1000) {
-      return 'isMobile';
+      return 'isMobile'
     } else {
-      return 'isDesktop';
+      return 'isDesktop'
     }
   }
 
@@ -69,7 +68,7 @@ export default class Layout extends React.Component <Props, State>{
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDeviceSize);
+    window.removeEventListener('resize', this.updateDeviceSize)
   }
 
   async weatherAPICall(){
@@ -114,7 +113,7 @@ export default class Layout extends React.Component <Props, State>{
   loadWeatherContent(){
     let weatherContent = []
     if(!this.state.isLoaded){
-      for(let i = 0; i < 5 ; i++){
+      for(let i = 0 ; i < 5 ; i++){
       weatherContent.push({
           "dt":32503683661,
           "main":{
@@ -143,7 +142,7 @@ export default class Layout extends React.Component <Props, State>{
       })} 
   } else {
       weatherContent.push(this.state.weatherDataToday)
-      for(let i = 0; i < 4 ; i++){
+      for(let i = 0 ; i < 4 ; i++){
           weatherContent.push(this.state.weatherData[i])
       }
     }
@@ -151,9 +150,9 @@ export default class Layout extends React.Component <Props, State>{
   }
 
   render(){
-    let weatherContent = this.loadWeatherContent();
+    let weatherContent = this.loadWeatherContent()
 
-    console.log(this.state.deviceSize);
+    console.log(this.state.deviceSize)
    
     if(this.state.deviceSize === "isMobile"){
       return (
@@ -166,7 +165,7 @@ export default class Layout extends React.Component <Props, State>{
             <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
             <Navbar isDayMode = {this.state.isDayMode} />
         </div>
-      );
+      )
     }
 
     else{
@@ -183,7 +182,7 @@ export default class Layout extends React.Component <Props, State>{
             </ErrorBoundary>
             <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
         </div>
-      );
+      )
     }
 
   }

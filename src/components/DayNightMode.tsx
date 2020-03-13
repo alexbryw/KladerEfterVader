@@ -1,4 +1,4 @@
-import React, {CSSProperties} from 'react';
+import React, {CSSProperties} from 'react'
 
 interface Props{
   isDayMode: boolean,
@@ -8,19 +8,25 @@ interface Props{
 
 export default class DayNightMode extends React.Component <Props>{
 
-  render(){
-    let imgURL;
+  //Gets the WeatherIcons URL
+  getWeatherIconURL(){
+    let imgURL
     if(!this.props.isDayMode){
-      imgURL = require(`../asset/images/weatherIcons/Night.png`);
+      imgURL = require(`../asset/images/weatherIcons/Night.png`)
     } else {
-      imgURL = require(`../asset/images/weatherIcons/Day.png`);
+      imgURL = require(`../asset/images/weatherIcons/Day.png`)
     }
+    return imgURL
+  }
+
+  render(){
+    const imgURL = this.getWeatherIconURL()
 
     return (
       <div style = {dayNightContainer} onClick = {this.props.onToggleMode}>
           <img style={dayNightButton} src={imgURL} alt={this.props.buttonText}/> 
       </div>
-    );
+    )
   }
 }
 

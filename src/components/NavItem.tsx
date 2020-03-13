@@ -1,4 +1,4 @@
-import React, {CSSProperties} from 'react';
+import React, {CSSProperties} from 'react'
 import {Link} from 'react-router-dom'
 
 interface Props {
@@ -9,9 +9,9 @@ interface Props {
     activeView: string
 }
 
-export default class NavItem extends React.Component<Props>{    
-
-    render(){
+export default class NavItem extends React.Component<Props>{
+    
+    stylesButton(){
         let buttonStyle
         if(this.props.activeView === this.props.name){
             this.props.isDayMode?buttonStyle = buttonActiveDay:buttonStyle = buttonActiveNight
@@ -19,14 +19,17 @@ export default class NavItem extends React.Component<Props>{
         else{
             buttonStyle = buttonUnActive 
         }
+        return buttonStyle
+    }
 
+    render(){
+        const buttonStyle =this.stylesButton()
         const handleOnclick = () => this.props.onViewSelected(this.props.name)
-
         return (
             <Link to = {this.props.id} style = {{...navItemStyle, ...buttonStyle}} onClick={handleOnclick}>
                 {this.props.name}
             </Link>
-        );
+        )
     }
 }
 

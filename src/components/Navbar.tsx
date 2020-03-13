@@ -1,9 +1,9 @@
-import React, {CSSProperties} from 'react';
+import React, {CSSProperties} from 'react'
 import NavItem from './NavItem'
 
 
 interface Props{
-  isDayMode:boolean;
+  isDayMode:boolean
 }
 
 interface State{
@@ -19,7 +19,7 @@ export default class Navbar extends React.Component <Props, State>{
   }
 
   setView = (name: string) => {
-    this.setState({ activeView: name});
+    this.setState({ activeView: name})
   }
   
   render(){
@@ -30,7 +30,7 @@ export default class Navbar extends React.Component <Props, State>{
         <NavItem id = {"/"} name = {"Hem"} isDayMode = {this.props.isDayMode} onViewSelected = {this.setView} activeView = {this.state.activeView}/>
         {navLabels.map((value) => <NavItem  isDayMode = {this.props.isDayMode} key ={value} id = {value} name = {value} onViewSelected = {this.setView} activeView = {this.state.activeView} />)}
       </div>
-    );
+    )
   }
 
 }
