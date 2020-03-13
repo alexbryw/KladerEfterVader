@@ -1,7 +1,7 @@
-import React, {CSSProperties} from 'react';
-import WeatherFigure from './WeatherFigure';
-import WeatherDescription from './WeatherDescription';
-import { WeatherResponse } from '../api-typings';
+import React, {CSSProperties} from 'react'
+import WeatherFigure from './WeatherFigure'
+import WeatherDescription from './WeatherDescription'
+import { WeatherResponse } from '../api-typings'
 
 interface Props {
   isDayMode: boolean,
@@ -17,16 +17,16 @@ interface State {
 
 export default class Clothes extends React.Component<Props, State>{
   constructor(props:Props){
-    super(props);
+    super(props)
     this.state = { 
       whatDay: "today",
       todayButton: "#FFF",
       tomorrowButton: "#D3D3D3",
       dayAfterTomorrowButton: "#D3D3D3",
-    };
+    }
   }
 
-
+  //Swaps colors on buttons and handle picks
   handleClick = (event: any) => {
       this.setState({
         whatDay: event.target.value,
@@ -51,24 +51,38 @@ export default class Clothes extends React.Component<Props, State>{
         })
       }
   }
+  // Gives weatherOutPut the content of the picked day
+  weatherOutPutThisDay(){
+    let weatherOutPut
+    if(this.state.whatDay === "today"){
+      weatherOutPut = this.props.weatherContent[0]
+    } else if (this.state.whatDay === "tomorrow"){
+      weatherOutPut = this.props.weatherContent[1]
+    } else if (this.state.whatDay === "dayAfterTomorrow") {
+      weatherOutPut = this.props.weatherContent[2]
+    }
+    return weatherOutPut
+  }
+
+  //Translates dayname to SE
+  translateDay(){
+    let whatDayIsIt
+    if(this.state.whatDay === "today"){
+      whatDayIsIt = "Idag"
+    } else if (this.state.whatDay === "tomorrow"){
+      whatDayIsIt = "Imorgon"
+    } else if (this.state.whatDay === "dayAfterTomorrow") {
+      whatDayIsIt = "I övermorgon"
+    }
+    return whatDayIsIt
+  }
 
   render() {
-    let weatherOutPut;
-    let whatDayIsIt;
-
-    if(this.state.whatDay === "today"){
-      weatherOutPut = this.props.weatherContent[0];
-      whatDayIsIt = "Idag";
-    } else if (this.state.whatDay === "tomorrow"){
-      weatherOutPut = this.props.weatherContent[1];
-      whatDayIsIt = "Imorgon";
-    } else if (this.state.whatDay === "dayAfterTomorrow") {
-      weatherOutPut = this.props.weatherContent[2];
-      whatDayIsIt = "I övermorgon";
-    }
+    const weatherOutPut = this.weatherOutPutThisDay()
+    const whatDayIsIt = this.translateDay()
 
     if (!weatherOutPut) {
-      return <p>Loading...</p>;
+      return <p>Loading...</p>
     }
 
     return (
@@ -103,7 +117,7 @@ export default class Clothes extends React.Component<Props, State>{
           </button>
         </div>
       </div>
-    );
+    )
   }
 }
 

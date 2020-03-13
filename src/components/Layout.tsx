@@ -1,4 +1,3 @@
-  
 import React, {CSSProperties}from 'react';
 import Navbar from './Navbar'
 import DayNightMode from './DayNightMode'
@@ -8,6 +7,7 @@ import WeekOverview from './WeekOverview';
 import Clothes from './Clothes';
 import { WeatherResponse } from '../api-typings';
 import {Switch, Route} from 'react-router-dom';
+
 interface Props{
 }
 
@@ -34,19 +34,18 @@ export default class Layout extends React.Component <Props, State>{
       weatherDataToday: undefined,
       weatherData: undefined,
     }
-    this.toggleDayNightMode = this.toggleDayNightMode.bind(this)
   }
 
 
-  toggleDayNightMode() {
+  toggleDayNightMode = () => {
     this.setState({isDayMode:!this.state.isDayMode})
 
     if (this.state.isDayMode){
-      this.setState({buttonText: "Natt"});
-      this.setState({modeStyle: mainNigthStyle});
+      this.setState({buttonText: "Natt"})
+      this.setState({modeStyle: mainNigthStyle})
     }
     else{
-      this.setState({buttonText:"Dag"});
+      this.setState({buttonText:"Dag"})
       this.setState({modeStyle: mainDayStyle})
     }
   }
@@ -57,45 +56,64 @@ export default class Layout extends React.Component <Props, State>{
 
   calculateDeviceSize(): "isMobile" | "isDesktop" {
     if (window.innerWidth < 1000) {
-      return 'isMobile';
+      return 'isMobile'
     } else {
-      return 'isDesktop';
+      return 'isDesktop'
     }
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     window.addEventListener('resize', this.updateDeviceSize);
     this.weatherAPICall();
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDeviceSize);
+    window.removeEventListener('resize', this.updateDeviceSize)
   }
 
   async weatherAPICall(){
-    this.setState({ isLoaded: false });
-    const response = await fetch("http://api.openweathermap.org/data/2.5/forecast?q=Göteborg&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
-    const data = await response.json();
-    console.log(data)
-    const tempDataWeather = data.list.filter((reading:any) => reading.dt_txt.includes("12:00:00"));
-    const hour = new Date().getHours();
-    if(hour > 12){
-        tempDataWeather.pop();
-    } else {
-        tempDataWeather.shift();
+    const weatherAPIUrl = 
+    "http://api.openweathermap.org/data/2.5/forecast?q=Göteborg"+
+    "&appid=16da1da324d687a04c8aec0742e21c35&lang=se"
+
+    try {
+      this.setState({ isLoaded: false });
+      const response = await fetch(weatherAPIUrl);
+      const data = await response.json();
+      console.log(data)
+
+      if(data.cod === "200"){ //Code 200 means good response.
+
+        const tempDataWeather: WeatherResponse[] = data.list.filter((reading: WeatherResponse) => reading.dt_txt.includes("12:00:00"));
+        const hour = new Date().getHours();
+        if(hour > 12){
+            tempDataWeather.pop();
+        } else {
+            tempDataWeather.shift();
+        }
+        this.setState({
+            weatherDataToday: data.list[0],
+            weatherData: tempDataWeather,
+            isLoaded: true,
+        })
+        console.log("WeatherData API call.")
+
+      } else if(data.cod != null) {   //print error code if there is a code. Test with wrong city name.
+        console.log("API error code response: " + data.cod) 
+        console.log(data.message)
+      }
+
+    } catch (error) { // Show error if fetch fails. Test with wrong Url.
+      console.log("API fetch error below:")
+      console.log(error)
     }
-    this.setState({
-        weatherDataToday: data.list[0],
-        weatherData: tempDataWeather,
-        isLoaded: true,
-    })
-    console.log("WeatherData API call.")
+
   }
 
   loadWeatherContent = () =>{
     let weatherContent = []
     if(!this.state.isLoaded){
-      for(let i = 0; i < 5 ; i++){
+      for(let i = 0 ; i < 5 ; i++){
       weatherContent.push({
           "dt":32503683661,
           "main":{
@@ -124,7 +142,7 @@ export default class Layout extends React.Component <Props, State>{
       })} 
   } else {
       weatherContent.push(this.state.weatherDataToday)
-      for(let i = 0; i < 4 ; i++){
+      for(let i = 0 ; i < 4 ; i++){
           weatherContent.push(this.state.weatherData[i])
       }
     }

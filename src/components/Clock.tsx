@@ -1,5 +1,5 @@
-import React, {CSSProperties} from 'react';
-import moment from 'moment';
+import React, {CSSProperties} from 'react'
+import moment from 'moment'
 
 interface Props{
 }
@@ -10,13 +10,13 @@ interface State {
 
 export default class Clock extends React.Component<Props, State>{
      constructor(props:Props){
-        super(props);
+        super(props)
         this.state = {
             time: moment().format('LTS')
         }
     }
 
-    private interval: NodeJS.Timeout | undefined = undefined;
+    private interval: NodeJS.Timeout | undefined = undefined
 
     componentDidMount(){
        this.intervalID()

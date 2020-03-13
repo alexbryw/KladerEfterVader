@@ -1,4 +1,4 @@
-import React, {CSSProperties} from 'react';
+import React, {CSSProperties} from 'react'
 
 interface Props{
     windDeg: number
@@ -15,11 +15,11 @@ export default class WindDirection extends React.Component<Props,State>{
         const rotateStyle : React.CSSProperties = {
             transform : "rotate("+(this.props.windDeg + 180)+"deg)"
         }
-        let windArrowUrl: string;
+        let windArrowUrl: string
         if(this.props.isDayMode) {
-            windArrowUrl = require('../asset/images/weatherIcons/arrow.png');
+            windArrowUrl = require('../asset/images/weatherIcons/arrow.png')
         } else{
-            windArrowUrl = require('../asset/images/weatherIcons/NightMode/arrow.png');
+            windArrowUrl = require('../asset/images/weatherIcons/NightMode/arrow.png')
         }
         return(
             <div>
