@@ -65,6 +65,14 @@ export default class Layout extends React.Component <Props, State>{
 
   async componentDidMount() {
     window.addEventListener('resize', this.updateDeviceSize);
+    this.weatherAPICall();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDeviceSize);
+  }
+
+  async weatherAPICall(){
     this.setState({ isLoaded: false });
     const response = await fetch("http://api.openweathermap.org/data/2.5/forecast?q=Göteborg&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
     const data = await response.json();
@@ -82,48 +90,49 @@ export default class Layout extends React.Component <Props, State>{
         isLoaded: true,
     })
     console.log("WeatherData API call.")
-}
+  }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDeviceSize);
+  loadWeatherContent(){
+    let weatherContent = []
+    if(!this.state.isLoaded){
+      for(let i = 0; i < 5 ; i++){
+      weatherContent.push({
+          "dt":32503683661,
+          "main":{
+              "temp":273.15,
+              "feels_like":273.15,
+              "temp_min":273.15,
+              "temp_max":273.15,
+              "pressure":1000,
+              "sea_level":1000,
+              "grnd_level":1000,
+              "humidity":100,
+              "temp_kf":0
+          },"weather":[{
+              "id":800,
+              "main":"Weather",
+              "description":"väder",
+              "icon":"load"
+          }],"clouds":{
+              "all":0
+          },"wind":{
+              "speed":0.00,
+              "deg":123},
+              "sys":{
+              "pod":"n"
+          },"dt_txt":"3000-01-01 01:01:01"
+      })} 
+  } else {
+      weatherContent.push(this.state.weatherDataToday)
+      for(let i = 0; i < 4 ; i++){
+          weatherContent.push(this.state.weatherData[i])
+      }
+    }
+    return weatherContent
   }
 
   render(){
-    let weatherContent = [];
-    if(!this.state.isLoaded){
-        for(let i = 0; i < 5 ; i++){
-        weatherContent.push({
-            "dt":32503683661,
-            "main":{
-                "temp":273.15,
-                "feels_like":273.15,
-                "temp_min":273.15,
-                "temp_max":273.15,
-                "pressure":1000,
-                "sea_level":1000,
-                "grnd_level":1000,
-                "humidity":100,
-                "temp_kf":0
-            },"weather":[{
-                "id":800,
-                "main":"Weather",
-                "description":"väder",
-                "icon":"load"
-            }],"clouds":{
-                "all":0
-            },"wind":{
-                "speed":0.00,
-                "deg":123},
-                "sys":{
-                "pod":"n"
-            },"dt_txt":"3000-01-01 01:01:01"
-        })} 
-    } else {
-        weatherContent.push(this.state.weatherDataToday)
-        for(let i = 0; i < 4 ; i++){
-            weatherContent.push(this.state.weatherData[i])
-        }
-    }
+    let weatherContent = this.loadWeatherContent();
 
     console.log(this.state.deviceSize);
    
