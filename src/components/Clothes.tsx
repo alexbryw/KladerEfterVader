@@ -20,9 +20,9 @@ export default class Clothes extends React.Component<Props, State>{
     super(props);
     this.state = { 
       whatDay: "today",
-      todayButton: "#D3D3D3",
-      tomorrowButton: "#FFF",
-      dayAfterTomorrowButton: "#FFF",
+      todayButton: "#FFF",
+      tomorrowButton: "#D3D3D3",
+      dayAfterTomorrowButton: "#D3D3D3",
     };
   }
 
@@ -33,21 +33,21 @@ export default class Clothes extends React.Component<Props, State>{
       })
       if(event.target.value === "today"){
         this.setState({
-          todayButton: "#D3D3D3",
-          tomorrowButton: "#FFF",
-          dayAfterTomorrowButton: "#FFF",
+          todayButton: "#FFF",
+          tomorrowButton: "#D3D3D3",
+          dayAfterTomorrowButton: "#D3D3D3",
         })
       } else if (event.target.value === "tomorrow"){
         this.setState({
-          todayButton: "#FFF",
-          tomorrowButton: "#D3D3D3",
-          dayAfterTomorrowButton: "#FFF",
+          todayButton: "#D3D3D3",
+          tomorrowButton: "#FFF",
+          dayAfterTomorrowButton: "#D3D3D3",
         })
       } else if (event.target.value === "dayAfterTomorrow"){
         this.setState({
-          todayButton: "#FFF",
-          tomorrowButton: "#FFF",
-          dayAfterTomorrowButton: "#D3D3D3",
+          todayButton: "#D3D3D3",
+          tomorrowButton: "#D3D3D3",
+          dayAfterTomorrowButton: "#FFF",
         })
       }
   }
