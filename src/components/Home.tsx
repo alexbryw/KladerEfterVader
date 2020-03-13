@@ -1,8 +1,8 @@
-import React, {CSSProperties} from 'react';
+import React, {CSSProperties} from 'react'
 import DateTimeContainer from './DateTimeContainer'
-import WeatherTemp from './WeatherTemp';
-import { WeatherResponse } from '../api-typings';
-import ErrorBoundary from './ErrorBoundary';
+import WeatherTemp from './WeatherTemp'
+import { WeatherResponse } from '../api-typings'
+import ErrorBoundary from './ErrorBoundary'
 
 
 interface Props{
@@ -18,7 +18,7 @@ export default function Home(props : Props) {
         <WeatherTemp isDayMode={props.isDayMode} weatherContent={props.weatherContent}/>  
       </ErrorBoundary>  
     </div>
-  );
+  )
 }
 
 const homeGridItem: CSSProperties = {

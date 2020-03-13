@@ -1,8 +1,8 @@
 //HomeScreen component that shows city nam, Weather icon, temperature and wind direction. 
 //Fetched from OpenWeatherMap API. 
-import React, {CSSProperties} from 'react';
-import WindDirection from './WindDirection';
-import { WeatherResponse } from '../api-typings';
+import React, {CSSProperties} from 'react'
+import WindDirection from './WindDirection'
+import { WeatherResponse } from '../api-typings'
 
 interface Props{
   isDayMode:boolean,
@@ -23,26 +23,26 @@ export default class WeatherTemp extends React.Component<Props, State> {
 
   // Return kelvin to celsius.
   kToCelsius(kelvinIn: number):string{
-    return (kelvinIn - 273.15).toFixed(1);
+    return (kelvinIn - 273.15).toFixed(1)
   }
 
   //Change weather icon file path if props is NightMode or not.
   setIconDayNightModeUrl(weather: WeatherResponse): string{
-    let weatherIconUrl: string;
+    let weatherIconUrl: string
     if(this.props.isDayMode){
-      weatherIconUrl = require(`../asset/images/weatherIcons/${weather.weather[0].icon}.png`);
+      weatherIconUrl = require(`../asset/images/weatherIcons/${weather.weather[0].icon}.png`)
     } else {
-      weatherIconUrl = require(`../asset/images/weatherIcons/NightMode/${weather.weather[0].icon}.png`);
+      weatherIconUrl = require(`../asset/images/weatherIcons/NightMode/${weather.weather[0].icon}.png`)
     }
-    return weatherIconUrl;
+    return weatherIconUrl
   }
 
   render(){
-    const weather = this.props.weatherContent[0];
-    const weatherIconUrl = this.setIconDayNightModeUrl(weather);
-    const weatherIconALtDescription = "an icon of " + weather.weather[0].description;
-    const tempInCelsius = this.kToCelsius(weather.main.temp);
-    const tempFeelsLikeC = this.kToCelsius(weather.main.feels_like);
+    const weather = this.props.weatherContent[0]
+    const weatherIconUrl = this.setIconDayNightModeUrl(weather)
+    const weatherIconALtDescription = "an icon of " + weather.weather[0].description
+    const tempInCelsius = this.kToCelsius(weather.main.temp)
+    const tempFeelsLikeC = this.kToCelsius(weather.main.feels_like)
 
     return (
       <div style = {weatherTempStyle}>
@@ -57,7 +57,7 @@ export default class WeatherTemp extends React.Component<Props, State> {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 

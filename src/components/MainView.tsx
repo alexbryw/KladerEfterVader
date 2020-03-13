@@ -1,9 +1,9 @@
-import React from 'react';
-import {Switch, Route} from 'react-router-dom';
-import Home from './Home';
-import WeekOverview from './WeekOverview';
-import Clothes from './Clothes';
-import { WeatherResponse } from '../api-typings';
+import React from 'react'
+import {Switch, Route} from 'react-router-dom'
+import Home from './Home'
+import WeekOverview from './WeekOverview'
+import Clothes from './Clothes'
+import { WeatherResponse } from '../api-typings'
 
 interface Props{
     isDayMode: boolean,
