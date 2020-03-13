@@ -62,9 +62,9 @@ export default class Layout extends React.Component <Props, State>{
     }
   }
 
-  async componentDidMount() {
-    window.addEventListener('resize', this.updateDeviceSize)
-    this.weatherAPICall()
+  componentDidMount() {
+    window.addEventListener('resize', this.updateDeviceSize);
+    this.weatherAPICall();
   }
 
   componentWillUnmount() {
@@ -72,23 +72,42 @@ export default class Layout extends React.Component <Props, State>{
   }
 
   async weatherAPICall(){
-    this.setState({ isLoaded: false })
-    const response = await fetch("http://api.openweathermap.org/data/2.5/forecast?q=Göteborg&appid=16da1da324d687a04c8aec0742e21c35&lang=se")
-    const data = await response.json()
-    console.log(data)
-    const tempDataWeather = data.list.filter((reading:any) => reading.dt_txt.includes("12:00:00"))
-    const hour = new Date().getHours()
-    if(hour > 12){
-        tempDataWeather.pop()
-    } else {
-        tempDataWeather.shift()
+    const weatherAPIUrl = 
+    "http://api.openweathermap.org/data/2.5/forecast?q=Göteborg"+
+    "&appid=16da1da324d687a04c8aec0742e21c35&lang=se"
+
+    try {
+      this.setState({ isLoaded: false });
+      const response = await fetch(weatherAPIUrl);
+      const data = await response.json();
+      console.log(data)
+
+      if(data.cod === "200"){ //Code 200 means good response.
+
+        const tempDataWeather = data.list.filter((reading:any) => reading.dt_txt.includes("12:00:00"));
+        const hour = new Date().getHours();
+        if(hour > 12){
+            tempDataWeather.pop();
+        } else {
+            tempDataWeather.shift();
+        }
+        this.setState({
+            weatherDataToday: data.list[0],
+            weatherData: tempDataWeather,
+            isLoaded: true,
+        })
+        console.log("WeatherData API call.")
+
+      } else if(data.cod != null) {   //print error code if there is a code. Test with wrong city name.
+        console.log("API error code response: " + data.cod) 
+        console.log(data.message)
+      }
+
+    } catch (error) { // Show error if fetch fails. Test with wrong Url.
+      console.log("API fetch error below:")
+      console.log(error)
     }
-    this.setState({
-        weatherDataToday: data.list[0],
-        weatherData: tempDataWeather,
-        isLoaded: true,
-    })
-    console.log("WeatherData API call.")
+
   }
 
   loadWeatherContent(){
