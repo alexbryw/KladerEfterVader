@@ -1,6 +1,6 @@
-import React, {CSSProperties} from 'react';
-import WeekDay from './WeekDay';
-import { WeatherResponse } from '../api-typings';
+import React, {CSSProperties} from 'react'
+import WeekDay from './WeekDay'
+import { WeatherResponse } from '../api-typings'
 
 interface Props {
   isDayMode:boolean,
@@ -12,9 +12,9 @@ interface State {
 
 export default class WeekOverview extends React.Component<Props, State>{
   constructor(props:Props){
-    super(props);
+    super(props)
     this.state = { 
-    };
+    }
   }
 
   render() {

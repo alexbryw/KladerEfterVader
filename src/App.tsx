@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component} from 'react'
 import WeatherData from './components/WeatherData'
 import { BrowserRouter } from 'react-router-dom'
 import ErrorBoundary from './components/ErrorBoundary'
@@ -18,6 +18,6 @@ export default class App extends Component<Props, State> {
             <WeatherData/>
           </ErrorBoundary>
       </BrowserRouter>
-    );
+    )
   }
 }

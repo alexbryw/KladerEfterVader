@@ -1,4 +1,4 @@
-import React, {CSSProperties} from 'react';
+import React, {CSSProperties} from 'react'
 import {Link} from 'react-router-dom'
 
 interface Props {
@@ -26,7 +26,7 @@ export default class NavItem extends React.Component<Props>{
             <Link to = {this.props.id} style = {{...navItemStyle, ...buttonStyle}} onClick={handleOnclick}>
                 {this.props.name}
             </Link>
-        );
+        )
     }
 }
 

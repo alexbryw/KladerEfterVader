@@ -1,10 +1,10 @@
-import React, {CSSProperties} from 'react';
-import moment from 'moment';
-import 'moment/locale/sv';
+import React, {CSSProperties} from 'react'
+import moment from 'moment'
+import 'moment/locale/sv'
 import Clock from './Clock'
 
 export default function DateTimePlace() {
-  let currentDate = moment().format('LL');
+  let currentDate = moment().format('LL')
 
 /*  ------ FOR TESTING ERROR-BOUNDARIES-----
  let errorTest: any = null
@@ -18,7 +18,7 @@ export default function DateTimePlace() {
         {currentDate}
       </div> 
     </div>
-  );
+  )
 }
 
 const timeContainer: CSSProperties = {

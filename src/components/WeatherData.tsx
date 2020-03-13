@@ -1,8 +1,8 @@
-import React, { Component} from 'react';
-import Layout from '../components/Layout';
-import { BrowserRouter } from 'react-router-dom';
-import ErrorBoundary from '../components/ErrorBoundary';
-import { WeatherResponse } from '../api-typings';
+import React, { Component} from 'react'
+import Layout from '../components/Layout'
+import { BrowserRouter } from 'react-router-dom'
+import ErrorBoundary from '../components/ErrorBoundary'
+import { WeatherResponse } from '../api-typings'
 
 interface Props {
 }
@@ -22,16 +22,16 @@ export default class WeatherData extends Component<Props, State> {
         }
       }
     async componentDidMount() {
-        this.setState({ isLoaded: false });
+        this.setState({ isLoaded: false })
         const response = await fetch("http://api.openweathermap.org/data/2.5/forecast?q=Göteborg&appid=16da1da324d687a04c8aec0742e21c35&lang=se");
-        const data = await response.json();
+        const data = await response.json()
         console.log(data)
         const tempDataWeather = data.list.filter((reading:any) => reading.dt_txt.includes("12:00:00"));
-        const hour = new Date().getHours();
+        const hour = new Date().getHours()
         if(hour > 12){
-            tempDataWeather.pop();
+            tempDataWeather.pop()
         } else {
-            tempDataWeather.shift();
+            tempDataWeather.shift()
         }
         this.setState({
             weatherDataToday: data.list[0],
@@ -42,7 +42,7 @@ export default class WeatherData extends Component<Props, State> {
     }
 
     render() {
-    let weatherContent = [];
+    let weatherContent = []
     if(!this.state.isLoaded){
         for(let i = 0; i < 5 ; i++){
         weatherContent.push({

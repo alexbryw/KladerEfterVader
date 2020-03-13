@@ -1,12 +1,12 @@
-import React, {CSSProperties}from 'react';
+import React, {CSSProperties}from 'react'
 import MainView from './MainView'
 import Navbar from './Navbar'
 import DayNightMode from './DayNightMode'
 import ErrorBoundary from './ErrorBoundary'
-import Home from './Home';
-import WeekOverview from './WeekOverview';
-import Clothes from './Clothes';
-import { WeatherResponse } from '../api-typings';
+import Home from './Home'
+import WeekOverview from './WeekOverview'
+import Clothes from './Clothes'
+import { WeatherResponse } from '../api-typings'
 
 interface Props{
   weatherContent: WeatherResponse[]
@@ -36,11 +36,11 @@ export default class Layout extends React.Component <Props, State>{
     this.setState({isDayMode:!this.state.isDayMode})
 
     if (this.state.isDayMode){
-      this.setState({buttonText: "Natt"});
-      this.setState({modeStyle: mainNigthStyle});
+      this.setState({buttonText: "Natt"})
+      this.setState({modeStyle: mainNigthStyle})
     }
     else{
-      this.setState({buttonText:"Dag"});
+      this.setState({buttonText:"Dag"})
       this.setState({modeStyle: mainDayStyle})
     }
   }
@@ -51,23 +51,23 @@ export default class Layout extends React.Component <Props, State>{
 
   calculateDeviceSize(): "isMobile" | "isDesktop" {
     if (window.innerWidth < 1000) {
-      return 'isMobile';
+      return 'isMobile'
     } else {
-      return 'isDesktop';
+      return 'isDesktop'
     }
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.updateDeviceSize);
+    window.addEventListener('resize', this.updateDeviceSize)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDeviceSize);
+    window.removeEventListener('resize', this.updateDeviceSize)
   }
 
   render(){
-    const weatherContent:WeatherResponse[] = this.props.weatherContent;
-    console.log(this.state.deviceSize);
+    const weatherContent:WeatherResponse[] = this.props.weatherContent
+    console.log(this.state.deviceSize)
    
     if(this.state.deviceSize === "isMobile"){
       return (
@@ -80,7 +80,7 @@ export default class Layout extends React.Component <Props, State>{
             <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
             <Navbar isDayMode = {this.state.isDayMode} />
         </div>
-      );
+      )
     }
 
     else{
@@ -97,7 +97,7 @@ export default class Layout extends React.Component <Props, State>{
             </ErrorBoundary>
             <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
         </div>
-      );
+      )
     }
 
   }

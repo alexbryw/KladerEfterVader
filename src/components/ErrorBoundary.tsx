@@ -1,20 +1,20 @@
-import React from 'react';
+import React from 'react'
 
 interface Props{
 }
 
 interface State{
-    hasError:boolean;
+    hasError:boolean
 }
 
 export default class ErrorBoundary extends React.Component <Props, State> {
     constructor(props:Props){
-        super(props);
-        this.state = { hasError: false };
+        super(props)
+        this.state = { hasError: false }
     }
 
     static getDerivedStateFromError(){
-        return {hasError: true };
+        return {hasError: true }
     }
 
     render() {
@@ -28,7 +28,7 @@ export default class ErrorBoundary extends React.Component <Props, State> {
             )
         }
 
-        return this.props.children;
+        return this.props.children
     }
 }
 
