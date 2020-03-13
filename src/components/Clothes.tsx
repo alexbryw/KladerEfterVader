@@ -26,7 +26,7 @@ export default class Clothes extends React.Component<Props, State>{
     }
   }
 
-
+  //Swaps colors on buttons and handle picks
   handleClick = (event: any) => {
       this.setState({
         whatDay: event.target.value,
@@ -51,21 +51,35 @@ export default class Clothes extends React.Component<Props, State>{
         })
       }
   }
-
-  render() {
+  // Gives weatherOutPut the content of the picked day
+  weatherOutPutThisDay(){
     let weatherOutPut
-    let whatDayIsIt
-
     if(this.state.whatDay === "today"){
       weatherOutPut = this.props.weatherContent[0]
-      whatDayIsIt = "Idag"
     } else if (this.state.whatDay === "tomorrow"){
       weatherOutPut = this.props.weatherContent[1]
-      whatDayIsIt = "Imorgon"
     } else if (this.state.whatDay === "dayAfterTomorrow") {
       weatherOutPut = this.props.weatherContent[2]
+    }
+    return weatherOutPut
+  }
+
+  //Translates dayname to SE
+  translateDay(){
+    let whatDayIsIt
+    if(this.state.whatDay === "today"){
+      whatDayIsIt = "Idag"
+    } else if (this.state.whatDay === "tomorrow"){
+      whatDayIsIt = "Imorgon"
+    } else if (this.state.whatDay === "dayAfterTomorrow") {
       whatDayIsIt = "I övermorgon"
     }
+    return whatDayIsIt
+  }
+
+  render() {
+    const weatherOutPut = this.weatherOutPutThisDay()
+    const whatDayIsIt = this.translateDay()
 
     if (!weatherOutPut) {
       return <p>Loading...</p>

@@ -18,7 +18,6 @@ export default class ErrorBoundary extends React.Component <Props, State> {
     }
 
     render() {
-        
         if (this.state.hasError){
             return (
                 <div className="ErrorBoundary" style={errorDivStyle}>
