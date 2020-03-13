@@ -61,7 +61,7 @@ const buttonActiveNight:CSSProperties = {
 
 const buttonUnActive:CSSProperties = {
     border: '3px solid black',
-    backgroundColor: '#4d4dff',
+    backgroundColor: '#5f8bb8',
     color: 'black'
 }
 

@@ -18,7 +18,7 @@ export default class CitySelection extends React.Component<Props, {value:string}
         return(
             <div>
                 <p>{this.state.value}</p>
-                <select id="city" onChange={this.change} value= {this.state.value} name="city" style = {cityInput}>
+                <select id="city" onChange={this.change} value={this.state.value} name="city" style = {cityInput}>
                 <option value="Göteborg">Göteborg</option>
                 <option value="Kiruna">Kiruna</option>
                 <option value="Ystad">Ystad</option>

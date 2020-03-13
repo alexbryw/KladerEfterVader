@@ -1,7 +1,8 @@
 import React,{ CSSProperties } from 'react';
+import { WeatherResponse } from '../api-typings';
 
 interface Props {
-  weatherContent: any,
+  weatherContent: WeatherResponse,
   isDayMode: boolean
 }
 
@@ -13,7 +14,7 @@ export default class WeatherFigure extends React.Component<Props>{
 
     render() {
       const weather = this.props.weatherContent
-      let weatherSlothIMG
+      let weatherSlothIMG;
 
       if(weather.dt === 32503683661){ 
         weatherSlothIMG = "DefaultSloth";
