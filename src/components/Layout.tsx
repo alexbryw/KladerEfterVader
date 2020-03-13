@@ -34,11 +34,10 @@ export default class Layout extends React.Component <Props, State>{
       weatherDataToday: undefined,
       weatherData: undefined,
     }
-    this.toggleDayNightMode = this.toggleDayNightMode.bind(this)
   }
 
 
-  toggleDayNightMode() {
+  toggleDayNightMode = () => {
     this.setState({isDayMode:!this.state.isDayMode})
 
     if (this.state.isDayMode){
