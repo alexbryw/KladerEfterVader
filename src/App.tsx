@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
-import WeatherData from './components/WeatherData'
 import { BrowserRouter } from 'react-router-dom'
 import ErrorBoundary from './components/ErrorBoundary'
+import Layout from './components/Layout';
 
 interface Props {}
 interface State {
@@ -15,7 +15,7 @@ export default class App extends Component<Props, State> {
     return (
       <BrowserRouter>
           <ErrorBoundary>
-            <WeatherData/>
+            <Layout/>
           </ErrorBoundary>
       </BrowserRouter>
     );
