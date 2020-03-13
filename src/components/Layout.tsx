@@ -139,26 +139,32 @@ export default class Layout extends React.Component <Props, State>{
           <div style = {{...styleMobile, ...this.state.modeStyle}}>
             
             <Route exact path = '/' render={() => 
-              <Home {...this.props}
-                isDayMode={this.state.isDayMode}
-                weatherContent={this.loadWeatherContent()}
-              />} 
+              <ErrorBoundary>
+                <Home {...this.props}
+                  isDayMode={this.state.isDayMode}
+                  weatherContent={this.loadWeatherContent()}
+                />
+              </ErrorBoundary>}
             /> 
 
             <Route path = '/Prognos' render={() => 
-              <WeekOverview {...this.props}  
-                isDayMode={this.state.isDayMode}
-                weatherContent={this.loadWeatherContent()}
-              />}
+             <ErrorBoundary> 
+                <WeekOverview {...this.props}  
+                  isDayMode={this.state.isDayMode}
+                  weatherContent={this.loadWeatherContent()}
+                />
+              </ErrorBoundary>}
             />
 
             <Route path = '/Kläder' render={() => 
-              <Clothes
-                {...this.props}
-                isDayMode={this.state.isDayMode}
-                weatherContent={this.loadWeatherContent()}
-              />} 
-            />     
+              <ErrorBoundary> 
+                <Clothes
+                  {...this.props}
+                  isDayMode={this.state.isDayMode}
+                  weatherContent={this.loadWeatherContent()}
+                />
+              </ErrorBoundary>} 
+            /> 
         </div>
         <Navbar isDayMode = {this.state.isDayMode} />
       </>
@@ -177,7 +183,7 @@ export default class Layout extends React.Component <Props, State>{
               <ErrorBoundary>
                 <Clothes isDayMode = {this.state.isDayMode} weatherContent={this.loadWeatherContent()}/>
               </ErrorBoundary>
-              </div>
+            </div>
           }/>
          )     
       }
