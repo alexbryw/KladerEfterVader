@@ -16,4 +16,5 @@ export interface WeatherResponse {
     id: number
     name: string
     cod: number
+    dt_txt: string
 }
