@@ -7,27 +7,15 @@ interface Props {
   weatherContent: WeatherResponse[],
 }
 
-interface State {
+export default function WeekOverview(props:Props){
+  return(
+    <div style={{...weatherListContainer, ...weekOverviewGridItem}}>
+      {props.weatherContent.map((weatherContent:WeatherResponse, index:number) =>
+      <WeekDay weatherContent = {weatherContent} key = {index} isDayMode={props.isDayMode}/>
+    )}
+  </div>
+  )
 }
-
-export default class WeekOverview extends React.Component<Props, State>{
-  constructor(props:Props){
-    super(props)
-    this.state = { 
-    }
-  }
-
-  render() {
-    return(
-      <div style={weekListStyle}>
-        {this.props.weatherContent.map((weatherContent:WeatherResponse, index:number) =>
-        <WeekDay weatherContent={weatherContent} key={index} isDayMode={this.props.isDayMode}/>
-      )}
-    </div>
-    )
-  }
-}
-
 
 const weatherListContainer: CSSProperties = {
   display: 'flex',
@@ -40,5 +28,3 @@ const weatherListContainer: CSSProperties = {
 const weekOverviewGridItem: CSSProperties = {
   gridArea: 'week'
 }
-
-const weekListStyle = {...weatherListContainer, ...weekOverviewGridItem}

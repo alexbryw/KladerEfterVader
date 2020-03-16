@@ -46,14 +46,14 @@ export default class WeatherTemp extends React.Component<Props, State> {
 
     return (
       <div style = {weatherTempStyle}>
-        <img src={weatherIconUrl} alt={weatherIconALtDescription} style={weatherIconStyle}></img>
+        <img src = {weatherIconUrl} alt = {weatherIconALtDescription} style = {weatherIconStyle}></img>
         <h2>{this.state.city}</h2>
         <div>
           <h3>Temp: {tempInCelsius}°C </h3>
           <h5>Känns som {tempFeelsLikeC}°C</h5>
           <div style = {windWrap}>
             <h5>Vind {weather.wind.speed} m/s</h5>
-            <WindDirection windDeg={weather.wind.deg} isDayMode={this.props.isDayMode}/>
+            <WindDirection windDeg = {weather.wind.deg} isDayMode = {this.props.isDayMode}/>
           </div>
         </div>
       </div>
@@ -79,5 +79,3 @@ const windWrap: CSSProperties = {
   alignItems: 'center',
   justifyContent: 'space-around'
 }
-
-

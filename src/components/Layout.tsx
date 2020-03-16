@@ -1,20 +1,19 @@
-import React, {CSSProperties}from 'react';
+import React, {CSSProperties}from 'react'
 import Navbar from './Navbar'
 import DayNightMode from './DayNightMode'
 import ErrorBoundary from './ErrorBoundary'
-import Home from './Home';
-import WeekOverview from './WeekOverview';
-import Clothes from './Clothes';
-import { WeatherResponse, placeholderWeatherResponse } from '../api-typings';
-import {Switch, Route} from 'react-router-dom';
+import Home from './Home'
+import WeekOverview from './WeekOverview'
+import Clothes from './Clothes'
+import { WeatherResponse, placeholderWeatherResponse } from '../api-typings'
+import {Switch, Route} from 'react-router-dom'
 
 interface Props{
 }
 
 interface State{
   isDayMode: boolean,
-  // DO WE ACTUALLY STILL NEED THIS? Is isDayMode enough?
-  buttonText: string,
+  buttonAltText: string,
   modeStyle: React.CSSProperties,
   deviceSize: "isMobile" | "isDesktop",
   isLoaded: boolean,
@@ -28,7 +27,7 @@ export default class Layout extends React.Component <Props, State>{
     super(props)
     this.state = {
       isDayMode: true,
-      buttonText: 'Dag',
+      buttonAltText: 'Dag',
       modeStyle: mainDayStyle,
       deviceSize: this.calculateDeviceSize(),
       isLoaded: false,
@@ -37,26 +36,22 @@ export default class Layout extends React.Component <Props, State>{
       activeView: '/'
     }
   }
-
-
   toggleDayNightMode = () => {
     this.setState({isDayMode:!this.state.isDayMode})
 
     if (this.state.isDayMode){
-      this.setState({buttonText: "Natt"})
+      this.setState({buttonAltText: "Natt"})
       this.setState({modeStyle: mainNigthStyle})
     }
     else{
-      this.setState({buttonText:"Dag"})
+      this.setState({buttonAltText:"Dag"})
       this.setState({modeStyle: mainDayStyle})
     }
   }
-
   setView = (id: string) => {
     this.setState({ activeView: id})
   }
   
-
   updateDeviceSize = () => {
     this.setState({ deviceSize: this.calculateDeviceSize() })
   }
@@ -71,7 +66,7 @@ export default class Layout extends React.Component <Props, State>{
 
   componentDidMount() {
     window.addEventListener('resize', this.updateDeviceSize);
-    this.weatherAPICall();
+    this.weatherAPICall()
   }
 
   componentWillUnmount() {
@@ -115,7 +110,6 @@ export default class Layout extends React.Component <Props, State>{
       console.log("API fetch error below:")
       console.log(error)
     }
-
   }
 
   loadWeatherContent = () =>{
@@ -133,7 +127,6 @@ export default class Layout extends React.Component <Props, State>{
   }
 
   get homeRoute(){
-
     if(this.state.deviceSize === 'isMobile'){
       return(
         <>
@@ -166,7 +159,6 @@ export default class Layout extends React.Component <Props, State>{
               </ErrorBoundary>} 
             />
         </div>
-
         <Navbar isDayMode = {this.state.isDayMode} onViewSelected = {this.setView} activeView = {this.state.activeView}/>
       </>
     )
@@ -193,12 +185,12 @@ export default class Layout extends React.Component <Props, State>{
   render(){
     return(
       <Switch>
-      <>
-        <div style = {mainStyle}>
-          {this.homeRoute}
-          <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonText} onToggleMode = {this.toggleDayNightMode}/>
-        </div>
-      </>
+        <>
+          <div style = {mainStyle}>
+            {this.homeRoute}
+            <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonAltText} onToggleMode = {this.toggleDayNightMode}/>
+          </div>
+        </>
       </Switch>
     )
   }
