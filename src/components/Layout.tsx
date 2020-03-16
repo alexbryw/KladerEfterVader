@@ -185,12 +185,12 @@ export default class Layout extends React.Component <Props, State>{
   render(){
     return(
       <Switch>
-      <>
-        <div style = {mainStyle}>
-          {this.homeRoute}
-          <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonAltText} onToggleMode = {this.toggleDayNightMode}/>
-        </div>
-      </>
+        <>
+          <div style = {mainStyle}>
+            {this.homeRoute}
+            <DayNightMode isDayMode = {this.state.isDayMode} buttonText = {this.state.buttonAltText} onToggleMode = {this.toggleDayNightMode}/>
+          </div>
+        </>
       </Switch>
     )
   }

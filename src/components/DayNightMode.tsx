@@ -31,9 +31,6 @@ export default class DayNightMode extends React.Component <Props>{
 
 const dayNightContainer:CSSProperties = {
   position: 'absolute',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
   top: '0.7rem',
   right: '0.7rem',
   zIndex: 2,
@@ -42,6 +39,9 @@ const dayNightContainer:CSSProperties = {
   backgroundColor: '#FFF',
   borderRadius: '4em',
   border: '0.2rem black solid',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 }
 
 const dayNightButton:CSSProperties = {
