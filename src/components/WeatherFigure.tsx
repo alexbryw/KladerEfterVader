@@ -7,11 +7,6 @@ interface Props {
 }
 
 export default class WeatherFigure extends React.Component<Props>{
-    constructor(props:Props){
-      super(props)
-      this.state={}
-    }
-
     //Pickes your Sloth-name for the URL
     pickedSloth(weather:WeatherResponse){
       let weatherSlothIMG
@@ -41,9 +36,9 @@ export default class WeatherFigure extends React.Component<Props>{
     render() {
       const weather = this.props.weatherContent
       let weatherSlothIMG = this.pickedSloth(weather)
-
       let weatherSlothURL = require(`../asset/images/weatherSloths/${weatherSlothIMG}.png`)
       let imgURL
+
       if (this.props.isDayMode){
         imgURL = require(`../asset/images/weatherIcons/${weather.weather[0].icon}.png`)
       } else {
@@ -51,9 +46,9 @@ export default class WeatherFigure extends React.Component<Props>{
       }
 
       return (
-          <div style={{...weatherFigureContainer}}>
-            <img src={imgURL} alt={weather.weather[0].description + " Ikon"} style={weatherlogoStyle}/>
-            <img src={weatherSlothURL} alt={weatherSlothIMG} style={weatherSlothStyle}/>
+          <div style = {weatherFigureContainer}>
+            <img src = {imgURL} alt = {weather.weather[0].description + " Ikon"} style={weatherlogoStyle}/>
+            <img src = {weatherSlothURL} alt = {weatherSlothIMG} style = {weatherSlothStyle}/>
           </div>
       )
   }

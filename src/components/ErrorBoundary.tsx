@@ -26,7 +26,6 @@ export default class ErrorBoundary extends React.Component <Props, State> {
                 </div>
             )
         }
-
         return this.props.children
     }
 }
@@ -35,14 +34,14 @@ const errorImgStyle: React.CSSProperties = {
     display: "flex",
     width: "10rem",
     margin: "auto",
-
+    paddingBottom: '1rem'
 }
 
 const errorDivStyle: React.CSSProperties = {
     height: "100%",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: "25vh"
+    marginTop: "25%"
 }
 
 const textStyle: React.CSSProperties = {

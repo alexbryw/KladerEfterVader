@@ -42,7 +42,7 @@ export default class Clock extends React.Component<Props, State>{
 
     render(){
         return (
-        <p style = {clockStyle}>{this.state.time}</p>
+        <p style = {clockStyle}> {this.state.time} </p>
         )
     }
 }
