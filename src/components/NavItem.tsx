@@ -22,11 +22,12 @@ export default class NavItem extends React.Component<Props>{
     }
 
     render(){
-        const buttonStyle =this.stylesButton()
+        const buttonStyle = this.stylesButton()
         const handleOnclick = () => this.props.onViewSelected(this.props.id)
         
         return (
-            <Link to = {this.props.id} style = {{...navItemStyle, ...buttonStyle}} onClick = {handleOnclick}>
+            <Link 
+                to = {this.props.id} style = {{...navItemStyle, ...buttonStyle}} onClick = {handleOnclick}>
                 {this.props.name}
             </Link>
         )

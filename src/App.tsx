@@ -4,14 +4,9 @@ import ErrorBoundary from './components/ErrorBoundary'
 import Layout from './components/Layout';
 
 interface Props {}
-interface State {
-  deviceSize: "isMobile" | "isDesktop"
-}
 
-export default class App extends Component<Props, State> {
-
+export default class App extends Component<Props> {
   render() {
-    
     return (
       <BrowserRouter>
           <ErrorBoundary>

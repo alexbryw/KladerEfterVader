@@ -9,7 +9,6 @@ interface Props{
 
 export default function Navbar(props:Props){
   const navLabels = ['Prognos', 'Kläder']
-  console.log(props.activeView)
 
   return (
     <div style = {navStyle}>
