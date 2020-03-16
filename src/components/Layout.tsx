@@ -20,6 +20,7 @@ interface State{
   isLoaded: boolean,
   weatherDataToday:WeatherResponse | undefined,
   weatherData: any,
+  activeView: string
 }
 
 export default class Layout extends React.Component <Props, State>{
@@ -33,6 +34,7 @@ export default class Layout extends React.Component <Props, State>{
       isLoaded: false,
       weatherDataToday: undefined,
       weatherData: undefined,
+      activeView: '/'
     }
   }
 
@@ -49,6 +51,11 @@ export default class Layout extends React.Component <Props, State>{
       this.setState({modeStyle: mainDayStyle})
     }
   }
+
+  setView = (id: string) => {
+    this.setState({ activeView: id})
+  }
+  
 
   updateDeviceSize = () => {
     this.setState({ deviceSize: this.calculateDeviceSize() })
@@ -184,7 +191,7 @@ export default class Layout extends React.Component <Props, State>{
             />
         </div>
 
-        <Navbar isDayMode = {this.state.isDayMode} />
+        <Navbar isDayMode = {this.state.isDayMode} onViewSelected = {this.setView} activeView = {this.state.activeView}/>
       </>
     )
     }
