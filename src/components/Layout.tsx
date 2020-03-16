@@ -18,7 +18,7 @@ interface State{
   deviceSize: "isMobile" | "isDesktop",
   isLoaded: boolean,
   weatherDataToday: WeatherResponse | undefined,
-  weatherData: any,
+  weatherData: WeatherResponse[],
   activeView: string
 }
 
@@ -32,7 +32,7 @@ export default class Layout extends React.Component <Props, State>{
       deviceSize: this.calculateDeviceSize(),
       isLoaded: false,
       weatherDataToday: undefined,
-      weatherData: undefined,
+      weatherData: [],
       activeView: '/'
     }
   }
@@ -95,7 +95,7 @@ export default class Layout extends React.Component <Props, State>{
             tempDataWeather.shift();
         }
         this.setState({
-            weatherDataToday: data.list[0],
+            weatherDataToday: data.list[0] as WeatherResponse,
             weatherData: tempDataWeather,
             isLoaded: true,
         })
@@ -113,15 +113,16 @@ export default class Layout extends React.Component <Props, State>{
   }
 
   loadWeatherContent = () =>{
-    let weatherContent = []
+    let weatherContent: WeatherResponse[] = []
     if(!this.state.isLoaded){
       for(let i = 0 ; i < 5 ; i++){
       weatherContent.push(placeholderWeatherResponse)} 
-  } else {
-      weatherContent.push(this.state.weatherDataToday)
+    } else {
+      weatherContent.push(this.state.weatherDataToday as WeatherResponse)
+      
       for(let i = 0 ; i < 4 ; i++){
-          weatherContent.push(this.state.weatherData[i])
-      }
+          weatherContent.push(this.state.weatherData[i] as WeatherResponse)
+        }
     }
     return weatherContent
   }
