@@ -6,11 +6,6 @@ import Clock from './Clock'
 export default function DateTimePlace() {
   let currentDate = moment().format('LL')
 
-/*  ------ FOR TESTING ERROR-BOUNDARIES-----
- let errorTest: any = null
-  console.log(errorTest.kjdsfh)
-   */
-  
   return (
     <div style = {timeContainer}>
         <Clock />

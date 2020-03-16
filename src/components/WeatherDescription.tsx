@@ -1,7 +1,6 @@
 import React, {CSSProperties} from 'react'
 import { WeatherResponse } from '../api-typings'
 
-
 interface Props {
   weatherContent: WeatherResponse,
   whatDayIsIt: string | undefined

@@ -9,8 +9,7 @@ interface Props {
     activeView: string
 }
 
-export default class NavItem extends React.Component<Props>{
-    
+export default class NavItem extends React.Component<Props>{ 
     stylesButton(){
         let buttonStyle
         if(this.props.activeView === this.props.id){
@@ -27,7 +26,7 @@ export default class NavItem extends React.Component<Props>{
         const handleOnclick = () => this.props.onViewSelected(this.props.id)
         
         return (
-            <Link to = {this.props.id} style = {{...navItemStyle, ...buttonStyle}} onClick={handleOnclick}>
+            <Link to = {this.props.id} style = {{...navItemStyle, ...buttonStyle}} onClick = {handleOnclick}>
                 {this.props.name}
             </Link>
         )

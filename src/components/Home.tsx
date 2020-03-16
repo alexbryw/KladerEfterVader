@@ -4,7 +4,6 @@ import WeatherTemp from './WeatherTemp'
 import { WeatherResponse } from '../api-typings'
 import ErrorBoundary from './ErrorBoundary'
 
-
 interface Props{
   isDayMode: boolean,
   weatherContent: WeatherResponse[],

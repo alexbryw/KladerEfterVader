@@ -8,7 +8,6 @@ interface Props{
 
 export default class DayNightMode extends React.Component <Props>{
 
-  //Gets the WeatherIcons URL
   getWeatherIconURL(){
     let imgURL
     if(!this.props.isDayMode){
@@ -24,7 +23,7 @@ export default class DayNightMode extends React.Component <Props>{
 
     return (
       <div style = {dayNightContainer} onClick = {this.props.onToggleMode}>
-          <img style={dayNightButton} src={imgURL} alt={this.props.buttonText}/> 
+        <img style = {dayNightButton} src = {imgURL} alt = {this.props.buttonText}/> 
       </div>
     )
   }

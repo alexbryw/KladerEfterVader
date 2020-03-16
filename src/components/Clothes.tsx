@@ -92,27 +92,26 @@ export default class Clothes extends React.Component<Props, State>{
         <div style = {buttonWrapper}>
           <button 
             style = {{...buttonStyle, backgroundColor:this.state.todayButton}}
-            type="button"
-            name="whatDay"
-            value="today"
-            onClick={this.handleClick}
+            type = "button"
+            name = "whatDay"
+            value = "today"
+            onClick = {this.handleClick}
             >Idag
           </button>
           <button 
             style = {{...buttonStyle, backgroundColor:this.state.tomorrowButton}}
-            type="button"
-            name="whatDay"
-            value="tomorrow"
-            onClick={this.handleClick}
+            type = "button"
+            name = "whatDay"
+            value = "tomorrow"
+            onClick = {this.handleClick}
             >Imorgon
           </button>
           <button 
-            style = {{...buttonStyle,
-            backgroundColor:this.state.dayAfterTomorrowButton}}
-            type="button"
-            name="whatDay"
-            value="dayAfterTomorrow"
-            onClick={this.handleClick}
+            style = {{...buttonStyle, backgroundColor:this.state.dayAfterTomorrowButton}}
+            type = "button"
+            name = "whatDay"
+            value = "dayAfterTomorrow"
+            onClick = {this.handleClick}
             >I över-<br/>morgon
           </button>
         </div>
