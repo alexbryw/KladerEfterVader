@@ -1,4 +1,4 @@
-import React, {CSSProperties} from 'react'
+import React, {CSSProperties, MouseEvent} from 'react'
 import WeatherFigure from './WeatherFigure'
 import WeatherDescription from './WeatherDescription'
 import { WeatherResponse } from '../api-typings'
@@ -27,30 +27,31 @@ export default class Clothes extends React.Component<Props, State>{
   }
 
   //Swaps colors on buttons and handle picks
-  handleClick = (event: any) => {
+  handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    const btnValue = event.currentTarget.value
+    this.setState({
+      whatDay: btnValue,
+    })
+    if(btnValue === "today"){
       this.setState({
-        whatDay: event.target.value,
+        todayButton: "#FFF",
+        tomorrowButton: "#D3D3D3",
+        dayAfterTomorrowButton: "#D3D3D3",
       })
-      if(event.target.value === "today"){
-        this.setState({
-          todayButton: "#FFF",
-          tomorrowButton: "#D3D3D3",
-          dayAfterTomorrowButton: "#D3D3D3",
-        })
-      } else if (event.target.value === "tomorrow"){
-        this.setState({
-          todayButton: "#D3D3D3",
-          tomorrowButton: "#FFF",
-          dayAfterTomorrowButton: "#D3D3D3",
-        })
-      } else if (event.target.value === "dayAfterTomorrow"){
-        this.setState({
-          todayButton: "#D3D3D3",
-          tomorrowButton: "#D3D3D3",
-          dayAfterTomorrowButton: "#FFF",
-        })
-      }
-  }
+    } else if (btnValue === "tomorrow"){
+      this.setState({
+        todayButton: "#D3D3D3",
+        tomorrowButton: "#FFF",
+        dayAfterTomorrowButton: "#D3D3D3",
+      })
+    } else if (btnValue === "dayAfterTomorrow"){
+      this.setState({
+        todayButton: "#D3D3D3",
+        tomorrowButton: "#D3D3D3",
+        dayAfterTomorrowButton: "#FFF",
+      })
+    }
+}
   // Gives weatherOutPut the content of the picked day
   weatherOutPutThisDay(){
     let weatherOutPut
