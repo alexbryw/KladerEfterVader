@@ -3,32 +3,24 @@ import NavItem from './NavItem'
 
 
 interface Props{
-  isDayMode:boolean
-}
-
-interface State{
+  isDayMode:boolean,
+  onViewSelected: (id: string) => void,
   activeView: string
 }
 
-export default class Navbar extends React.Component <Props, State>{
-  constructor(props:Props){
-    super(props)
-    this.state = {
-      activeView:'Hem'
-    }
-  }
-
-  setView = (name: string) => {
-    this.setState({ activeView: name})
-  }
+interface State{
   
+}
+
+export default class Navbar extends React.Component <Props, State>{
+
   render(){
     const navLabels = ['Prognos', 'Kläder']
-
+    console.log(this.props.activeView)
     return (
       <div style = {navStyle}>
-        <NavItem id = {"/"} name = {"Hem"} isDayMode = {this.props.isDayMode} onViewSelected = {this.setView} activeView = {this.state.activeView}/>
-        {navLabels.map((value) => <NavItem  isDayMode = {this.props.isDayMode} key ={value} id = {value} name = {value} onViewSelected = {this.setView} activeView = {this.state.activeView} />)}
+        <NavItem id = {"/"} name = {"Hem"} isDayMode = {this.props.isDayMode} onViewSelected = {this.props.onViewSelected} activeView = {this.props.activeView}/>
+        {navLabels.map((value) => <NavItem  isDayMode = {this.props.isDayMode} key ={value} id = {value} name = {value} onViewSelected = {this.props.onViewSelected} activeView = {this.props.activeView} />)}
       </div>
     )
   }
