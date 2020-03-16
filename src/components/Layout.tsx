@@ -5,7 +5,7 @@ import ErrorBoundary from './ErrorBoundary'
 import Home from './Home';
 import WeekOverview from './WeekOverview';
 import Clothes from './Clothes';
-import { WeatherResponse } from '../api-typings';
+import { WeatherResponse, placeholderWeatherResponse } from '../api-typings';
 import {Switch, Route} from 'react-router-dom';
 
 interface Props{
@@ -18,7 +18,7 @@ interface State{
   modeStyle: React.CSSProperties,
   deviceSize: "isMobile" | "isDesktop",
   isLoaded: boolean,
-  weatherDataToday:WeatherResponse | undefined,
+  weatherDataToday: WeatherResponse | undefined,
   weatherData: any,
   activeView: string
 }
@@ -92,6 +92,7 @@ export default class Layout extends React.Component <Props, State>{
       if(data.cod === "200"){ //Code 200 means good response.
 
         const tempDataWeather: WeatherResponse[] = data.list.filter((reading: WeatherResponse) => reading.dt_txt.includes("12:00:00"));
+        console.log(tempDataWeather[0])
         const hour = new Date().getHours();
         if(hour > 12){
             tempDataWeather.pop();
@@ -121,32 +122,7 @@ export default class Layout extends React.Component <Props, State>{
     let weatherContent = []
     if(!this.state.isLoaded){
       for(let i = 0 ; i < 5 ; i++){
-      weatherContent.push({
-          "dt":32503683661,
-          "main":{
-              "temp":273.15,
-              "feels_like":273.15,
-              "temp_min":273.15,
-              "temp_max":273.15,
-              "pressure":1000,
-              "sea_level":1000,
-              "grnd_level":1000,
-              "humidity":100,
-              "temp_kf":0
-          },"weather":[{
-              "id":800,
-              "main":"Weather",
-              "description":"väder",
-              "icon":"load"
-          }],"clouds":{
-              "all":0
-          },"wind":{
-              "speed":0.00,
-              "deg":123},
-              "sys":{
-              "pod":"n"
-          },"dt_txt":"3000-01-01 01:01:01"
-      })} 
+      weatherContent.push(placeholderWeatherResponse)} 
   } else {
       weatherContent.push(this.state.weatherDataToday)
       for(let i = 0 ; i < 4 ; i++){
