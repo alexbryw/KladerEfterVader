@@ -18,7 +18,7 @@ interface State{
   deviceSize: "isMobile" | "isDesktop",
   isLoaded: boolean,
   weatherDataToday: WeatherResponse | undefined,
-  weatherData: any,
+  weatherData: WeatherResponse[],
   activeView: string
 }
 
@@ -32,7 +32,7 @@ export default class Layout extends React.Component <Props, State>{
       deviceSize: this.calculateDeviceSize(),
       isLoaded: false,
       weatherDataToday: undefined,
-      weatherData: undefined,
+      weatherData: [],
       activeView: '/'
     }
   }
@@ -65,7 +65,7 @@ export default class Layout extends React.Component <Props, State>{
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.updateDeviceSize);
+    window.addEventListener('resize', this.updateDeviceSize)
     this.weatherAPICall()
   }
 
@@ -79,28 +79,22 @@ export default class Layout extends React.Component <Props, State>{
     "&appid=16da1da324d687a04c8aec0742e21c35&lang=se"
 
     try {
-      this.setState({ isLoaded: false });
-      const response = await fetch(weatherAPIUrl);
-      const data = await response.json();
-      console.log(data)
-
-      if(data.cod === "200"){ //Code 200 means good response.
-
-        const tempDataWeather: WeatherResponse[] = data.list.filter((reading: WeatherResponse) => reading.dt_txt.includes("12:00:00"));
-        console.log(tempDataWeather[0])
-        const hour = new Date().getHours();
+      this.setState({ isLoaded: false })
+      const response = await fetch(weatherAPIUrl)
+      const data = await response.json()
+      if(data.cod === "200"){ //Code 200 means good API response.
+        const tempDataWeather: WeatherResponse[] = data.list.filter((reading: WeatherResponse) => reading.dt_txt.includes("12:00:00"))
+        const hour = new Date().getHours()
         if(hour > 12){
-            tempDataWeather.pop();
+            tempDataWeather.pop()
         } else {
-            tempDataWeather.shift();
+            tempDataWeather.shift()
         }
         this.setState({
-            weatherDataToday: data.list[0],
+            weatherDataToday: data.list[0] as WeatherResponse,
             weatherData: tempDataWeather,
             isLoaded: true,
         })
-        console.log("WeatherData API call.")
-
       } else if(data.cod != null) {   //print error code if there is a code. Test with wrong city name.
         console.log("API error code response: " + data.cod) 
         console.log(data.message)
@@ -112,15 +106,16 @@ export default class Layout extends React.Component <Props, State>{
     }
   }
 
+  //Sends placholder data via props to route components until API data is loaded.
   loadWeatherContent = () =>{
-    let weatherContent = []
+    let weatherContent: WeatherResponse[] = []
     if(!this.state.isLoaded){
       for(let i = 0 ; i < 5 ; i++){
       weatherContent.push(placeholderWeatherResponse)} 
-  } else {
-      weatherContent.push(this.state.weatherDataToday)
+    } else {
+      weatherContent.push(this.state.weatherDataToday as WeatherResponse)
       for(let i = 0 ; i < 4 ; i++){
-          weatherContent.push(this.state.weatherData[i])
+          weatherContent.push(this.state.weatherData[i] as WeatherResponse)
       }
     }
     return weatherContent
