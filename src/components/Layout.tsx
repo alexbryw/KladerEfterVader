@@ -75,7 +75,7 @@ export default class Layout extends React.Component <Props, State>{
 
   async weatherAPICall(){
     const weatherAPIUrl = 
-    "http://api.openweathermap.org/data/2.5/forecast?q=Göteborg"+
+    "https://api.openweathermap.org/data/2.5/forecast?q=Göteborg"+
     "&appid=16da1da324d687a04c8aec0742e21c35&lang=se"
 
     try {
