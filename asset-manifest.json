@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/kladereftervader/static/css/main.25b6a372.chunk.css",
+    "main.js": "/kladereftervader/static/js/main.e5586ee2.chunk.js",
+    "main.js.map": "/kladereftervader/static/js/main.e5586ee2.chunk.js.map",
+    "runtime-main.js": "/kladereftervader/static/js/runtime-main.6bd763aa.js",
+    "runtime-main.js.map": "/kladereftervader/static/js/runtime-main.6bd763aa.js.map",
+    "static/js/2.12fe0c0f.chunk.js": "/kladereftervader/static/js/2.12fe0c0f.chunk.js",
+    "static/js/2.12fe0c0f.chunk.js.map": "/kladereftervader/static/js/2.12fe0c0f.chunk.js.map",
+    "index.html": "/kladereftervader/index.html",
+    "precache-manifest.15ab0d54f8ab4beb4149b2462895dc2d.js": "/kladereftervader/precache-manifest.15ab0d54f8ab4beb4149b2462895dc2d.js",
+    "service-worker.js": "/kladereftervader/service-worker.js",
+    "static/css/main.25b6a372.chunk.css.map": "/kladereftervader/static/css/main.25b6a372.chunk.css.map",
+    "static/js/2.12fe0c0f.chunk.js.LICENSE.txt": "/kladereftervader/static/js/2.12fe0c0f.chunk.js.LICENSE.txt",
+    "static/media/02d.png": "/kladereftervader/static/media/02d.013e63dc.png",
+    "static/media/02n.png": "/kladereftervader/static/media/02n.013e63dc.png",
+    "static/media/04d.png": "/kladereftervader/static/media/04d.5e3aa7cf.png",
+    "static/media/04n.png": "/kladereftervader/static/media/04n.5e3aa7cf.png",
+    "static/media/09d.png": "/kladereftervader/static/media/09d.7b68a6a8.png",
+    "static/media/09n.png": "/kladereftervader/static/media/09n.7b68a6a8.png",
+    "static/media/10d.png": "/kladereftervader/static/media/10d.1163c3ab.png",
+    "static/media/10n.png": "/kladereftervader/static/media/10n.1163c3ab.png",
+    "static/media/11d.png": "/kladereftervader/static/media/11d.fee575be.png",
+    "static/media/11n.png": "/kladereftervader/static/media/11n.fee575be.png",
+    "static/media/13d.png": "/kladereftervader/static/media/13d.29ac0faa.png",
+    "static/media/13n.png": "/kladereftervader/static/media/13n.29ac0faa.png",
+    "static/media/ColdSloth.png": "/kladereftervader/static/media/ColdSloth.5d3a926e.png",
+    "static/media/DefaultSloth.png": "/kladereftervader/static/media/DefaultSloth.e1d1d333.png",
+    "static/media/GothSloth.png": "/kladereftervader/static/media/GothSloth.5dd1cd83.png",
+    "static/media/HotSloth.png": "/kladereftervader/static/media/HotSloth.190e0768.png",
+    "static/media/MildSloth.png": "/kladereftervader/static/media/MildSloth.1881c91a.png",
+    "static/media/Night.png": "/kladereftervader/static/media/Night.11620fc6.png",
+    "static/media/WetSloth.png": "/kladereftervader/static/media/WetSloth.bd7510d6.png",
+    "static/media/confusedSloth.png": "/kladereftervader/static/media/confusedSloth.30f6003c.png",
+    "static/media/load.png": "/kladereftervader/static/media/load.4675f9a2.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6bd763aa.js",
+    "static/js/2.12fe0c0f.chunk.js",
+    "static/css/main.25b6a372.chunk.css",
+    "static/js/main.e5586ee2.chunk.js"
+  ]
+}
