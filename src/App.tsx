@@ -8,7 +8,7 @@ interface Props {}
 export default class App extends Component<Props> {
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename='/kladereftervader'>
           <ErrorBoundary>
             <Layout/>
           </ErrorBoundary>
