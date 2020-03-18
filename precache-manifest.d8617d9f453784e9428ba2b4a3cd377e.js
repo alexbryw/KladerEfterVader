@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b3675114b959b237b03e9d804c43c724",
+    "revision": "a70452c0ac855fb38a2e944c871e8a90",
     "url": "/kladereftervader/index.html"
   },
   {
-    "revision": "d6e27a4d0b4df874cf78",
+    "revision": "259b60a75f31854b26d3",
     "url": "/kladereftervader/static/css/main.25b6a372.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/kladereftervader/static/js/2.12fe0c0f.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d6e27a4d0b4df874cf78",
-    "url": "/kladereftervader/static/js/main.4abca716.chunk.js"
+    "revision": "259b60a75f31854b26d3",
+    "url": "/kladereftervader/static/js/main.7ee72c78.chunk.js"
   },
   {
     "revision": "974efef2af300070b244",
